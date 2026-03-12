@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="geodata_api_connector_geodata" model="geodata.api.connector">
+        <field name="name">geodata</field>
+        <field name="api_url">https://api.dmsolutions.com.ua:2661</field>
+        <field name="type">json</field>
+        <field name="is_api_token_used" eval="True"/>
+        <field name="is_api_token_static" eval="False"/>
+    </record>
+</odoo>

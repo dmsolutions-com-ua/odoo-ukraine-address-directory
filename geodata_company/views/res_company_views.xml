@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_company_form_geodata" model="ir.ui.view">
+        <field name="name">res.company.form.geodata</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//div[hasclass('o_address_format')]" position="before">
+                <field name="has_geodata_credential" invisible="True" force_save="1"/>
+                <field name="geodata_autocomplete_active" invisible="True" force_save="1"/>
+                <field name="geodata_address_id" invisible="True" force_save="1"/>
+                <field name="country_code" invisible="True"/>
+            </xpath>
+
+            <xpath expr="//div[hasclass('o_address_format')]" position="before">
+                <div class="text-muted small mb-2 oe_edit_only"
+                     invisible="country_code != 'UA'">
+                    <strong>Кроки введення адреси:</strong><br/>
+                    <span>(1) Країна -> (2) Населений пункт -> (3) Вулиця і будинок</span>
+                </div>
+            </xpath>
+
+            <xpath expr="//field[@name='street']" position="attributes">
+                <attribute name="widget">kw_autocomplete</attribute>
+                <attribute name="options">{
+                    'source_type': 'model_method',
+                    'source_config': {
+                        'model': 'geodata.api.credential',
+                        'method': 'kw_autocomplete_streets'
+                    },
+                    'depends_on': ['geodata_address_id', 'city', 'street'],
+                    'on_select_method': 'apply_geodata_address',
+                    'min_chars': 3
+                }</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='city']" position="attributes">
+                <attribute name="widget">kw_autocomplete</attribute>
+                <attribute name="options">{
+                    'source_type': 'model_method',
+                    'source_config': {
+                        'model': 'geodata.api.credential',
+                        'method': 'kw_autocomplete_cities'
+                    },
+                    'depends_on': ['country_id'],
+                    'on_select_method': 'apply_geodata_address',
+                    'min_chars': 3
+                }</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='state_id']" position="after">
+                <field name="area" placeholder="District/Raion"
+                       widget="kw_autocomplete"
+                       options="{
+                           'source_type': 'model_method',
+                           'source_config': {
+                               'model': 'geodata.api.credential',
+                               'method': 'kw_autocomplete_areas'
+                           },
+                           'min_chars': 3
+                       }"
+                       invisible="country_code != 'UA'"/>
+                <field name="hromada" placeholder="Hromada"
+                       widget="kw_autocomplete"
+                       options="{
+                           'source_type': 'model_method',
+                           'source_config': {
+                               'model': 'geodata.api.credential',
+                               'method': 'kw_autocomplete_hromadas'
+                           },
+                           'depends_on': ['area'],
+                           'min_chars': 3
+                       }"
+                       invisible="country_code != 'UA'"/>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

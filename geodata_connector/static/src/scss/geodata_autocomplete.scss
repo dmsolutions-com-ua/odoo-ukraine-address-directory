@@ -1,0 +1,72 @@
+.o_field_geodata_autocomplete {
+    position: relative;
+    width: 100%;
+
+    .o-autocomplete--dropdown-menu {
+        z-index: 1050;
+        width: max-content;
+        min-width: 100%;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.175);
+        margin-top: 2px;
+        background-color: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        border-radius: 0.25rem;
+
+        .dropdown-item {
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            color: #212529;
+            white-space: nowrap;
+            transition: background-color 0.15s;
+
+            &:hover {
+                background-color: #e9ecef;
+                color: #16181b;
+            }
+
+            &:active,
+            &.active {
+                background-color: #007bff;
+                color: #fff;
+            }
+        }
+    }
+
+    .geodata-autocomplete-wrapper {
+        width: 100%;
+    }
+
+    input.o_input {
+        &:focus {
+            border-color: #80bdff;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+    }
+
+    .fa-spinner {
+        font-size: 0.9em;
+    }
+}
+
+.geodata-autocomplete-wrapper {
+    width: 100%;
+
+    .o-autocomplete {
+        width: 100%;
+    }
+}
+
+.kw_autocomplete_field {
+    .o-autocomplete--dropdown-menu {
+        width: auto !important;
+        max-width: none !important;
+        min-width: 0 !important;
+        right: auto !important;
+
+        .dropdown-item {
+            white-space: nowrap !important;
+            overflow: visible !important;
+            text-overflow: unset !important;
+        }
+    }
+}

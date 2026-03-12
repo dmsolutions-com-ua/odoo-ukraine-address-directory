@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="kw_http_request_log_source_geodata" model="kw.http.request.log.source">
+        <field name="name">Geodata API</field>
+        <field name="log_retention_period">30</field>
+        <field name="is_log_enabled" eval="True"/>
+        <field name="type">json</field>
+    </record>
+</odoo>

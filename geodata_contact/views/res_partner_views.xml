@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_partner_form_geodata" model="ir.ui.view">
+        <field name="name">res.partner.form.geodata</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('o_address_format')]" position="before">
+                <field name="has_geodata_credential" invisible="True" force_save="1"/>
+                <field name="geodata_store_english" invisible="True" force_save="1"/>
+                <field name="geodata_store_russian" invisible="True" force_save="1"/>
+                <field name="geodata_autocomplete_active" invisible="True" force_save="1"/>
+            </xpath>
+            <xpath expr="//div[hasclass('o_address_format')]" position="before">
+                <div class="text-muted small mb-2 oe_edit_only"
+                     invisible="country_code != 'UA'">
+                    <strong>Кроки введення адреси:</strong><br/>
+                    <span>(1) Країна -> (2) Населений пункт -> (3) Вулиця і будинок</span>
+                </div>
+            </xpath>
+            <xpath expr="//field[@name='street']" position="attributes">
+                <attribute name="widget">kw_autocomplete</attribute>
+                <attribute name="options">{
+                    'source_type': 'model_method',
+                    'source_config': {
+                        'model': 'geodata.api.credential',
+                        'method': 'kw_autocomplete_streets'
+                    },
+                    'depends_on': ['geodata_address_id', 'city', 'street'],
+                    'on_select_method': 'apply_address_to_partner',
+                    'min_chars': 3
+                }</attribute>
+            </xpath>
+            <xpath expr="//field[@name='city']" position="attributes">
+                <attribute name="widget">kw_autocomplete</attribute>
+                <attribute name="options">{
+                    'source_type': 'model_method',
+                    'source_config': {
+                        'model': 'geodata.api.credential',
+                        'method': 'kw_autocomplete_cities'
+                    },
+                    'depends_on': ['country_id'],
+                    'on_select_method': 'apply_address_to_partner',
+                    'min_chars': 3
+                }</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='state_id']" position="after">
+                <field name="area" placeholder="District/Raion"
+                       readonly="1" force_save="1"
+                       invisible="country_code != 'UA'"/>
+                <field name="hromada" placeholder="Hromada"
+                       readonly="1" force_save="1"
+                       invisible="country_code != 'UA'"/>
+            </xpath>
+
+            <xpath expr="//field[@name='child_ids']/form//div[@name='div_address']" position="before">
+                <field name="has_geodata_credential" invisible="True" force_save="1"/>
+                <field name="geodata_store_english" invisible="True" force_save="1"/>
+                <field name="geodata_store_russian" invisible="True" force_save="1"/>
+                <field name="geodata_autocomplete_active" invisible="True" force_save="1"/>
+                <field name="geodata_address_id" invisible="True" force_save="1"/>
+                <field name="country_code" invisible="True"/>
+            </xpath>
+            <xpath expr="//field[@name='child_ids']/form//div[@name='div_address']" position="before">
+                <div class="text-muted small mb-2 oe_edit_only"
+                     invisible="country_code != 'UA'">
+                    <strong>Кроки введення адреси:</strong><br/>
+                    <span>(1) Країна -> (2) Населений пункт -> (3) Вулиця і будинок</span>
+                </div>
+            </xpath>
+            <xpath expr="//field[@name='child_ids']/form//field[@name='street']" position="attributes">
+                <attribute name="widget">kw_autocomplete</attribute>
+                <attribute name="options">{
+                    'source_type': 'model_method',
+                    'source_config': {
+                        'model': 'geodata.api.credential',
+                        'method': 'kw_autocomplete_streets'
+                    },
+                    'depends_on': ['geodata_address_id', 'city', 'street'],
+                    'on_select_method': 'apply_address_to_partner',
+                    'min_chars': 3
+                }</attribute>
+            </xpath>
+            <xpath expr="//field[@name='child_ids']/form//field[@name='city']" position="attributes">
+                <attribute name="widget">kw_autocomplete</attribute>
+                <attribute name="options">{
+                    'source_type': 'model_method',
+                    'source_config': {
+                        'model': 'geodata.api.credential',
+                        'method': 'kw_autocomplete_cities'
+                    },
+                    'depends_on': ['country_id'],
+                    'on_select_method': 'apply_address_to_partner',
+                    'min_chars': 3
+                }</attribute>
+            </xpath>
+            <xpath expr="//field[@name='child_ids']/form//field[@name='state_id']" position="after">
+                <field name="area" placeholder="District/Raion"
+                       readonly="1" force_save="1"
+                       invisible="country_code != 'UA'"/>
+                <field name="hromada" placeholder="Hromada"
+                       readonly="1" force_save="1"
+                       invisible="country_code != 'UA'"/>
+            </xpath>
+
+            <notebook position="inside">
+                <page name="geodata_page" string="Інформація про адресу">
+                    <div class="alert alert-warning" role="alert"
+                         invisible="has_geodata_credential">
+                        <strong>Geodata.online not configured</strong>
+                        <br/>
+                        Configure Geodata API credentials in Settings to enable
+                        address autocomplete.
+                    </div>
+                    <div class="alert alert-info" role="alert"
+                         invisible="country_code == 'UA' or not has_geodata_credential">
+                        <strong>Для активації підказок по адресам виберіть країну: Україна</strong>
+                    </div>
+                    <group>
+                        <field name="geodata_search"
+                               widget="kw_autocomplete"
+                               placeholder="Search Address (Region, City, Street, House)..."
+                               options="{
+                                   'source_type': 'model_method',
+                                   'source_config': {
+                                       'model': 'geodata.api.credential',
+                                       'method': 'kw_autocomplete_full_address'
+                                   },
+                                   'on_select_method': 'apply_address_to_partner',
+                                   'min_chars': 3
+                               }"
+                               invisible="country_code != 'UA'"
+                               class="oe_edit_only"
+                               colspan="2"/>
+                    </group>
+                    <div>Послідовний пошук адреси та автоматичне заповнення адресних даних</div>
+                    <group invisible="not has_geodata_credential" string="Details">
+                        <field name="geodata_address_id" readonly="1"
+                               force_save="1"
+                               title="Подивитись деталі про адресу"/>
+                        <field name="geodata_kato" string="КАТОТТГ"
+                               widget="CopyClipboardChar"/>
+                        <field name="geodata_koatuu" string="КОАТУУ"
+                               widget="CopyClipboardChar"/>
+                        <field name="geodata_terr_status" string="Статус території"
+                               invisible="not geodata_terr_status"/>
+                    </group>
+                    <group invisible="not has_geodata_credential"
+                           string="Full Addresses for Documents"
+                           name="contract_addresses">
+                        <field name="geodata_address_full_ua"
+                               string="UA" widget="CopyClipboardChar"/>
+                        <field name="geodata_address_full_ru"
+                               string="RU" widget="CopyClipboardChar"
+                               invisible="not geodata_store_russian"/>
+                        <field name="geodata_address_full_en"
+                               string="EN" widget="CopyClipboardChar"
+                               invisible="not geodata_store_english"/>
+                    </group>
+                    <group invisible="not has_geodata_credential"
+                           string="Full Addresses for Letters"
+                           name="letter_addresses">
+                        <field name="geodata_address_letter_ua"
+                               string="UA" widget="CopyClipboardChar"/>
+                        <field name="geodata_address_letter_ru"
+                               string="RU" widget="CopyClipboardChar"
+                               invisible="not geodata_store_russian"/>
+                        <field name="geodata_address_letter_en"
+                               string="EN" widget="CopyClipboardChar"
+                               invisible="not geodata_store_english"/>
+                    </group>
+                    <div class="text-muted mt-3" invisible="not has_geodata_credential">
+                        <a href="https://geodata.online" target="_blank"
+                           class="text-primary">
+                            GEODATA.online
+                        - сервіс нормалізації та валідації адрес України
+                        </a>
+                    </div>
+                </page>
+            </notebook>
+
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,5 @@
+--github crnd-inc/generic-addons --module generic_mixin
+
+--github kitworks-systems/addons --module kw_mixin
+--github kitworks-systems/addons --module kw_http_request_log
+--github kitworks-systems/addons --module kw_api_connector

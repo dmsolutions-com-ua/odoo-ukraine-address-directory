@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geodata Connector</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 { color: #2c3e50; }
+        h2 { color: #34495e; margin-top: 30px; }
+        .feature { margin: 20px 0; padding: 15px; background: #f8f9fa; border-left: 4px solid #007bff; }
+        .feature h3 { margin-top: 0; color: #007bff; }
+        ul { padding-left: 20px; }
+        .badge { display: inline-block; padding: 3px 8px; background: #28a745; color: white; border-radius: 3px; font-size: 0.85em; }
+    </style>
+</head>
+<body>
+    <h1>🌍 Geodata Connector</h1>
+    <p class="badge">Version 18.0.1.0.0</p>
+    <p>Integration with Geodata.online API for address autocomplete and normalization in Ukraine.</p>
+
+    <h2>✨ Features</h2>
+    <div class="feature">
+        <h3>Address Autocomplete</h3>
+        <p>Real-time address suggestions from Geodata.online API with comprehensive Ukrainian address database.</p>
+    </div>
+
+    <div class="feature">
+        <h3>Wizard-Based UI</h3>
+        <p>User-friendly wizard for address selection directly from res.partner forms.</p>
+    </div>
+
+    <div class="feature">
+        <h3>Automatic Field Population</h3>
+        <p>Auto-fills street, city, zip code, state, and geographic coordinates.</p>
+    </div>
+
+    <div class="feature">
+        <h3>Multi-language Support</h3>
+        <p>Ukrainian and Russian language interfaces for API requests.</p>
+    </div>
+
+    <h2>📋 Requirements</h2>
+    <ul>
+        <li>Odoo 18.0 Community or Enterprise</li>
+        <li>kw_api_connector module</li>
+        <li>kw_http_request_log module</li>
+        <li>kw_mixin module</li>
+        <li>base_geolocalize module</li>
+        <li>Geodata.online API key (<a href="https://geodata.online/" target="_blank">register here</a>)</li>
+    </ul>
+
+    <h2>🚀 Quick Start</h2>
+    <ol>
+        <li>Install the module from Odoo Apps</li>
+        <li>Navigate to Settings → Address (GEODATA) → API Credentials</li>
+        <li>Create new credential and enter your API key</li>
+        <li>Test connection</li>
+        <li>Open any partner form and click "🌍 Address Wizard"</li>
+        <li>Search and select address</li>
+    </ol>
+
+    <h2>📄 License</h2>
+    <p>This module is licensed under LGPL-3.</p>
+</body>
+</html>

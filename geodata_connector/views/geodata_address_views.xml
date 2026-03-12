@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- Geodata Address Form View -->
+    <record id="geodata_address_view_form" model="ir.ui.view">
+        <field name="name">geodata.address.view.form</field>
+        <field name="model">geodata.address</field>
+        <field name="arch" type="xml">
+            <form string="Geodata.online Address" edit="false">
+                <sheet>
+                    <group>
+                        <group string="Main Information">
+                            <field name="address_string" readonly="1"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Administrative">
+                            <group>
+                                <group string="Address">
+                                    <field name="region" readonly="1"/>
+                                    <field name="area" readonly="1"/>
+                                    <field name="hromada" readonly="1"/>
+                                    <field name="city" readonly="1"/>
+                                    <field name="settlement_type" readonly="1"/>
+                                    <field name="city_district" readonly="1"/>
+                                    <field name="street" readonly="1"/>
+                                    <field name="str_type" readonly="1"/>
+                                    <field name="house_num" readonly="1"/>
+                                    <field name="house_num_add" readonly="1"/>
+                                    <field name="apartment" readonly="1"/>
+                                    <field name="apartment_type" readonly="1"/>
+                                    <field name="addition_address" readonly="1"/>
+                                </group>
+                                <group string="Codes and Status">
+                                    <field name="post_index" string="Postal Code" readonly="1"/>
+                                    <field name="koatuu" readonly="1"/>
+                                    <field name="kato" readonly="1"/>
+                                    <field name="phone_code" readonly="1"/>
+                                    <field name="is_regional_center" readonly="1"/>
+                                    <field name="is_district_center" readonly="1"/>
+                                    <field name="terr_status" readonly="1"
+                                           string="Статус території"/>
+                                    <field name="write_date"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Coordinates">
+                            <group>
+                                <group string="Building">
+                                    <field name="latitude" readonly="1"/>
+                                    <field name="longitude" readonly="1"/>
+                                </group>
+                                <group string="Settlement">
+                                    <field name="latitude_settlement" readonly="1"/>
+                                    <field name="longitude_settlement" readonly="1"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Українська транслітерація" invisible="not context.get('geodata_store_english', True)">
+                            <group>
+                                <group>
+                                    <field name="region_en" string="Region" readonly="1"/>
+                                    <field name="area_en" string="Area" readonly="1"/>
+                                    <field name="hromada_en" string="Hromada" readonly="1"/>
+                                    <field name="city_en" string="City" readonly="1"/>
+                                </group>
+                                <group>
+                                    <field name="settlement_type_en" string="Settlement Type" readonly="1"/>
+                                    <field name="city_district_en" string="City District" readonly="1"/>
+                                    <field name="street_en" string="Street" readonly="1"/>
+                                    <field name="str_type_en" string="Street Type" readonly="1"/>
+                                </group>
+                            </group>
+                            <group>
+                                <field name="apartment_type_en" string="Apartment Type" readonly="1"/>
+                            </group>
+                        </page>
+
+                        <page string="Russian Translation" invisible="not context.get('geodata_store_russian', False)">
+                            <group>
+                                <group>
+                                    <field name="region_ru" readonly="1"/>
+                                    <field name="area_ru" readonly="1"/>
+                                    <field name="hromada_ru" readonly="1"/>
+                                    <field name="city_ru" readonly="1"/>
+                                </group>
+                                <group>
+                                    <field name="settlement_type_ru" readonly="1"/>
+                                    <field name="city_district_ru" readonly="1"/>
+                                    <field name="street_ru" readonly="1"/>
+                                    <field name="str_type_ru" readonly="1"/>
+                                </group>
+                            </group>
+                            <group>
+                                <field name="apartment_type_ru" readonly="1"/>
+                            </group>
+                        </page>
+
+                        <page string="Metro">
+                            <group>
+                                <field name="metro_station" readonly="1"/>
+                                <field name="metro_line" readonly="1"/>
+                                <field name="metro_distance" readonly="1"/>
+                            </group>
+                        </page>
+
+                        <page string="Old Names">
+                            <group>
+                                <group>
+                                    <field name="area_old" readonly="1"/>
+                                    <field name="city_old" readonly="1"/>
+                                    <field name="street_old" readonly="1"/>
+                                    <field name="area_old" readonly="1"/>
+                                    <field name="hromada_old" readonly="1"/>
+                                </group>
+                                <group>
+<!--                                    <field name="region_old" readonly="1"/>-->
+<!--                                    <field name="settlement_type_old" readonly="1"/>-->
+<!--                                    <field name="str_type_old" readonly="1"/>-->
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Additional">
+                            <group>
+                                <field name="comments" readonly="1"/>
+                                <field name="description" readonly="1"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Geodata Address Tree View -->
+    <record id="geodata_address_view_tree" model="ir.ui.view">
+        <field name="name">geodata.address.view.tree</field>
+        <field name="model">geodata.address</field>
+        <field name="arch" type="xml">
+            <list string="Адреси Geodata">
+                <field name="city" string="Місто"/>
+                <field name="street" string="Вулиця" optional="show"/>
+                <field name="house_num" string="Буд." optional="show"/>
+                <field name="region" string="Область"/>
+                <field name="area" string="Район" optional="hide"/>
+                <field name="hromada" string="Громада" optional="hide"/>
+                <field name="post_index" string="Індекс" optional="show"/>
+                <field name="kato" string="КАТОТТГ" optional="hide"/>
+                <field name="koatuu" string="КОАТУУ" optional="hide"/>
+                <field name="latitude" optional="hide"/>
+                <field name="longitude" optional="hide"/>
+                <field name="write_date" optional="hide"/>
+                <field name="address_string" string="Повна адреса" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Geodata Address Search View -->
+    <record id="geodata_address_view_search" model="ir.ui.view">
+        <field name="name">geodata.address.view.search</field>
+        <field name="model">geodata.address</field>
+        <field name="arch" type="xml">
+            <search string="Пошук адрес">
+                <field name="address_string" string="Адреса"/>
+                <field name="city" string="Місто"/>
+                <field name="region" string="Область"/>
+                <field name="street" string="Вулиця"/>
+                <field name="post_index" string="Індекс"/>
+                <filter string="З координатами" name="has_coordinates" domain="[('latitude', '!=', False), ('longitude', '!=', False)]"/>
+                <group expand="0" string="Групувати за">
+                    <filter string="Область" name="group_region" context="{'group_by': 'region'}"/>
+                    <filter string="Місто" name="group_city" context="{'group_by': 'city'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Geodata Address Action -->
+    <record id="geodata_address_action" model="ir.actions.act_window">
+        <field name="name">Адреси (Geodata)</field>
+        <field name="res_model">geodata.address</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Адреси не знайдено
+            </p>
+            <p>
+                Адреси створюються автоматично при використанні пошуку.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem id="menu_geodata_address"
+              name="Адреси"
+              parent="menu_geodata_root"
+              action="geodata_address_action"
+              sequence="10"/>
+
+</odoo>

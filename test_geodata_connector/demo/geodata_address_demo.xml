@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+
+        <!-- Demo Address: Kyiv, Khreshchatyk -->
+        <record id="geodata_address_demo_kyiv" model="geodata.address">
+            <field name="geodata_id">1</field>
+            <field name="address_string">м. Київ, вул. Хрещатик, 1</field>
+            <field name="post_index">01001</field>
+            <field name="region">Київська</field>
+            <field name="city">Київ</field>
+            <field name="settlement_type">місто</field>
+            <field name="street">Хрещатик</field>
+            <field name="str_type">вул.</field>
+            <field name="house_num">1</field>
+            <field name="latitude">50.4501</field>
+            <field name="longitude">30.5234</field>
+            <field name="is_regional_center" eval="True"/>
+        </record>
+
+        <!-- Demo Address: Kharkiv -->
+        <record id="geodata_address_demo_kharkiv" model="geodata.address">
+            <field name="geodata_id">2</field>
+            <field name="address_string">м. Харків, вул. Сумська, 10</field>
+            <field name="post_index">61000</field>
+            <field name="region">Харківська</field>
+            <field name="city">Харків</field>
+            <field name="settlement_type">місто</field>
+            <field name="street">Сумська</field>
+            <field name="str_type">вул.</field>
+            <field name="house_num">10</field>
+            <field name="latitude">50.0049</field>
+            <field name="longitude">36.2310</field>
+            <field name="is_regional_center" eval="True"/>
+        </record>
+
+        <!-- Demo Address: Lviv -->
+        <record id="geodata_address_demo_lviv" model="geodata.address">
+            <field name="geodata_id">3</field>
+            <field name="address_string">м. Львів, пл. Ринок, 1</field>
+            <field name="post_index">79000</field>
+            <field name="region">Львівська</field>
+            <field name="city">Львів</field>
+            <field name="settlement_type">місто</field>
+            <field name="street">Ринок</field>
+            <field name="str_type">пл.</field>
+            <field name="house_num">1</field>
+            <field name="latitude">49.8419</field>
+            <field name="longitude">24.0315</field>
+            <field name="is_regional_center" eval="True"/>
+        </record>
+
+</odoo>

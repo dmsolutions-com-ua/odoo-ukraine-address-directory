@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="geoprovider_geodata" model="base.geo_provider">
+        <field name="tech_name">geodata</field>
+        <field name="name">Geodata.online</field>
+    </record>
+</odoo>

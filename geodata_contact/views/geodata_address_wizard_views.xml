@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="geodata_address_wizard_view_form" model="ir.ui.view">
+        <field name="name">geodata.address.wizard.view.form</field>
+        <field name="model">geodata.address.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Select Address from Geodata">
+                <group>
+                    <group>
+                        <field name="partner_id" invisible="1"/>
+                        <field name="credential_id" options="{'no_create': True}"/>
+                        <field name="search_language"/>
+                    </group>
+                    <group>
+                        <label for="search_query"/>
+                        <div>
+                            <field name="search_query"
+                                   placeholder="Київ, вул. Хрещатик, 1"
+                                   class="oe_inline"/>
+                            <div class="text-muted small mt-1">
+                                Приклади: "Київ Хрещатик 1" або "Львів Шевченка 25" або "Одеса Дерибасівська"
+                            </div>
+                        </div>
+                    </group>
+                </group>
+
+                <group>
+                    <button name="action_search" string="Search" type="object" class="btn-primary"/>
+                </group>
+
+                <separator string="Search Results"/>
+                <field name="address_result_ids" nolabel="1">
+                    <list string="Found Addresses" create="false" delete="false">
+                        <field name="display_address"/>
+                        <field name="city"/>
+                        <field name="region"/>
+                        <button name="action_select" string="Select" type="object" class="btn-link"/>
+                    </list>
+                </field>
+
+                <group>
+                    <field name="selected_address_id" readonly="1"/>
+                </group>
+
+                <footer>
+                    <button name="action_select_and_apply" string="Apply Selected" type="object" class="btn-primary" invisible="not selected_address_id"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

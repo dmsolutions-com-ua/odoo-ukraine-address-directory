@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_geodata_api_response_mock_user,access_geodata_api_response_mock_user,model_geodata_api_response_mock,geodata_connector.group_geodata_user,1,1,1,0
+access_geodata_api_response_mock_manager,access_geodata_api_response_mock_manager,model_geodata_api_response_mock,geodata_connector.group_geodata_manager,1,1,1,1
