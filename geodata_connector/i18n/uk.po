@@ -183,18 +183,18 @@ msgstr "Формат адреси для листів"
 
 #. module: geodata_connector
 #: model:ir.model.fields,help:geodata_connector.field_geodata_address__address_letter_en
-msgid "Address for letters in English (without country)"
-msgstr "Адреса для листів англійською (без країни)"
+msgid "Address for letters in English"
+msgstr "Адреса для листів англійською"
 
 #. module: geodata_connector
 #: model:ir.model.fields,help:geodata_connector.field_geodata_address__address_letter_ru
-msgid "Address for letters in Russian (without country)"
-msgstr "Адреса для листів російською (без країни)"
+msgid "Address for letters in Russian"
+msgstr "Адреса для листів російською"
 
 #. module: geodata_connector
 #: model:ir.model.fields,help:geodata_connector.field_geodata_address__address_letter_ua
-msgid "Address for letters in Ukrainian (without country)"
-msgstr "Адреса для листів українською (без країни)"
+msgid "Address for letters in Ukrainian"
+msgstr "Адреса для листів українською"
 
 #. module: geodata_connector
 #: model:ir.ui.menu,name:geodata_connector.menu_geodata_address

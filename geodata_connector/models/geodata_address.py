@@ -311,19 +311,19 @@ class GeodataAddress(models.Model):
         string="Letter Address (UA)",
         compute="_compute_full_addresses",
         store=True,
-        help="Address for letters in Ukrainian (without country)",
+        help="Address for letters in Ukrainian",
     )
     address_letter_ru = fields.Char(
         string="Letter Address (RU)",
         compute="_compute_full_addresses",
         store=True,
-        help="Address for letters in Russian (without country)",
+        help="Address for letters in Russian",
     )
     address_letter_en = fields.Char(
         string="Letter Address (EN)",
         compute="_compute_full_addresses",
         store=True,
-        help="Address for letters in English (without country)",
+        help="Address for letters in English",
     )
 
     city_en = fields.Char(string="City (English)")

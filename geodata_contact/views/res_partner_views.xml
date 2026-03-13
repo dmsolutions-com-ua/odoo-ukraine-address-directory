@@ -11,13 +11,6 @@
                 <field name="geodata_store_russian" invisible="True" force_save="1"/>
                 <field name="geodata_autocomplete_active" invisible="True" force_save="1"/>
             </xpath>
-            <xpath expr="//div[hasclass('o_address_format')]" position="before">
-                <div class="text-muted small mb-2 oe_edit_only"
-                     invisible="country_code != 'UA'">
-                    <strong>Address input steps:</strong><br/>
-                    <span>(1) Country -> (2) City -> (3) Street and house number</span>
-                </div>
-            </xpath>
             <xpath expr="//field[@name='street']" position="attributes">
                 <attribute name="widget">kw_autocomplete</attribute>
                 <attribute name="options">{
@@ -61,13 +54,6 @@
                 <field name="geodata_autocomplete_active" invisible="True" force_save="1"/>
                 <field name="geodata_address_id" invisible="True" force_save="1"/>
                 <field name="country_code" invisible="True"/>
-            </xpath>
-            <xpath expr="//field[@name='child_ids']/form//div[@name='div_address']" position="before">
-                <div class="text-muted small mb-2 oe_edit_only"
-                     invisible="country_code != 'UA'">
-                    <strong>Address input steps:</strong><br/>
-                    <span>Country -> City -> Street and house number</span>
-                </div>
             </xpath>
             <xpath expr="//field[@name='child_ids']/form//field[@name='street']" position="attributes">
                 <attribute name="widget">kw_autocomplete</attribute>
@@ -137,7 +123,7 @@
                         </group>
                     </div>
                     <div>Step-by-step address search and automatic address data filling</div>
-                    <group invisible="not has_geodata_credential" string="Details">
+                    <group invisible="not has_geodata_credential" string="Address details">
                         <field name="geodata_address_id" readonly="1"
                                force_save="1"
                                title="View address details"/>

@@ -96,20 +96,20 @@ msgstr "Пошук адреси"
 #. module: geodata_contact
 #: model:ir.model.fields,help:geodata_contact.field_res_partner__geodata_address_letter_en
 #: model:ir.model.fields,help:geodata_contact.field_res_users__geodata_address_letter_en
-msgid "Address for letters in English (without country)"
-msgstr "Адреса для листів англійською (без країни)"
+msgid "Address for letters in English"
+msgstr "Адреса для листів англійською"
 
 #. module: geodata_contact
 #: model:ir.model.fields,help:geodata_contact.field_res_partner__geodata_address_letter_ru
 #: model:ir.model.fields,help:geodata_contact.field_res_users__geodata_address_letter_ru
-msgid "Address for letters in Russian (without country)"
-msgstr "Адреса для листів російською (без країни)"
+msgid "Address for letters in Russian"
+msgstr "Адреса для листів російською"
 
 #. module: geodata_contact
 #: model:ir.model.fields,help:geodata_contact.field_res_partner__geodata_address_letter_ua
 #: model:ir.model.fields,help:geodata_contact.field_res_users__geodata_address_letter_ua
-msgid "Address for letters in Ukrainian (without country)"
-msgstr "Адреса для листів українською (без країни)"
+msgid "Address for letters in Ukrainian"
+msgstr "Адреса для листів українською"
 
 #. module: geodata_contact
 #. odoo-python
@@ -206,8 +206,13 @@ msgstr "Дата створення"
 
 #. module: geodata_contact
 #: model_terms:ir.ui.view,arch_db:geodata_contact.view_partner_form_geodata
-msgid "Details"
-msgstr "Деталі"
+msgid "Address details"
+msgstr "Деталі адреси"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_res_partner__geodata_address_updated
+msgid "Address Updated"
+msgstr "Адресу оновлено"
 
 #. module: geodata_contact
 #: model:ir.model.fields,field_description:geodata_contact.field_geodata_address_wizard__display_name
