@@ -40,7 +40,7 @@
                                     <field name="is_regional_center" readonly="1"/>
                                     <field name="is_district_center" readonly="1"/>
                                     <field name="terr_status" readonly="1"
-                                           string="Статус території"/>
+                                           string="Territory Status"/>
                                     <field name="write_date"/>
                                 </group>
                             </group>
@@ -59,7 +59,7 @@
                             </group>
                         </page>
 
-                        <page string="Українська транслітерація" invisible="not context.get('geodata_store_english', True)">
+                        <page string="English Transliteration" invisible="not context.get('geodata_store_english', True)">
                             <group>
                                 <group>
                                     <field name="region_en" string="Region" readonly="1"/>
@@ -113,14 +113,9 @@
                                     <field name="area_old" readonly="1"/>
                                     <field name="city_old" readonly="1"/>
                                     <field name="street_old" readonly="1"/>
-                                    <field name="area_old" readonly="1"/>
                                     <field name="hromada_old" readonly="1"/>
                                 </group>
-                                <group>
-<!--                                    <field name="region_old" readonly="1"/>-->
-<!--                                    <field name="settlement_type_old" readonly="1"/>-->
-<!--                                    <field name="str_type_old" readonly="1"/>-->
-                                </group>
+                                <group/>
                             </group>
                         </page>
 
@@ -141,20 +136,20 @@
         <field name="name">geodata.address.view.tree</field>
         <field name="model">geodata.address</field>
         <field name="arch" type="xml">
-            <list string="Адреси Geodata">
-                <field name="city" string="Місто"/>
-                <field name="street" string="Вулиця" optional="show"/>
-                <field name="house_num" string="Буд." optional="show"/>
-                <field name="region" string="Область"/>
-                <field name="area" string="Район" optional="hide"/>
-                <field name="hromada" string="Громада" optional="hide"/>
-                <field name="post_index" string="Індекс" optional="show"/>
-                <field name="kato" string="КАТОТТГ" optional="hide"/>
-                <field name="koatuu" string="КОАТУУ" optional="hide"/>
+            <list string="Geodata Addresses">
+                <field name="city" string="City"/>
+                <field name="street" string="Street" optional="show"/>
+                <field name="house_num" string="House" optional="show"/>
+                <field name="region" string="Region"/>
+                <field name="area" string="District" optional="hide"/>
+                <field name="hromada" string="Hromada" optional="hide"/>
+                <field name="post_index" string="Postal Code" optional="show"/>
+                <field name="kato" string="KATOTTG" optional="hide"/>
+                <field name="koatuu" string="KOATUU" optional="hide"/>
                 <field name="latitude" optional="hide"/>
                 <field name="longitude" optional="hide"/>
                 <field name="write_date" optional="hide"/>
-                <field name="address_string" string="Повна адреса" optional="hide"/>
+                <field name="address_string" string="Full Address" optional="hide"/>
             </list>
         </field>
     </record>
@@ -164,16 +159,16 @@
         <field name="name">geodata.address.view.search</field>
         <field name="model">geodata.address</field>
         <field name="arch" type="xml">
-            <search string="Пошук адрес">
-                <field name="address_string" string="Адреса"/>
-                <field name="city" string="Місто"/>
-                <field name="region" string="Область"/>
-                <field name="street" string="Вулиця"/>
-                <field name="post_index" string="Індекс"/>
-                <filter string="З координатами" name="has_coordinates" domain="[('latitude', '!=', False), ('longitude', '!=', False)]"/>
-                <group expand="0" string="Групувати за">
-                    <filter string="Область" name="group_region" context="{'group_by': 'region'}"/>
-                    <filter string="Місто" name="group_city" context="{'group_by': 'city'}"/>
+            <search string="Search Addresses">
+                <field name="address_string" string="Address"/>
+                <field name="city" string="City"/>
+                <field name="region" string="Region"/>
+                <field name="street" string="Street"/>
+                <field name="post_index" string="Postal Code"/>
+                <filter string="With Coordinates" name="has_coordinates" domain="[('latitude', '!=', False), ('longitude', '!=', False)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Region" name="group_region" context="{'group_by': 'region'}"/>
+                    <filter string="City" name="group_city" context="{'group_by': 'city'}"/>
                 </group>
             </search>
         </field>
@@ -181,22 +176,22 @@
 
     <!-- Geodata Address Action -->
     <record id="geodata_address_action" model="ir.actions.act_window">
-        <field name="name">Адреси (Geodata)</field>
+        <field name="name">Addresses (Geodata)</field>
         <field name="res_model">geodata.address</field>
         <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
-                Адреси не знайдено
+                No addresses found
             </p>
             <p>
-                Адреси створюються автоматично при використанні пошуку.
+                Addresses are created automatically when using address search.
             </p>
         </field>
     </record>
 
     <!-- Menu Item -->
     <menuitem id="menu_geodata_address"
-              name="Адреси"
+              name="Addresses"
               parent="menu_geodata_root"
               action="geodata_address_action"
               sequence="10"/>

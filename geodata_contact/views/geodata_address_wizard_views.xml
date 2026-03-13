@@ -16,10 +16,10 @@
                         <label for="search_query"/>
                         <div>
                             <field name="search_query"
-                                   placeholder="Київ, вул. Хрещатик, 1"
+                                   placeholder="Kyiv, Khreshchatyk str., 1"
                                    class="oe_inline"/>
                             <div class="text-muted small mt-1">
-                                Приклади: "Київ Хрещатик 1" або "Львів Шевченка 25" або "Одеса Дерибасівська"
+                                Examples: "Kyiv Khreshchatyk 1" or "Lviv Shevchenka 25" or "Odesa Derybasivska"
                             </div>
                         </div>
                     </group>

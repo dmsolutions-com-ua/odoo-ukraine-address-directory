@@ -14,8 +14,8 @@
             <xpath expr="//div[hasclass('o_address_format')]" position="before">
                 <div class="text-muted small mb-2 oe_edit_only"
                      invisible="country_code != 'UA'">
-                    <strong>Кроки введення адреси:</strong><br/>
-                    <span>(1) Країна -> (2) Населений пункт -> (3) Вулиця і будинок</span>
+                    <strong>Address input steps:</strong><br/>
+                    <span>(1) Country -> (2) City -> (3) Street and house number</span>
                 </div>
             </xpath>
             <xpath expr="//field[@name='street']" position="attributes">
@@ -65,8 +65,8 @@
             <xpath expr="//field[@name='child_ids']/form//div[@name='div_address']" position="before">
                 <div class="text-muted small mb-2 oe_edit_only"
                      invisible="country_code != 'UA'">
-                    <strong>Кроки введення адреси:</strong><br/>
-                    <span>(1) Країна -> (2) Населений пункт -> (3) Вулиця і будинок</span>
+                    <strong>Address input steps:</strong><br/>
+                    <span>Country -> City -> Street and house number</span>
                 </div>
             </xpath>
             <xpath expr="//field[@name='child_ids']/form//field[@name='street']" position="attributes">
@@ -105,7 +105,7 @@
             </xpath>
 
             <notebook position="inside">
-                <page name="geodata_page" string="Інформація про адресу">
+                <page name="geodata_page" string="Address Information">
                     <div class="alert alert-warning" role="alert"
                          invisible="has_geodata_credential">
                         <strong>Geodata.online not configured</strong>
@@ -115,36 +115,40 @@
                     </div>
                     <div class="alert alert-info" role="alert"
                          invisible="country_code == 'UA' or not has_geodata_credential">
-                        <strong>Для активації підказок по адресам виберіть країну: Україна</strong>
+                        <strong>To enable address suggestions, select country: Ukraine</strong>
                     </div>
-                    <group>
-                        <field name="geodata_search"
-                               widget="kw_autocomplete"
-                               placeholder="Search Address (Region, City, Street, House)..."
-                               options="{
-                                   'source_type': 'model_method',
-                                   'source_config': {
-                                       'model': 'geodata.api.credential',
-                                       'method': 'kw_autocomplete_full_address'
-                                   },
-                                   'on_select_method': 'apply_address_to_partner',
-                                   'min_chars': 3
-                               }"
-                               invisible="country_code != 'UA'"
-                               class="oe_edit_only"
-                               colspan="2"/>
-                    </group>
-                    <div>Послідовний пошук адреси та автоматичне заповнення адресних даних</div>
+                    <div class="border border-primary rounded p-2 mb-2"
+                         invisible="country_code != 'UA'">
+                        <group>
+                            <field name="geodata_search"
+                                   widget="kw_autocomplete"
+                                   placeholder="Search Address (Region, City, Street, House)..."
+                                   options="{
+                                       'source_type': 'model_method',
+                                       'source_config': {
+                                           'model': 'geodata.api.credential',
+                                           'method': 'kw_autocomplete_full_address'
+                                       },
+                                       'on_select_method': 'apply_address_to_partner',
+                                       'min_chars': 3
+                                   }"
+                                   class="oe_edit_only"
+                                   colspan="2"/>
+                        </group>
+                    </div>
+                    <div>Step-by-step address search and automatic address data filling</div>
                     <group invisible="not has_geodata_credential" string="Details">
                         <field name="geodata_address_id" readonly="1"
                                force_save="1"
-                               title="Подивитись деталі про адресу"/>
-                        <field name="geodata_kato" string="КАТОТТГ"
+                               title="View address details"/>
+                        <field name="geodata_kato" string="KATOTTG"
                                widget="CopyClipboardChar"/>
-                        <field name="geodata_koatuu" string="КОАТУУ"
+                        <field name="geodata_koatuu" string="KOATUU"
                                widget="CopyClipboardChar"/>
-                        <field name="geodata_terr_status" string="Статус території"
+                        <field name="geodata_terr_status" string="Territory Status"
                                invisible="not geodata_terr_status"/>
+                        <field name="geodata_address_updated" string="Address Updated"
+                               invisible="not geodata_address_id"/>
                     </group>
                     <group invisible="not has_geodata_credential"
                            string="Full Addresses for Documents"
@@ -174,7 +178,7 @@
                         <a href="https://geodata.online" target="_blank"
                            class="text-primary">
                             GEODATA.online
-                        - сервіс нормалізації та валідації адрес України
+                        - address normalization and validation service for Ukraine
                         </a>
                     </div>
                 </page>

@@ -47,7 +47,7 @@
 
     <!-- Menu Item -->
     <menuitem id="menu_geodata_api_connector"
-              name="Конектори API"
+              name="API Connectors"
               parent="menu_geodata_root"
               action="geodata_api_connector_action"
               sequence="20"

@@ -16,15 +16,6 @@
                 <field name="country_code" invisible="True"/>
             </xpath>
 
-            <!-- Address entry hints for main block -->
-            <xpath expr="//div[hasclass('o_address_format')][1]" position="before">
-                <div class="text-muted small mb-2 oe_edit_only"
-                     invisible="country_code != 'UA'">
-                    <strong>Кроки введення адреси:</strong><br/>
-                    <span>(1) Країна -> (2) Населений пункт -> (3) Вулиця і будинок</span>
-                </div>
-            </xpath>
-
             <!-- Street autocomplete for main block -->
             <xpath expr="//div[hasclass('o_address_format')][1]//field[@name='street']" position="attributes">
                 <attribute name="widget">kw_autocomplete</attribute>

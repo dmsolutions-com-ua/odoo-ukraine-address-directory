@@ -154,7 +154,7 @@ class GeodataAddress(models.Model):
     )
     str_type = fields.Char(
         string="Street Type",
-        help="Street type: вул., пров., etc.",
+        help="Street type: str., lane, etc.",
         translate=True,
     )
     house_num = fields.Char(
@@ -166,7 +166,7 @@ class GeodataAddress(models.Model):
         help="Building letter, corpus, fraction",
     )
     apartment_type = fields.Char(
-        help="Type: кв., оф., кім.",
+        help="Type: apt., office, room",
         translate=True,
     )
     apartment = fields.Char(
@@ -375,14 +375,14 @@ class GeodataAddress(models.Model):
         return res
 
     @api.depends(
-        "address_string",
-        "city",
-        "street",
         "region",
         "area",
         "settlement_type",
+        "city",
         "str_type",
+        "street",
         "house_num",
+        "house_num_add",
         "street_old",
         "str_type_old",
         "city_old",
@@ -390,32 +390,7 @@ class GeodataAddress(models.Model):
     )
     def _compute_name(self):
         for record in self:
-            if record.address_string:
-                record.name = record.address_string
-            else:
-                parts = []
-                if record.region:
-                    region = record.region
-                    if "обл." not in region:
-                        region = f"{region} обл."
-                    parts.append(region)
-                area_part = record._format_area_with_old("ua")
-                if area_part:
-                    if "р-н" not in area_part:
-                        area_part = f"{area_part} р-н"
-                    parts.append(area_part)
-                city_part = record._format_city_with_old("ua")
-                if city_part:
-                    parts.append(city_part)
-                street_str = record._format_street_with_old("ua")
-                if street_str:
-                    if record.house_num:
-                        house = record.house_num
-                        if record.house_num_add:
-                            house = f"{house}{record.house_num_add}"
-                        street_str = f"{street_str}, {house}"
-                    parts.append(street_str)
-                record.name = ", ".join(parts) if parts else _("New Address")
+            record.name = record._rebuild_address_string() or _("New Address")
 
     @api.depends(
         "city",
@@ -818,6 +793,16 @@ class GeodataAddress(models.Model):
     def _build_address_string(self, api_data):
         parts = []
 
+        if api_data.get("Region"):
+            region = api_data["Region"]
+            if "обл." not in region:
+                region = f"{region} обл."
+            parts.append(region)
+        if api_data.get("Area"):
+            area = api_data["Area"]
+            if "р-н" not in area:
+                area = f"{area} р-н"
+            parts.append(area)
         if api_data.get("SettlementType"):
             parts.append(api_data["SettlementType"])
         if api_data.get("City"):
@@ -1018,6 +1003,17 @@ class GeodataAddress(models.Model):
     def _rebuild_address_string(self):
         self.ensure_one()
         parts = []
+        if self.region:
+            region = self.region
+            if "обл." not in region:
+                region = f"{region} обл."
+            parts.append(region)
+        if self.area:
+            area_part = self._format_area_with_old("ua")
+            if area_part and "р-н" not in area_part:
+                area_part = f"{area_part} р-н"
+            if area_part:
+                parts.append(area_part)
         if self.settlement_type:
             parts.append(self.settlement_type)
         if self.city:
@@ -1157,9 +1153,6 @@ class GeodataAddress(models.Model):
 
         if filtered:
             self.write(filtered)
-        new_addr = self._rebuild_address_string()
-        if new_addr and new_addr != self.address_string:
-            self.address_string = new_addr
         self.fetch_translations()
 
     def _validate_translation_match(self, api_data):

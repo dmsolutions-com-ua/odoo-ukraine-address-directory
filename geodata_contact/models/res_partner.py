@@ -146,6 +146,11 @@ class ResPartner(models.Model):
         related="geodata_address_id.terr_status",
         readonly=True,
     )
+    geodata_address_updated = fields.Datetime(
+        string="Address Updated",
+        related="geodata_address_id.write_date",
+        readonly=True,
+    )
     geodata_is_regional_center = fields.Boolean(
         string="Regional Center",
         related="geodata_address_id.is_regional_center",

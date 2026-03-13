@@ -1,0 +1,689 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* geodata_contact
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-13 12:24+0000\n"
+"PO-Revision-Date: 2026-03-13 12:24+0000\n"
+"Last-Translator: \n"
+"Language-Team: Ukrainian\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#. module: geodata_contact
+#: model_terms:ir.ui.view,arch_db:geodata_contact.view_partner_form_geodata
+msgid ""
+"<strong>Address input steps:</strong><br/>\n"
+"                    <span>(1) Country -&gt; (2) City -&gt; (3) Street and house number</span>"
+msgstr ""
+"<strong>Кроки введення адреси:</strong><br/>\n"
+"                    <span>(1) Країна -&gt; (2) Населений пункт -&gt; (3) Вулиця і будинок</span>"
+
+#. module: geodata_contact
+#: model_terms:ir.ui.view,arch_db:geodata_contact.view_partner_form_geodata
+msgid ""
+"<strong>Address input steps:</strong><br/>\n"
+"                    <span>Country -&gt; City -&gt; Street and house number</span>"
+msgstr ""
+"<strong>Кроки введення адреси:</strong><br/>\n"
+"                    <span>Країна -&gt; Населений пункт -&gt; Вулиця і будинок</span>"
+
+#. module: geodata_contact
+#: model_terms:ir.ui.view,arch_db:geodata_contact.view_partner_form_geodata
+msgid ""
+"<strong>Geodata.online not configured</strong>\n"
+"                        <br/>\n"
+"                        Configure Geodata API credentials in Settings to enable\n"
+"                        address autocomplete."
+msgstr ""
+"<strong>Geodata.online не налаштовано</strong>\n"
+"                        <br/>\n"
+"                        Налаштуйте облікові дані Geodata API в Налаштуваннях для увімкнення\n"
+"                        автозаповнення адрес."
+
+#. module: geodata_contact
+#: model_terms:ir.ui.view,arch_db:geodata_contact.view_partner_form_geodata
+msgid ""
+"<strong>To enable address suggestions, select country: Ukraine</strong>"
+msgstr ""
+"<strong>Для активації підказок по адресам виберіть країну: Україна</strong>"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_geodata_address_wizard__credential_id
+msgid "API Credential"
+msgstr "Облікові дані API"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_geodata_address_wizard_result__display_address
+msgid "Address"
+msgstr "Адреса"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_res_partner__geodata_address_ua_postal
+#: model:ir.model.fields,field_description:geodata_contact.field_res_users__geodata_address_ua_postal
+msgid "Address (UA Postal)"
+msgstr "Адреса (укр. поштовий формат)"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_res_partner__geodata_address_ua_short
+#: model:ir.model.fields,field_description:geodata_contact.field_res_users__geodata_address_ua_short
+msgid "Address (UA Short)"
+msgstr "Адреса (укр. скорочена)"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_res_partner__geodata_address_western
+#: model:ir.model.fields,field_description:geodata_contact.field_res_users__geodata_address_western
+msgid "Address (Western)"
+msgstr "Адреса (західний формат)"
+
+#. module: geodata_contact
+#: model_terms:ir.ui.view,arch_db:geodata_contact.view_partner_form_geodata
+msgid "Address Information"
+msgstr "Інформація про адресу"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_res_partner__geodata_search
+#: model:ir.model.fields,field_description:geodata_contact.field_res_users__geodata_search
+msgid "Address Search"
+msgstr "Пошук адреси"
+
+#. module: geodata_contact
+#: model:ir.model.fields,help:geodata_contact.field_res_partner__geodata_address_letter_en
+#: model:ir.model.fields,help:geodata_contact.field_res_users__geodata_address_letter_en
+msgid "Address for letters in English (without country)"
+msgstr "Адреса для листів англійською (без країни)"
+
+#. module: geodata_contact
+#: model:ir.model.fields,help:geodata_contact.field_res_partner__geodata_address_letter_ru
+#: model:ir.model.fields,help:geodata_contact.field_res_users__geodata_address_letter_ru
+msgid "Address for letters in Russian (without country)"
+msgstr "Адреса для листів російською (без країни)"
+
+#. module: geodata_contact
+#: model:ir.model.fields,help:geodata_contact.field_res_partner__geodata_address_letter_ua
+#: model:ir.model.fields,help:geodata_contact.field_res_users__geodata_address_letter_ua
+msgid "Address for letters in Ukrainian (without country)"
+msgstr "Адреса для листів українською (без країни)"
+
+#. module: geodata_contact
+#. odoo-python
+#: code:addons/geodata_contact/wizards/geodata_address_wizard.py:0
+msgid "Address has been applied to partner"
+msgstr "Адресу застосовано до контакту"
+
+#. module: geodata_contact
+#. odoo-python
+#: code:addons/geodata_contact/wizards/geodata_address_wizard.py:0
+msgid ""
+"Address search failed. Please contact administrator.\n"
+"Error: %s"
+msgstr ""
+"Пошук адреси не вдався. Зверніться до адміністратора.\n"
+"Помилка: %s"
+
+#. module: geodata_contact
+#: model:ir.model.fields,help:geodata_contact.field_geodata_address_wizard__selected_address_id
+msgid "Address selected to apply to partner"
+msgstr "Адреса, обрана для застосування до контакту"
+
+#. module: geodata_contact
+#: model_terms:ir.ui.view,arch_db:geodata_contact.geodata_address_wizard_view_form
+msgid "Apply Selected"
+msgstr "Застосувати обрану"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_res_partner__geodata_area_en
+#: model:ir.model.fields,field_description:geodata_contact.field_res_users__geodata_area_en
+msgid "Area (EN)"
+msgstr "Район (англ.)"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_res_partner__geodata_area_ru
+#: model:ir.model.fields,field_description:geodata_contact.field_res_users__geodata_area_ru
+msgid "Area (RU)"
+msgstr "Район (рос.)"
+
+#. module: geodata_contact
+#: model_terms:ir.ui.view,arch_db:geodata_contact.geodata_address_wizard_view_form
+msgid "Cancel"
+msgstr "Скасувати"
+
+#. module: geodata_contact
+#. odoo-python
+#: code:addons/geodata_contact/wizards/geodata_address_wizard.py:0
+msgid "Cannot connect to Geodata API. Check your internet connection."
+msgstr "Не вдалось підключитись до Geodata API. Перевірте підключення до інтернету."
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_geodata_address_wizard_result__city
+msgid "City"
+msgstr "Місто"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_res_partner__geodata_city_en
+#: model:ir.model.fields,field_description:geodata_contact.field_res_users__geodata_city_en
+msgid "City (EN)"
+msgstr "Місто (англ.)"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_res_partner__geodata_city_ru
+#: model:ir.model.fields,field_description:geodata_contact.field_res_users__geodata_city_ru
+msgid "City (RU)"
+msgstr "Місто (рос.)"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_res_partner__geodata_city_moniker
+msgid "City Moniker"
+msgstr "Ідентифікатор міста"
+
+#. module: geodata_contact
+#: model:ir.model.fields,help:geodata_contact.field_geodata_address_wizard_result__display_address
+msgid "Complete address as single string"
+msgstr "Повна адреса одним рядком"
+
+#. module: geodata_contact
+#: model:ir.model,name:geodata_contact.model_res_partner
+msgid "Contact"
+msgstr "Контакт"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_geodata_address_wizard__create_uid
+#: model:ir.model.fields,field_description:geodata_contact.field_geodata_address_wizard_result__create_uid
+msgid "Created by"
+msgstr "Створено"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_geodata_address_wizard__create_date
+#: model:ir.model.fields,field_description:geodata_contact.field_geodata_address_wizard_result__create_date
+msgid "Created on"
+msgstr "Дата створення"
+
+#. module: geodata_contact
+#: model_terms:ir.ui.view,arch_db:geodata_contact.view_partner_form_geodata
+msgid "Details"
+msgstr "Деталі"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_geodata_address_wizard__display_name
+#: model:ir.model.fields,field_description:geodata_contact.field_geodata_address_wizard_result__display_name
+msgid "Display Name"
+msgstr "Назва"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_res_partner__geodata_is_district_center
+#: model:ir.model.fields,field_description:geodata_contact.field_res_users__geodata_is_district_center
+msgid "District Center"
+msgstr "Районний центр"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_res_partner__area
+#: model:ir.model.fields,field_description:geodata_contact.field_res_users__area
+#: model_terms:ir.ui.view,arch_db:geodata_contact.view_partner_form_geodata
+msgid "District/Raion"
+msgstr "Район"
+
+#. module: geodata_contact
+#: model_terms:ir.ui.view,arch_db:geodata_contact.view_partner_form_geodata
+msgid "EN"
+msgstr "Англ."
+
+#. module: geodata_contact
+#: model:ir.model.fields.selection,name:geodata_contact.selection__geodata_address_wizard__search_language__en_us
+msgid "English"
+msgstr "Англійська"
+
+#. module: geodata_contact
+#: model:ir.model.fields,help:geodata_contact.field_geodata_address_wizard__search_query
+msgid "Enter city, street, house number to search"
+msgstr "Введіть місто, вулицю, номер будинку для пошуку"
+
+#. module: geodata_contact
+#: model_terms:ir.ui.view,arch_db:geodata_contact.geodata_address_wizard_view_form
+msgid ""
+"Examples: \"Kyiv Khreshchatyk 1\" or \"Lviv Shevchenka 25\" or \"Odesa "
+"Derybasivska\""
+msgstr ""
+"Приклади: \"Київ Хрещатик 1\" або \"Львів Шевченка 25\" або \"Одеса "
+"Дерибасівська\""
+
+#. module: geodata_contact
+#: model_terms:ir.ui.view,arch_db:geodata_contact.geodata_address_wizard_view_form
+msgid "Found Addresses"
+msgstr "Знайдені адреси"
+
+#. module: geodata_contact
+#: model:ir.model.fields,help:geodata_contact.field_geodata_address_wizard__address_result_ids
+msgid "Found addresses from Geodata API"
+msgstr "Знайдені адреси з Geodata API"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_res_partner__geodata_address_full_en
+#: model:ir.model.fields,field_description:geodata_contact.field_res_users__geodata_address_full_en
+msgid "Full Address (EN)"
+msgstr "Повна адреса (англ.)"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_res_partner__geodata_address_full_ru
+#: model:ir.model.fields,field_description:geodata_contact.field_res_users__geodata_address_full_ru
+msgid "Full Address (RU)"
+msgstr "Повна адреса (рос.)"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_res_partner__geodata_address_full_ua
+#: model:ir.model.fields,field_description:geodata_contact.field_res_users__geodata_address_full_ua
+msgid "Full Address (UA)"
+msgstr "Повна адреса (укр.)"
+
+#. module: geodata_contact
+#: model_terms:ir.ui.view,arch_db:geodata_contact.view_partner_form_geodata
+msgid "Full Addresses for Documents"
+msgstr "Повні адреси для документів"
+
+#. module: geodata_contact
+#: model_terms:ir.ui.view,arch_db:geodata_contact.view_partner_form_geodata
+msgid "Full Addresses for Letters"
+msgstr "Повні адреси для листів"
+
+#. module: geodata_contact
+#: model:ir.model.fields,help:geodata_contact.field_res_partner__geodata_address_full_en
+#: model:ir.model.fields,help:geodata_contact.field_res_users__geodata_address_full_en
+msgid "Full postal address in English for contracts"
+msgstr "Повна поштова адреса англійською для договорів"
+
+#. module: geodata_contact
+#: model:ir.model.fields,help:geodata_contact.field_res_partner__geodata_address_full_ru
+#: model:ir.model.fields,help:geodata_contact.field_res_users__geodata_address_full_ru
+msgid "Full postal address in Russian for contracts"
+msgstr "Повна поштова адреса російською для договорів"
+
+#. module: geodata_contact
+#: model:ir.model.fields,help:geodata_contact.field_res_partner__geodata_address_full_ua
+#: model:ir.model.fields,help:geodata_contact.field_res_users__geodata_address_full_ua
+msgid "Full postal address in Ukrainian for contracts"
+msgstr "Повна поштова адреса українською для договорів"
+
+#. module: geodata_contact
+#: model_terms:ir.ui.view,arch_db:geodata_contact.view_partner_form_geodata
+msgid ""
+"GEODATA.online\n"
+"                        - address normalization and validation service for Ukraine"
+msgstr ""
+"GEODATA.online\n"
+"                        - сервіс нормалізації та валідації адрес України"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_res_partner__geocoding_source
+#: model:ir.model.fields,field_description:geodata_contact.field_res_users__geocoding_source
+msgid "Geocoding Source"
+msgstr "Джерело геокодування"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_geodata_address_wizard_result__geodata_address_id
+#: model:ir.model.fields,field_description:geodata_contact.field_res_partner__geodata_address_id
+msgid "Geodata Address"
+msgstr "Адреса Geodata"
+
+#. module: geodata_contact
+#: model:ir.model,name:geodata_contact.model_geodata_address_wizard
+msgid "Geodata Address Selection Wizard"
+msgstr "Майстер вибору адреси Geodata"
+
+#. module: geodata_contact
+#: model:ir.model,name:geodata_contact.model_geodata_address_wizard_result
+msgid "Geodata Address Wizard Result"
+msgstr "Результат майстра адреси Geodata"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_res_partner__geodata_autocomplete_active
+msgid "Geodata Autocomplete Active"
+msgstr "Автозаповнення Geodata активне"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_res_partner__geodata_store_english
+msgid "Geodata Store English"
+msgstr "Зберігати англійські дані Geodata"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_res_partner__geodata_store_russian
+msgid "Geodata Store Russian"
+msgstr "Зберігати російські дані Geodata"
+
+#. module: geodata_contact
+#. odoo-python
+#: code:addons/geodata_contact/models/res_partner.py:0
+msgid "Geodata provider not found"
+msgstr "Провайдер Geodata не знайдено"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_res_partner__has_geodata_credential
+msgid "Has Geodata Credential"
+msgstr "Є облікові дані Geodata"
+
+#. module: geodata_contact
+#: model_terms:ir.ui.view,arch_db:geodata_contact.view_partner_form_geodata
+msgid "Hromada"
+msgstr "Громада"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_res_partner__geodata_hromada_en
+#: model:ir.model.fields,field_description:geodata_contact.field_res_users__geodata_hromada_en
+msgid "Hromada (EN)"
+msgstr "Громада (англ.)"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_res_partner__geodata_hromada_ru
+#: model:ir.model.fields,field_description:geodata_contact.field_res_users__geodata_hromada_ru
+msgid "Hromada (RU)"
+msgstr "Громада (рос.)"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_geodata_address_wizard__id
+#: model:ir.model.fields,field_description:geodata_contact.field_geodata_address_wizard_result__id
+msgid "ID"
+msgstr "ID"
+
+#. module: geodata_contact
+#: model:ir.model.fields,help:geodata_contact.field_res_partner__geodata_is_district_center
+#: model:ir.model.fields,help:geodata_contact.field_res_users__geodata_is_district_center
+msgid "Is district center"
+msgstr "Є районним центром"
+
+#. module: geodata_contact
+#: model:ir.model.fields,help:geodata_contact.field_res_partner__geodata_is_regional_center
+#: model:ir.model.fields,help:geodata_contact.field_res_users__geodata_is_regional_center
+msgid "Is regional center"
+msgstr "Є обласним центром"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_res_partner__geodata_kato
+#: model:ir.model.fields,field_description:geodata_contact.field_res_users__geodata_kato
+#: model_terms:ir.ui.view,arch_db:geodata_contact.view_partner_form_geodata
+msgid "KATOTTG"
+msgstr "КАТОТТГ"
+
+#. module: geodata_contact
+#: model:ir.model.fields,help:geodata_contact.field_res_partner__geodata_kato
+#: model:ir.model.fields,help:geodata_contact.field_res_users__geodata_kato
+msgid "KATOTTG code"
+msgstr "Код КАТОТТГ"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_res_partner__geodata_koatuu
+#: model:ir.model.fields,field_description:geodata_contact.field_res_users__geodata_koatuu
+#: model_terms:ir.ui.view,arch_db:geodata_contact.view_partner_form_geodata
+msgid "KOATUU"
+msgstr "КОАТУУ"
+
+#. module: geodata_contact
+#: model:ir.model.fields,help:geodata_contact.field_res_partner__geodata_koatuu
+#: model:ir.model.fields,help:geodata_contact.field_res_users__geodata_koatuu
+msgid "KOATUU code (for compatibility)"
+msgstr "Код КОАТУУ (для сумісності)"
+
+#. module: geodata_contact
+#: model_terms:ir.ui.view,arch_db:geodata_contact.geodata_address_wizard_view_form
+msgid "Kyiv, Khreshchatyk str., 1"
+msgstr "Київ, вул. Хрещатик, 1"
+
+#. module: geodata_contact
+#: model:ir.model.fields,help:geodata_contact.field_geodata_address_wizard__search_language
+msgid "Language for API requests and results"
+msgstr "Мова для API-запитів та результатів"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_geodata_address_wizard__write_uid
+#: model:ir.model.fields,field_description:geodata_contact.field_geodata_address_wizard_result__write_uid
+msgid "Last Updated by"
+msgstr "Останнє оновлення"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_geodata_address_wizard__write_date
+#: model:ir.model.fields,field_description:geodata_contact.field_geodata_address_wizard_result__write_date
+msgid "Last Updated on"
+msgstr "Дата оновлення"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_res_partner__geodata_address_letter_en
+#: model:ir.model.fields,field_description:geodata_contact.field_res_users__geodata_address_letter_en
+msgid "Letter Address (EN)"
+msgstr "Адреса для листів (англ.)"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_res_partner__geodata_address_letter_ru
+#: model:ir.model.fields,field_description:geodata_contact.field_res_users__geodata_address_letter_ru
+msgid "Letter Address (RU)"
+msgstr "Адреса для листів (рос.)"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_res_partner__geodata_address_letter_ua
+#: model:ir.model.fields,field_description:geodata_contact.field_res_users__geodata_address_letter_ua
+msgid "Letter Address (UA)"
+msgstr "Адреса для листів (укр.)"
+
+#. module: geodata_contact
+#. odoo-python
+#: code:addons/geodata_contact/wizards/geodata_address_wizard.py:0
+msgid "No addresses found for query: %s"
+msgstr "Адреси не знайдено за запитом: %s"
+
+#. module: geodata_contact
+#: model:ir.model.fields,help:geodata_contact.field_res_partner__geodata_terr_status
+#: model:ir.model.fields,help:geodata_contact.field_res_users__geodata_terr_status
+msgid "Occupied territory status (as of 24.02.2022)"
+msgstr "Статус окупованої території (станом на 24.02.2022)"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_geodata_address_wizard__partner_id
+msgid "Partner"
+msgstr "Контакт"
+
+#. module: geodata_contact
+#. odoo-python
+#: code:addons/geodata_contact/wizards/geodata_address_wizard.py:0
+msgid "Partner is not specified"
+msgstr "Контакт не вказаний"
+
+#. module: geodata_contact
+#: model:ir.model.fields,help:geodata_contact.field_geodata_address_wizard__partner_id
+msgid "Partner record to update with selected address"
+msgstr "Запис контакту для оновлення обраною адресою"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_res_partner__geodata_phone_code
+#: model:ir.model.fields,field_description:geodata_contact.field_res_users__geodata_phone_code
+msgid "Phone Code"
+msgstr "Телефонний код"
+
+#. module: geodata_contact
+#. odoo-python
+#: code:addons/geodata_contact/wizards/geodata_address_wizard.py:0
+msgid "Please enter search query"
+msgstr "Введіть пошуковий запит"
+
+#. module: geodata_contact
+#. odoo-python
+#: code:addons/geodata_contact/wizards/geodata_address_wizard.py:0
+msgid "Please select API credential"
+msgstr "Виберіть облікові дані API"
+
+#. module: geodata_contact
+#. odoo-python
+#: code:addons/geodata_contact/wizards/geodata_address_wizard.py:0
+msgid "Please select an address from results"
+msgstr "Виберіть адресу з результатів"
+
+#. module: geodata_contact
+#: model_terms:ir.ui.view,arch_db:geodata_contact.view_partner_form_geodata
+msgid "RU"
+msgstr "Рос."
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_geodata_address_wizard_result__region
+msgid "Region"
+msgstr "Область"
+
+#. module: geodata_contact
+#: model:ir.model.fields,help:geodata_contact.field_geodata_address_wizard_result__region
+msgid "Region/Oblast name"
+msgstr "Назва області"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_res_partner__geodata_is_regional_center
+#: model:ir.model.fields,field_description:geodata_contact.field_res_users__geodata_is_regional_center
+msgid "Regional Center"
+msgstr "Обласний центр"
+
+#. module: geodata_contact
+#. odoo-python
+#: code:addons/geodata_contact/wizards/geodata_address_wizard.py:0
+msgid "Request timeout. Please try again later."
+msgstr "Тайм-аут запиту. Спробуйте пізніше."
+
+#. module: geodata_contact
+#: model:ir.model.fields.selection,name:geodata_contact.selection__geodata_address_wizard__search_language__ru_ru
+msgid "Russian"
+msgstr "Російська"
+
+#. module: geodata_contact
+#: model_terms:ir.ui.view,arch_db:geodata_contact.geodata_address_wizard_view_form
+msgid "Search"
+msgstr "Пошук"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_geodata_address_wizard__search_query
+msgid "Search Address"
+msgstr "Пошук адреси"
+
+#. module: geodata_contact
+#: model_terms:ir.ui.view,arch_db:geodata_contact.view_partner_form_geodata
+msgid "Search Address (Region, City, Street, House)..."
+msgstr "Пошук адреси (область, місто, вулиця, будинок)..."
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_geodata_address_wizard__search_language
+msgid "Search Language"
+msgstr "Мова пошуку"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_geodata_address_wizard__address_result_ids
+#: model_terms:ir.ui.view,arch_db:geodata_contact.geodata_address_wizard_view_form
+msgid "Search Results"
+msgstr "Результати пошуку"
+
+#. module: geodata_contact
+#: model_terms:ir.ui.view,arch_db:geodata_contact.geodata_address_wizard_view_form
+msgid "Select"
+msgstr "Обрати"
+
+#. module: geodata_contact
+#: model:ir.model.fields,help:geodata_contact.field_geodata_address_wizard__credential_id
+msgid "Select API credential for Geodata service"
+msgstr "Виберіть облікові дані API для сервісу Geodata"
+
+#. module: geodata_contact
+#. odoo-python
+#: code:addons/geodata_contact/models/res_partner.py:0
+#: model_terms:ir.ui.view,arch_db:geodata_contact.geodata_address_wizard_view_form
+msgid "Select Address from Geodata"
+msgstr "Обрати адресу з Geodata"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_geodata_address_wizard__selected_address_id
+msgid "Selected Address"
+msgstr "Обрана адреса"
+
+#. module: geodata_contact
+#: model:ir.model.fields,help:geodata_contact.field_geodata_address_wizard_result__city
+msgid "Settlement name"
+msgstr "Назва населеного пункту"
+
+#. module: geodata_contact
+#: model:ir.model.fields,help:geodata_contact.field_res_partner__geodata_phone_code
+#: model:ir.model.fields,help:geodata_contact.field_res_users__geodata_phone_code
+msgid "Settlement phone code"
+msgstr "Телефонний код населеного пункту"
+
+#. module: geodata_contact
+#: model_terms:ir.ui.view,arch_db:geodata_contact.view_partner_form_geodata
+msgid "Step-by-step address search and automatic address data filling"
+msgstr "Послідовний пошук адреси та автоматичне заповнення адресних даних"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_res_partner__geodata_street_en
+#: model:ir.model.fields,field_description:geodata_contact.field_res_users__geodata_street_en
+msgid "Street (EN)"
+msgstr "Вулиця (англ.)"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_res_partner__geodata_street_ru
+#: model:ir.model.fields,field_description:geodata_contact.field_res_users__geodata_street_ru
+msgid "Street (RU)"
+msgstr "Вулиця (рос.)"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_res_partner__geodata_street_moniker
+msgid "Street Moniker"
+msgstr "Ідентифікатор вулиці"
+
+#. module: geodata_contact
+#. odoo-python
+#: code:addons/geodata_contact/wizards/geodata_address_wizard.py:0
+msgid "Success"
+msgstr "Успіх"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_res_partner__hromada
+#: model:ir.model.fields,field_description:geodata_contact.field_res_users__hromada
+msgid "Territorial Community"
+msgstr "Територіальна громада"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_res_partner__geodata_terr_status
+#: model:ir.model.fields,field_description:geodata_contact.field_res_users__geodata_terr_status
+#: model_terms:ir.ui.view,arch_db:geodata_contact.view_partner_form_geodata
+msgid "Territory Status"
+msgstr "Статус території"
+
+#. module: geodata_contact
+#: model_terms:ir.ui.view,arch_db:geodata_contact.view_partner_form_geodata
+msgid "UA"
+msgstr "Укр."
+
+#. module: geodata_contact
+#: model:ir.model.fields.selection,name:geodata_contact.selection__geodata_address_wizard__search_language__uk_ua
+msgid "Ukrainian"
+msgstr "Українська"
+
+#. module: geodata_contact
+#: model:ir.model.fields,help:geodata_contact.field_res_partner__geodata_address_ua_postal
+#: model:ir.model.fields,help:geodata_contact.field_res_users__geodata_address_ua_postal
+msgid "Ukrainian postal format: Index, Region, City, Street, House"
+msgstr "Український поштовий формат: Індекс, Область, Місто, Вулиця, Будинок"
+
+#. module: geodata_contact
+#: model:ir.model.fields,help:geodata_contact.field_res_partner__geodata_address_ua_short
+#: model:ir.model.fields,help:geodata_contact.field_res_users__geodata_address_ua_short
+msgid "Ukrainian short format: City, Street, House"
+msgstr "Український скорочений формат: Місто, Вулиця, Будинок"
+
+#. module: geodata_contact
+#: model_terms:ir.ui.view,arch_db:geodata_contact.view_partner_form_geodata
+msgid "View address details"
+msgstr "Подивитись деталі адреси"
+
+#. module: geodata_contact
+#: model:ir.model.fields,help:geodata_contact.field_res_partner__geodata_address_western
+#: model:ir.model.fields,help:geodata_contact.field_res_users__geodata_address_western
+msgid "Western format: Street House, City, Zip"
+msgstr "Західний формат: Вулиця Будинок, Місто, Індекс"
+
+#. module: geodata_contact
+#: model:ir.model.fields,field_description:geodata_contact.field_geodata_address_wizard_result__wizard_id
+msgid "Wizard"
+msgstr "Майстер"
