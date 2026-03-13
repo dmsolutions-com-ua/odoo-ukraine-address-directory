@@ -1014,10 +1014,12 @@ class GeodataAddress(models.Model):
                 area_part = f"{area_part} р-н"
             if area_part:
                 parts.append(area_part)
-        if self.settlement_type:
-            parts.append(self.settlement_type)
-        if self.city:
+        if self.settlement_type and self.city:
+            parts.append(f"{self.settlement_type} {self.city}")
+        elif self.city:
             parts.append(self.city)
+        elif self.settlement_type:
+            parts.append(self.settlement_type)
         street_with_old = self._format_street_with_old("ua")
         if street_with_old:
             parts.append(street_with_old)
@@ -1156,10 +1158,10 @@ class GeodataAddress(models.Model):
         self.fetch_translations()
 
     def _validate_translation_match(self, api_data):
-        if self.koatuu and api_data.get("KOATUU"):
-            return self.koatuu == api_data["KOATUU"]
-        if self.kato and api_data.get("KATO"):
-            return self.kato == api_data["KATO"]
+        if self.house_ref and api_data.get("HouseId"):
+            return str(self.house_ref) == str(api_data["HouseId"])
+        if self.street_ref and api_data.get("StreetId"):
+            return str(self.street_ref) == str(api_data["StreetId"])
         if self.settlement_ref and api_data.get("SettlementId"):
             return self.settlement_ref == api_data["SettlementId"]
         return True
@@ -1218,9 +1220,15 @@ class GeodataAddress(models.Model):
     def _build_translation_query(self):
         parts = []
         if self.region:
-            parts.append(self.region)
+            region = self.region
+            if "обл." not in region:
+                region = f"{region} обл."
+            parts.append(region)
         if self.area:
-            parts.append(self.area)
+            area = self.area
+            if "р-н" not in area:
+                area = f"{area} р-н"
+            parts.append(area)
         if self.settlement_type and self.city:
             parts.append(f"{self.settlement_type} {self.city}")
         elif self.city:
@@ -1235,6 +1243,50 @@ class GeodataAddress(models.Model):
                 house += self.house_num_add
             parts.append(house)
         return ", ".join(parts) if parts else self.address_string
+
+    _TRANSLATION_SUFFIXES = ("en", "ru")
+
+    def _get_clear_translation_vals(self, suffix):
+        return {
+            f"{name}_{suffix}": False
+            for name in (
+                "city",
+                "street",
+                "area",
+                "hromada",
+                "region",
+                "city_district",
+                "settlement_type",
+                "str_type",
+                "city_old",
+                "area_old",
+                "street_old",
+                "str_type_old",
+                "apartment_type",
+            )
+        }
+
+    def _update_from_ua_translation(self, credential, query):
+        api_data_ua = self._fetch_translation_data(credential, query, "uk_UA")
+        if not api_data_ua:
+            return
+        ua_vals = self._api_data_to_vals(api_data_ua)
+        filtered = {}
+        for field, value in ua_vals.items():
+            if field == "source_query":
+                continue
+            if value is None:
+                continue
+            if value == "":
+                value = False
+            filtered[field] = value
+        if filtered:
+            _logger.debug(
+                "UA translation updated %d fields for address %s",
+                len(filtered),
+                self.id,
+            )
+            self.write(filtered)
 
     def fetch_translations(self):
         self.ensure_one()
@@ -1259,17 +1311,35 @@ class GeodataAddress(models.Model):
             credential.store_russian,
         )
 
+        self._update_from_ua_translation(credential, query)
+
         vals = {}
 
         if credential.store_english:
-            api_data_en = self._fetch_translation_data(credential, query, "en_US")
+            api_data_en = self._fetch_translation_data(
+                credential,
+                query,
+                "en_US",
+            )
             if api_data_en:
-                vals.update(self._extract_translation_fields(api_data_en, "en"))
+                vals.update(
+                    self._extract_translation_fields(api_data_en, "en"),
+                )
+        else:
+            vals.update(self._get_clear_translation_vals("en"))
 
         if credential.store_russian:
-            api_data_ru = self._fetch_translation_data(credential, query, "ru_RU")
+            api_data_ru = self._fetch_translation_data(
+                credential,
+                query,
+                "ru_RU",
+            )
             if api_data_ru:
-                vals.update(self._extract_translation_fields(api_data_ru, "ru"))
+                vals.update(
+                    self._extract_translation_fields(api_data_ru, "ru"),
+                )
+        else:
+            vals.update(self._get_clear_translation_vals("ru"))
 
         if vals:
             self.write(vals)

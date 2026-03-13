@@ -133,7 +133,7 @@
                                widget="CopyClipboardChar"/>
                         <field name="geodata_terr_status" string="Territory Status"
                                invisible="not geodata_terr_status"/>
-                        <field name="geodata_address_updated" string="Address Updated"
+                        <field name="geodata_address_updated"
                                invisible="not geodata_address_id"/>
                     </group>
                     <group invisible="not has_geodata_credential"
