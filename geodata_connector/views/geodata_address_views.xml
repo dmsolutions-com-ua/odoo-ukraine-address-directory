@@ -129,6 +129,17 @@
                                 <field name="description" readonly="1"/>
                             </group>
                         </page>
+
+                        <page string="Ids" groups="base.group_no_one">
+                            <group>
+                                <group>
+                                    <field name="geodata_id" readonly="1"/>
+                                    <field name="settlement_ref" readonly="1"/>
+                                    <field name="street_ref" readonly="1"/>
+                                    <field name="house_ref" readonly="1"/>
+                                </group>
+                            </group>
+                        </page>
                     </notebook>
                 </sheet>
             </form>

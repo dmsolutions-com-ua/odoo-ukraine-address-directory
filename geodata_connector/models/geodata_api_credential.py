@@ -561,6 +561,8 @@ class GeodataApiCredential(models.Model):
 
     @staticmethod
     def _format_city_suggestion(data):
+        if data.get("Id") and not data.get("SettlementId"):
+            data["SettlementId"] = data["Id"]
         city_name = data.get("City", "")
         settlement_type = data.get("SettlementType", "")
         city_old = data.get("CityOld", "")

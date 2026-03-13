@@ -1266,6 +1266,19 @@ class GeodataAddress(models.Model):
             )
         }
 
+    _UA_TRANSLATION_SKIP = frozenset(
+        {
+            "source_query",
+            "settlement_ref",
+            "street_ref",
+            "house_ref",
+            "city_moniker",
+            "street_moniker",
+            "koatuu",
+            "kato",
+        }
+    )
+
     def _update_from_ua_translation(self, credential, query):
         api_data_ua = self._fetch_translation_data(credential, query, "uk_UA")
         if not api_data_ua:
@@ -1273,7 +1286,7 @@ class GeodataAddress(models.Model):
         ua_vals = self._api_data_to_vals(api_data_ua)
         filtered = {}
         for field, value in ua_vals.items():
-            if field == "source_query":
+            if field in self._UA_TRANSLATION_SKIP:
                 continue
             if value is None:
                 continue
