@@ -36,6 +36,12 @@ UKRAINE_STATES = {
     "Автономна Республіка Крим": "UA43",
 }
 
+SPECIAL_STATUS_CITIES = frozenset({
+    "Київ", "Севастополь",
+    "Kyiv", "Sevastopol",
+    "Киев", "Севастополь",
+})
+
 
 class GeodataAddress(models.Model):
     _name = "geodata.address"
@@ -165,6 +171,8 @@ class GeodataAddress(models.Model):
         string="House Number Addition",
         help="Building letter, corpus, fraction",
     )
+    house_num_add_en = fields.Char()
+    house_num_add_ru = fields.Char()
     apartment_type = fields.Char(
         help="Type: apt., office, room",
         translate=True,
@@ -465,7 +473,7 @@ class GeodataAddress(models.Model):
             country = "Ukraine"
 
         region = self._get_field_by_lang("region", lang)
-        if region:
+        if region and region not in SPECIAL_STATUS_CITIES:
             has_obl = any(s in region for s in ["обл.", "обл"])
             if lang in ("ua", "ru") and not has_obl:
                 region = f"{region} обл."
@@ -482,8 +490,9 @@ class GeodataAddress(models.Model):
         hromada = self._get_field_by_lang("hromada", lang)
 
         house_part = self.house_num or ""
-        if self.house_num_add:
-            house_part = f"{house_part}{self.house_num_add}"
+        house_add = self._get_field_by_lang("house_num_add", lang)
+        if house_add:
+            house_part = f"{house_part}{house_add}"
 
         apt_parts = [p for p in [self.apartment_type, self.apartment] if p]
 
@@ -559,11 +568,12 @@ class GeodataAddress(models.Model):
 
         region = self._get_field_by_lang("region", lang)
         if region:
-            has_obl = any(s in region for s in ["обл.", "обл"])
-            if lang in ("ua", "ru") and not has_obl:
-                region = f"{region} обл."
-            elif lang == "en" and not region.endswith("obl."):
-                region = f"{region} obl."
+            if region not in SPECIAL_STATUS_CITIES:
+                has_obl = any(s in region for s in ["обл.", "обл"])
+                if lang in ("ua", "ru") and not has_obl:
+                    region = f"{region} обл."
+                elif lang == "en" and not region.endswith("obl."):
+                    region = f"{region} obl."
             parts.append(region)
 
         area = self._format_area_with_old(lang)
@@ -580,8 +590,9 @@ class GeodataAddress(models.Model):
 
         street_with_old = self._format_street_with_old(lang)
         house_part = self.house_num or ""
-        if self.house_num_add:
-            house_part = f"{house_part}{self.house_num_add}"
+        house_add = self._get_field_by_lang("house_num_add", lang)
+        if house_add:
+            house_part = f"{house_part}{house_add}"
 
         if street_with_old:
             if house_part:
@@ -605,11 +616,12 @@ class GeodataAddress(models.Model):
 
         region = self._get_field_by_lang("region", lang)
         if region:
-            has_obl = any(s in region for s in ["обл.", "обл"])
-            if lang in ("ua", "ru") and not has_obl:
-                region = f"{region} обл."
-            elif lang == "en" and not region.endswith("obl."):
-                region = f"{region} obl."
+            if region not in SPECIAL_STATUS_CITIES:
+                has_obl = any(s in region for s in ["обл.", "обл"])
+                if lang in ("ua", "ru") and not has_obl:
+                    region = f"{region} обл."
+                elif lang == "en" and not region.endswith("obl."):
+                    region = f"{region} obl."
             parts.append(region)
 
         area = self._format_area_with_old(lang)
@@ -626,8 +638,9 @@ class GeodataAddress(models.Model):
 
         street_with_old = self._format_street_with_old(lang)
         house_part = self.house_num or ""
-        if self.house_num_add:
-            house_part = f"{house_part}{self.house_num_add}"
+        house_add = self._get_field_by_lang("house_num_add", lang)
+        if house_add:
+            house_part = f"{house_part}{house_add}"
 
         if street_with_old:
             if house_part:
@@ -707,7 +720,8 @@ class GeodataAddress(models.Model):
             parts.append(self.post_index)
         if self.region:
             region = self.region
-            if not any(s in region for s in ["обл.", "область"]):
+            if (region not in SPECIAL_STATUS_CITIES
+                    and not any(s in region for s in ["обл.", "область"])):
                 region = f"{region} обл."
             parts.append(region)
         if self.area:
@@ -795,7 +809,7 @@ class GeodataAddress(models.Model):
 
         if api_data.get("Region"):
             region = api_data["Region"]
-            if "обл." not in region:
+            if region not in SPECIAL_STATUS_CITIES and "обл." not in region:
                 region = f"{region} обл."
             parts.append(region)
         if api_data.get("Area"):
@@ -1005,7 +1019,7 @@ class GeodataAddress(models.Model):
         parts = []
         if self.region:
             region = self.region
-            if "обл." not in region:
+            if region not in SPECIAL_STATUS_CITIES and "обл." not in region:
                 region = f"{region} обл."
             parts.append(region)
         if self.area:
@@ -1215,13 +1229,14 @@ class GeodataAddress(models.Model):
             f"street_old_{suffix}": api_data.get("StreetOld") or False,
             f"str_type_old_{suffix}": api_data.get("StrTypeOld") or False,
             f"apartment_type_{suffix}": (api_data.get("ApartmentType") or False),
+            f"house_num_add_{suffix}": api_data.get("HouseNumAdd") or False,
         }
 
     def _build_translation_query(self):
         parts = []
         if self.region:
             region = self.region
-            if "обл." not in region:
+            if region not in SPECIAL_STATUS_CITIES and "обл." not in region:
                 region = f"{region} обл."
             parts.append(region)
         if self.area:
@@ -1263,6 +1278,7 @@ class GeodataAddress(models.Model):
                 "street_old",
                 "str_type_old",
                 "apartment_type",
+                "house_num_add",
             )
         }
 
