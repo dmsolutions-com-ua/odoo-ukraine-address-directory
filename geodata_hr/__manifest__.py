@@ -1,5 +1,5 @@
 {
-    "name": "Geodata HR Integration",
+    "name": "Ukraine Address Integration - HR",
     "summary": "Geodata.online address autocomplete for HR employees",
     "author": "GEODATA.online",
     "website": "https://geodata.online",

@@ -1,5 +1,5 @@
 {
-    "name": "Geodata Contact Integration",
+    "name": "Ukraine Address Integration - Contacts",
     "summary": """
         Integrates Geodata.online addresses with contact forms
     """,

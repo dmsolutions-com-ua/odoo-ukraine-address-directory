@@ -1,5 +1,5 @@
 {
-    "name": "Geodata Lunch Integration",
+    "name": "Ukraine Address Integration - Lunch",
     "summary": "Geodata.online address autocomplete for lunch suppliers",
     "author": "GEODATA.online",
     "website": "https://geodata.online",

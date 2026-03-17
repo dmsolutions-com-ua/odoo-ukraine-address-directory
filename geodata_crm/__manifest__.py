@@ -1,5 +1,5 @@
 {
-    "name": "Geodata CRM Integration",
+    "name": "Ukraine Address Integration - CRM",
     "summary": "Geodata.online address autocomplete for CRM leads",
     "author": "GEODATA.online",
     "website": "https://geodata.online",

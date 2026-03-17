@@ -1,5 +1,5 @@
 {
-    "name": "Geodata Company Integration",
+    "name": "Ukraine Address Integration - Company",
     "summary": "Geodata.online address autocomplete for companies",
     "author": "GEODATA.online",
     "website": "https://geodata.online",

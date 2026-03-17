@@ -1,5 +1,5 @@
 {
-    "name": "Geodata.online Connector",
+    "name": "Ukraine Address Reference Directory",
     "summary": """
         Integration with Geodata.online API for address autocomplete
         and normalization in Ukraine
