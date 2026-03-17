@@ -17,6 +17,11 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #. module: geodata_contact
+#: model:ir.module.module,shortdesc:base.module_geodata_contact
+msgid "Ukraine Address Integration - Contacts"
+msgstr "Інтеграція довідника адрес України з модулем Contacts"
+
+#. module: geodata_contact
 #: model_terms:ir.ui.view,arch_db:geodata_contact.view_partner_form_geodata
 msgid ""
 "<strong>Address input steps:</strong><br/>\n"
