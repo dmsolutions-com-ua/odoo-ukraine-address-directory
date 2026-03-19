@@ -29,7 +29,7 @@
     "auto_install": False,
     "application": False,
     "images": [
-        "static/description/icon.png",
         "static/description/cover.png",
+        "static/description/icon.png",
     ],
 }

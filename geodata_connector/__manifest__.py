@@ -40,7 +40,7 @@
     "application": False,
     "post_init_hook": "post_init_hook",
     "images": [
-        "static/description/icon.png",
         "static/description/cover.png",
+        "static/description/icon.png",
     ],
 }

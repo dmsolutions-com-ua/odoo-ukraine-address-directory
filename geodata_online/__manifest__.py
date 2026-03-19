@@ -1,5 +1,5 @@
 {
-    "name": "Ukraine Address Integration",
+    "name": "Reference Directory of Ukrainian Addresses",
     "summary": "Geodata.online address autocomplete Адресний довідник "
     "України довідник адрес України адреси України база адрес "
     "України актуальні адреси України автозаповнення "
@@ -25,7 +25,7 @@
     "auto_install": False,
     "application": False,
     "images": [
-        "static/description/icon.png",
         "static/description/cover.png",
+        "static/description/icon.png",
     ],
 }
