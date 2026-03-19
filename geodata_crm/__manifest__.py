@@ -3,7 +3,7 @@
     "summary": "Geodata.online address autocomplete for CRM leads",
     "author": "GEODATA.online",
     "website": "https://geodata.online",
-    "category": "Sales/CRM",
+    "category": "Hidden",
     "license": "LGPL-3",
     "version": "18.0.1.0.0",
     "depends": [
@@ -18,4 +18,8 @@
     "installable": True,
     "auto_install": False,
     "application": False,
+    "images": [
+        "static/description/icon.png",
+        "static/description/cover.png",
+    ],
 }

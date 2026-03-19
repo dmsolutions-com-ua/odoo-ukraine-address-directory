@@ -6,7 +6,7 @@
     """,
     "author": "GEODATA.online",
     "website": "https://geodata.online",
-    "category": "Technical",
+    "category": "Hidden",
     "license": "LGPL-3",
     "version": "18.0.2.0.0",
     "depends": [

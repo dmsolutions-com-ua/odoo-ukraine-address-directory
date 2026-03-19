@@ -156,7 +156,22 @@ class GeodataApiCredential(models.Model):
         message = data.get("Message", "")
         return message in self._GEODATA_EMPTY_RESULT_MESSAGES
 
+    _PAYMENT_REQUIRED_MESSAGE = _(
+        "Insufficient funds on your Geodata.online account. "
+        "Please top up your balance at https://geodata.online/"
+    )
+
     def parse_api_error_geodata(self, response, **kwargs):
+        if response.status_code == 402:
+            _logger.warning(
+                "Geodata API: Payment Required (402) for %s",
+                response.url if hasattr(response, "url") else "unknown URL",
+            )
+            return {
+                "message": str(self._PAYMENT_REQUIRED_MESSAGE),
+                "is_payment_required": True,
+            }
+
         try:
             error_data = response.json()
             message = error_data.get("Message") or error_data.get("error")
@@ -227,6 +242,15 @@ class GeodataApiCredential(models.Model):
             _logger.error("Token refresh error: %s", str(e))
             return False
 
+    @staticmethod
+    def _is_payment_required_error(error):
+        error_str = str(error)
+        return "402" in error_str or "Payment Required" in error_str
+
+    def _raise_if_payment_required(self, error):
+        if self._is_payment_required_error(error):
+            raise UserError(self._PAYMENT_REQUIRED_MESSAGE) from error
+
     def _get_api_language(self):
         user_lang = self.env.context.get("lang", False)
 
@@ -268,25 +292,41 @@ class GeodataApiCredential(models.Model):
             return [result]
         return result if result else []
 
-    def api_cities_search(self, sRequest, sLang="uk_UA"):
+    def api_cities_search(self, sRequest="", sPostCode="", sLang="uk_UA"):
         self.ensure_one()
-        if not sRequest:
+        if not sRequest and not sPostCode:
             return []
+        params = {"sLang": sLang}
+        if sPostCode:
+            params["sPostCode"] = sPostCode
+        else:
+            params["sRequest"] = sRequest
         return self.api_request(
             method="GET",
             url="api/Cities",
-            params={
-                "sRequest": sRequest,
-                "sLang": sLang,
-            },
+            params=params,
             silent=False,
         )
 
-    def api_streets_search(self, sRequest, city_name="", city_ref="", sLang="uk_UA"):
+    def api_streets_search(
+        self,
+        sRequest,
+        city_name="",
+        city_ref="",
+        sLang="uk_UA",
+        city_kato="",
+        city_koatuu="",
+    ):
         self.ensure_one()
         if not sRequest or not city_name:
             return []
-        city_moniker = self._resolve_city_moniker(city_name, city_ref, sLang)
+        city_moniker = self._resolve_city_moniker(
+            city_name,
+            city_ref,
+            sLang,
+            city_kato=city_kato,
+            city_koatuu=city_koatuu,
+        )
         if not city_moniker:
             return []
         result = self.api_request(
@@ -309,12 +349,20 @@ class GeodataApiCredential(models.Model):
         city_ref="",
         street_ref="",
         sLang="uk_UA",
+        city_kato="",
+        city_koatuu="",
     ):
         self.ensure_one()
         if not sRequest or not street_name or not city_name:
             return []
         street_moniker = self._resolve_street_moniker(
-            street_name, city_name, city_ref, street_ref, sLang
+            street_name,
+            city_name,
+            city_ref,
+            street_ref,
+            sLang,
+            city_kato=city_kato,
+            city_koatuu=city_koatuu,
         )
         if not street_moniker:
             return []
@@ -359,6 +407,18 @@ class GeodataApiCredential(models.Model):
             silent=True,
         )
 
+    def _payment_required_notification(self):
+        return {
+            "type": "ir.actions.client",
+            "tag": "display_notification",
+            "params": {
+                "title": _("Payment Required"),
+                "message": self._PAYMENT_REQUIRED_MESSAGE,
+                "type": "danger",
+                "sticky": True,
+            },
+        }
+
     def action_test_connection(self):
         self.ensure_one()
 
@@ -402,9 +462,11 @@ class GeodataApiCredential(models.Model):
                     "sticky": False,
                 },
             }
-        except UserError:
-            raise
         except Exception as e:
+            if self._is_payment_required_error(e):
+                return self._payment_required_notification()
+            if isinstance(e, UserError):
+                raise
             raise UserError(_("Connection test failed: %s") % str(e)) from e
 
     def action_sync_ukraine_states(self):
@@ -516,6 +578,7 @@ class GeodataApiCredential(models.Model):
         try:
             results = credential.api_full_address(sRequest=query, sLang=lang)
         except Exception as e:
+            self._raise_if_payment_required(e)
             _logger.exception("Autocomplete API error: %s", str(e))
             return []
 
@@ -551,6 +614,7 @@ class GeodataApiCredential(models.Model):
         try:
             results = credential.api_cities_search(sRequest=query, sLang=lang)
         except Exception as e:
+            self._raise_if_payment_required(e)
             _logger.exception("Autocomplete cities error: %s", str(e))
             return []
 
@@ -647,7 +711,14 @@ class GeodataApiCredential(models.Model):
         return text
 
     def _resolve_street_moniker(
-        self, street_name, city_name, city_ref="", street_ref=False, lang="uk_UA"
+        self,
+        street_name,
+        city_name,
+        city_ref="",
+        street_ref=False,
+        lang="uk_UA",
+        city_kato="",
+        city_koatuu="",
     ):
         self.ensure_one()
         if not street_name:
@@ -657,6 +728,8 @@ class GeodataApiCredential(models.Model):
             city_name=city_name,
             city_ref=city_ref,
             sLang=lang,
+            city_kato=city_kato,
+            city_koatuu=city_koatuu,
         )
         if not results:
             return ""
@@ -675,8 +748,19 @@ class GeodataApiCredential(models.Model):
                     return res.get("house_moniker", "")
         return results[0].get("house_moniker", "")
 
-    def _resolve_city_moniker(self, city_name, city_ref=False, lang="uk_UA"):
+    def _resolve_city_moniker(
+        self, city_name, city_ref=False, lang="uk_UA", city_kato="", city_koatuu=""
+    ):
         self.ensure_one()
+        post_code = city_kato or city_koatuu
+        if post_code:
+            result = self.api_cities_search(sPostCode=post_code, sLang=lang)
+            if result and isinstance(result, list) and len(result) == 1:
+                moniker = result[0].get("st_moniker", "") or result[0].get(
+                    "Moniker", ""
+                )
+                if moniker:
+                    return moniker
         result = self.api_cities_search(sRequest=city_name, sLang=lang)
         if not result:
             return ""
@@ -695,7 +779,15 @@ class GeodataApiCredential(models.Model):
                     return res.get("st_moniker", "") or res.get("Moniker", "")
         return ""
 
-    def autocomplete_streets(self, query, city_name="", city_ref="", lang="uk_UA"):
+    def autocomplete_streets(
+        self,
+        query,
+        city_name="",
+        city_ref="",
+        lang="uk_UA",
+        city_kato="",
+        city_koatuu="",
+    ):
         """Search streets by name within a city.
 
         Strips street type prefix (вул., просп., etc.) from query,
@@ -717,8 +809,11 @@ class GeodataApiCredential(models.Model):
                 city_name=city_name,
                 city_ref=city_ref,
                 sLang=lang,
+                city_kato=city_kato,
+                city_koatuu=city_koatuu,
             )
         except Exception as e:
+            self._raise_if_payment_required(e)
             _logger.debug("Autocomplete streets error: %s", str(e))
             results = []
         if not isinstance(results, list):
@@ -786,7 +881,7 @@ class GeodataApiCredential(models.Model):
         return {"label": label, "value": value, "data": data}
 
     @api.model
-    def autocomplete_houses(
+    def autocomplete_houses(  # pylint: disable=too-many-locals
         self,
         query,
         city_name="",
@@ -795,6 +890,8 @@ class GeodataApiCredential(models.Model):
         street_ref="",
         lang="uk_UA",
         street_label="",
+        city_kato="",
+        city_koatuu="",
     ):
         """Search houses by number on a given street.
 
@@ -813,8 +910,11 @@ class GeodataApiCredential(models.Model):
                 city_ref=city_ref,
                 street_ref=street_ref,
                 sLang=lang,
+                city_kato=city_kato,
+                city_koatuu=city_koatuu,
             )
         except Exception as e:
+            self._raise_if_payment_required(e)
             _logger.debug("Autocomplete houses error: %s", str(e))
             results = None
         if not isinstance(results, list):
@@ -862,7 +962,9 @@ class GeodataApiCredential(models.Model):
         return geo_street in query.lower()
 
     @api.model
-    def kw_autocomplete_streets(self, query, dep_values=None):
+    def kw_autocomplete_streets(  # pylint: disable=too-many-locals
+        self, query, dep_values=None
+    ):
         """Entry point for kw_autocomplete JS widget street field.
 
         Routes to autocomplete_houses() if query contains a house number
@@ -879,12 +981,16 @@ class GeodataApiCredential(models.Model):
 
         city_name = ""
         city_ref = ""
+        city_kato = ""
+        city_koatuu = ""
         geo_addr_id = dep.get("geodata_address_id")
         if geo_addr_id:
             geo_addr = self.env["geodata.address"].sudo().browse(int(geo_addr_id))
             if geo_addr.exists():
                 city_name = geo_addr.city or ""
                 city_ref = str(geo_addr.settlement_ref or "")
+                city_kato = geo_addr.kato or ""
+                city_koatuu = geo_addr.koatuu or ""
 
         if not city_name:
             return []
@@ -903,10 +1009,17 @@ class GeodataApiCredential(models.Model):
                     street_ref=street_ref,
                     lang=lang,
                     street_label=street_label,
+                    city_kato=city_kato,
+                    city_koatuu=city_koatuu,
                 )
 
         return credential.autocomplete_streets(
-            query, city_name=city_name, city_ref=city_ref, lang=lang
+            query,
+            city_name=city_name,
+            city_ref=city_ref,
+            lang=lang,
+            city_kato=city_kato,
+            city_koatuu=city_koatuu,
         )
 
     @api.model

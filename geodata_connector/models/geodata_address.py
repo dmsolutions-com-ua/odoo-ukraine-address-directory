@@ -36,11 +36,16 @@ UKRAINE_STATES = {
     "Автономна Республіка Крим": "UA43",
 }
 
-SPECIAL_STATUS_CITIES = frozenset({
-    "Київ", "Севастополь",
-    "Kyiv", "Sevastopol",
-    "Киев", "Севастополь",
-})
+SPECIAL_STATUS_CITIES = frozenset(
+    {
+        "Київ",
+        "Севастополь",
+        "Kyiv",
+        "Sevastopol",
+        "Киев",
+        "Севастополь",
+    }
+)
 
 
 class GeodataAddress(models.Model):
@@ -546,7 +551,55 @@ class GeodataAddress(models.Model):
 
         return "".join(parts).strip().rstrip(",").strip()
 
-    # pylint: disable=too-many-branches
+    def _format_region_part(self, lang):
+        region = self._get_field_by_lang("region", lang)
+        if not region or region in SPECIAL_STATUS_CITIES:
+            return region or ""
+        has_obl = any(s in region for s in ["обл.", "обл"])
+        if lang in ("ua", "ru") and not has_obl:
+            return f"{region} обл."
+        if lang == "en" and not region.endswith("obl."):
+            return f"{region} obl."
+        return region
+
+    def _format_area_part(self, lang):
+        area = self._format_area_with_old(lang)
+        if not area:
+            return ""
+        if lang in ("ua", "ru") and "р-н" not in area:
+            return f"{area} р-н"
+        if lang == "en" and "r-n" not in area:
+            return f"{area} r-n"
+        return area
+
+    def _format_street_house_part(self, lang):
+        street_with_old = self._format_street_with_old(lang)
+        house_part = self.house_num or ""
+        house_add = self._get_field_by_lang("house_num_add", lang)
+        if house_add:
+            house_part = f"{house_part}{house_add}"
+        if street_with_old and house_part:
+            return f"{street_with_old}, {house_part}"
+        return street_with_old or house_part
+
+    def _collect_address_parts(self, lang):
+        parts = []
+        if self.post_index:
+            parts.append(self.post_index)
+        region = self._format_region_part(lang)
+        if region:
+            parts.append(region)
+        area = self._format_area_part(lang)
+        if area:
+            parts.append(area)
+        city_part = self._format_city_with_old(lang)
+        if city_part:
+            parts.append(city_part)
+        street_house = self._format_street_house_part(lang)
+        if street_house:
+            parts.append(street_house)
+        return parts
+
     def _format_full_address(self, lang="ua"):
         """Format full postal address for contracts."""
         credential = self.env["geodata.api.credential"].sudo().get_credential()
@@ -554,54 +607,9 @@ class GeodataAddress(models.Model):
             return self._render_address_template(
                 credential.address_format_document, lang
             )
-        parts = []
-
-        if lang == "ua":
-            parts.append("УКРАЇНА")
-        elif lang == "ru":
-            parts.append("УКРАИНА")
-        else:
-            parts.append("Ukraine")
-
-        if self.post_index:
-            parts.append(self.post_index)
-
-        region = self._get_field_by_lang("region", lang)
-        if region:
-            if region not in SPECIAL_STATUS_CITIES:
-                has_obl = any(s in region for s in ["обл.", "обл"])
-                if lang in ("ua", "ru") and not has_obl:
-                    region = f"{region} обл."
-                elif lang == "en" and not region.endswith("obl."):
-                    region = f"{region} obl."
-            parts.append(region)
-
-        area = self._format_area_with_old(lang)
-        if area:
-            if lang in ("ua", "ru") and "р-н" not in area:
-                area = f"{area} р-н"
-            elif lang == "en" and "r-n" not in area:
-                area = f"{area} r-n"
-            parts.append(area)
-
-        city_part = self._format_city_with_old(lang)
-        if city_part:
-            parts.append(city_part)
-
-        street_with_old = self._format_street_with_old(lang)
-        house_part = self.house_num or ""
-        house_add = self._get_field_by_lang("house_num_add", lang)
-        if house_add:
-            house_part = f"{house_part}{house_add}"
-
-        if street_with_old:
-            if house_part:
-                parts.append(f"{street_with_old}, {house_part}")
-            else:
-                parts.append(street_with_old)
-        elif house_part:
-            parts.append(house_part)
-
+        country_map = {"ua": "УКРАЇНА", "ru": "УКРАИНА"}
+        parts = [country_map.get(lang, "Ukraine")]
+        parts.extend(self._collect_address_parts(lang))
         return ", ".join(parts)
 
     def _format_letter_address(self, lang="ua"):
@@ -609,48 +617,7 @@ class GeodataAddress(models.Model):
         credential = self.env["geodata.api.credential"].sudo().get_credential()
         if credential and credential.address_format_letter:
             return self._render_address_template(credential.address_format_letter, lang)
-        parts = []
-
-        if self.post_index:
-            parts.append(self.post_index)
-
-        region = self._get_field_by_lang("region", lang)
-        if region:
-            if region not in SPECIAL_STATUS_CITIES:
-                has_obl = any(s in region for s in ["обл.", "обл"])
-                if lang in ("ua", "ru") and not has_obl:
-                    region = f"{region} обл."
-                elif lang == "en" and not region.endswith("obl."):
-                    region = f"{region} obl."
-            parts.append(region)
-
-        area = self._format_area_with_old(lang)
-        if area:
-            if lang in ("ua", "ru") and "р-н" not in area:
-                area = f"{area} р-н"
-            elif lang == "en" and "r-n" not in area:
-                area = f"{area} r-n"
-            parts.append(area)
-
-        city_part = self._format_city_with_old(lang)
-        if city_part:
-            parts.append(city_part)
-
-        street_with_old = self._format_street_with_old(lang)
-        house_part = self.house_num or ""
-        house_add = self._get_field_by_lang("house_num_add", lang)
-        if house_add:
-            house_part = f"{house_part}{house_add}"
-
-        if street_with_old:
-            if house_part:
-                parts.append(f"{street_with_old}, {house_part}")
-            else:
-                parts.append(street_with_old)
-        elif house_part:
-            parts.append(house_part)
-
-        return ", ".join(parts)
+        return ", ".join(self._collect_address_parts(lang))
 
     def _get_field_by_lang(self, field_name, lang):
         """Get field value by language suffix."""
@@ -720,8 +687,9 @@ class GeodataAddress(models.Model):
             parts.append(self.post_index)
         if self.region:
             region = self.region
-            if (region not in SPECIAL_STATUS_CITIES
-                    and not any(s in region for s in ["обл.", "область"])):
+            if region not in SPECIAL_STATUS_CITIES and not any(
+                s in region for s in ["обл.", "область"]
+            ):
                 region = f"{region} обл."
             parts.append(region)
         if self.area:
