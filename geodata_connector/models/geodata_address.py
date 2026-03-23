@@ -36,17 +36,6 @@ UKRAINE_STATES = {
     "Автономна Республіка Крим": "UA43",
 }
 
-SPECIAL_STATUS_CITIES = frozenset(
-    {
-        "Київ",
-        "Севастополь",
-        "Kyiv",
-        "Sevastopol",
-        "Киев",
-        "Севастополь",
-    }
-)
-
 
 class GeodataAddress(models.Model):
     _name = "geodata.address"
@@ -461,13 +450,24 @@ class GeodataAddress(models.Model):
         "str_type_old_ru",
     )
     def _compute_full_addresses(self):
+        credential = self.env["geodata.api.credential"].sudo().get_credential()
+        store_en = credential.store_english if credential else True
+        store_ru = credential.store_russian if credential else False
         for record in self:
             record.address_full_ua = record._format_full_address("ua")
-            record.address_full_ru = record._format_full_address("ru")
-            record.address_full_en = record._format_full_address("en")
             record.address_letter_ua = record._format_letter_address("ua")
-            record.address_letter_ru = record._format_letter_address("ru")
-            record.address_letter_en = record._format_letter_address("en")
+            if store_en:
+                record.address_full_en = record._format_full_address("en")
+                record.address_letter_en = record._format_letter_address("en")
+            else:
+                record.address_full_en = ""
+                record.address_letter_en = ""
+            if store_ru:
+                record.address_full_ru = record._format_full_address("ru")
+                record.address_letter_ru = record._format_letter_address("ru")
+            else:
+                record.address_full_ru = ""
+                record.address_letter_ru = ""
 
     def _get_template_values(self, lang="ua"):
         if lang == "ua":
@@ -478,20 +478,7 @@ class GeodataAddress(models.Model):
             country = "Ukraine"
 
         region = self._get_field_by_lang("region", lang)
-        if region and region not in SPECIAL_STATUS_CITIES:
-            has_obl = any(s in region for s in ["обл.", "обл"])
-            if lang in ("ua", "ru") and not has_obl:
-                region = f"{region} обл."
-            elif lang == "en" and not region.endswith("obl."):
-                region = f"{region} obl."
-
         area = self._get_field_by_lang("area", lang)
-        if area:
-            if lang in ("ua", "ru") and "р-н" not in area:
-                area = f"{area} р-н"
-            elif lang == "en" and "r-n" not in area:
-                area = f"{area} r-n"
-
         hromada = self._get_field_by_lang("hromada", lang)
 
         house_part = self.house_num or ""
@@ -552,25 +539,10 @@ class GeodataAddress(models.Model):
         return "".join(parts).strip().rstrip(",").strip()
 
     def _format_region_part(self, lang):
-        region = self._get_field_by_lang("region", lang)
-        if not region or region in SPECIAL_STATUS_CITIES:
-            return region or ""
-        has_obl = any(s in region for s in ["обл.", "обл"])
-        if lang in ("ua", "ru") and not has_obl:
-            return f"{region} обл."
-        if lang == "en" and not region.endswith("obl."):
-            return f"{region} obl."
-        return region
+        return self._get_field_by_lang("region", lang) or ""
 
     def _format_area_part(self, lang):
-        area = self._format_area_with_old(lang)
-        if not area:
-            return ""
-        if lang in ("ua", "ru") and "р-н" not in area:
-            return f"{area} р-н"
-        if lang == "en" and "r-n" not in area:
-            return f"{area} r-n"
-        return area
+        return self._format_area_with_old(lang) or ""
 
     def _format_street_house_part(self, lang):
         street_with_old = self._format_street_with_old(lang)
@@ -686,17 +658,9 @@ class GeodataAddress(models.Model):
         if self.post_index:
             parts.append(self.post_index)
         if self.region:
-            region = self.region
-            if region not in SPECIAL_STATUS_CITIES and not any(
-                s in region for s in ["обл.", "область"]
-            ):
-                region = f"{region} обл."
-            parts.append(region)
+            parts.append(self.region)
         if self.area:
-            area = self.area
-            if not any(s in area for s in ["р-н", "район"]):
-                area = f"{area} р-н"
-            parts.append(area)
+            parts.append(self.area)
         if self.hromada:
             parts.append(self.hromada)
         if self.settlement_type and self.city:
@@ -776,15 +740,9 @@ class GeodataAddress(models.Model):
         parts = []
 
         if api_data.get("Region"):
-            region = api_data["Region"]
-            if region not in SPECIAL_STATUS_CITIES and "обл." not in region:
-                region = f"{region} обл."
-            parts.append(region)
+            parts.append(api_data["Region"])
         if api_data.get("Area"):
-            area = api_data["Area"]
-            if "р-н" not in area:
-                area = f"{area} р-н"
-            parts.append(area)
+            parts.append(api_data["Area"])
         if api_data.get("SettlementType"):
             parts.append(api_data["SettlementType"])
         if api_data.get("City"):
@@ -986,14 +944,9 @@ class GeodataAddress(models.Model):
         self.ensure_one()
         parts = []
         if self.region:
-            region = self.region
-            if region not in SPECIAL_STATUS_CITIES and "обл." not in region:
-                region = f"{region} обл."
-            parts.append(region)
+            parts.append(self.region)
         if self.area:
             area_part = self._format_area_with_old("ua")
-            if area_part and "р-н" not in area_part:
-                area_part = f"{area_part} р-н"
             if area_part:
                 parts.append(area_part)
         if self.settlement_type and self.city:
@@ -1203,15 +1156,9 @@ class GeodataAddress(models.Model):
     def _build_translation_query(self):
         parts = []
         if self.region:
-            region = self.region
-            if region not in SPECIAL_STATUS_CITIES and "обл." not in region:
-                region = f"{region} обл."
-            parts.append(region)
+            parts.append(self.region)
         if self.area:
-            area = self.area
-            if "р-н" not in area:
-                area = f"{area} р-н"
-            parts.append(area)
+            parts.append(self.area)
         if self.settlement_type and self.city:
             parts.append(f"{self.settlement_type} {self.city}")
         elif self.city:
