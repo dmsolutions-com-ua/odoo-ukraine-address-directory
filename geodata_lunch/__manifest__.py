@@ -1,7 +1,7 @@
 {
     "name": "Ukraine Address Integration - Lunch",
     "summary": "Geodata.online address autocomplete for lunch suppliers",
-    "author": "GEODATA.online",
+    "author": "DM Solutions",
     "website": "https://geodata.online",
     "category": "Hidden",
     "license": "LGPL-3",

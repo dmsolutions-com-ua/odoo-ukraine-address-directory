@@ -4,7 +4,7 @@
         Integration with Geodata.online API for address autocomplete
         and normalization in Ukraine
     """,
-    "author": "GEODATA.online",
+    "author": "DM Solutions",
     "website": "https://geodata.online",
     "category": "Hidden",
     "license": "LGPL-3",

@@ -3,7 +3,7 @@
     "summary": """
         Integrates Geodata.online addresses with contact forms
     """,
-    "author": "GEODATA.online",
+    "author": "DM Solutions",
     "website": "https://geodata.online",
     "category": "Hidden",
     "license": "LGPL-3",

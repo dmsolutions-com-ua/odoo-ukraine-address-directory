@@ -3,7 +3,7 @@
     "summary": """
         Testing module for geodata_connector with mock data and tests
     """,
-    "author": "GEODATA.online",
+    "author": "DM Solutions",
     "website": "https://geodata.online",
     "category": "Hidden",
     "license": "LGPL-3",

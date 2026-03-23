@@ -5,7 +5,7 @@
     "України актуальні адреси України автозаповнення "
     "адрес України Autocomplete address autofill address "
     "database address",
-    "author": "GEODATA.online",
+    "author": "DM Solutions",
     "website": "https://geodata.online",
     "category": "Extra Tools",
     "license": "LGPL-3",

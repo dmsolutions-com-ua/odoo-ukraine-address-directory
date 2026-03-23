@@ -1,7 +1,7 @@
 {
     "name": "Ukraine Address Integration - CRM",
     "summary": "Geodata.online address autocomplete for CRM leads",
-    "author": "GEODATA.online",
+    "author": "DM Solutions",
     "website": "https://geodata.online",
     "category": "Hidden",
     "license": "LGPL-3",

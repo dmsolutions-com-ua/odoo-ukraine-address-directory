@@ -1,7 +1,7 @@
 {
     "name": "Ukraine Address Integration - Company",
     "summary": "Geodata.online address autocomplete for companies",
-    "author": "GEODATA.online",
+    "author": "DM Solutions",
     "website": "https://geodata.online",
     "category": "Hidden",
     "license": "LGPL-3",

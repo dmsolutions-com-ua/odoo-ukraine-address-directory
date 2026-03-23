@@ -1,7 +1,7 @@
 {
     "name": "Ukraine Address Integration - HR",
     "summary": "Geodata.online address autocomplete for HR employees",
-    "author": "GEODATA.online",
+    "author": "DM Solutions",
     "website": "https://geodata.online",
     "category": "Hidden",
     "license": "LGPL-3",
