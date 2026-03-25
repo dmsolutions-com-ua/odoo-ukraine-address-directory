@@ -161,12 +161,31 @@ class GeodataApiCredential(models.Model):
         "Please top up your balance at https://geodata.online/"
     )
 
+    def _send_payment_required_notification(self):
+        try:
+            self.env["bus.bus"]._sendone(
+                self.env.user.partner_id,
+                "simple_notification",
+                {
+                    "type": "danger",
+                    "title": _("Geodata.online"),
+                    "message": _(
+                        "Insufficient funds on your Geodata.online account. "
+                        "Please top up your balance at https://geodata.online/"
+                    ),
+                    "sticky": True,
+                },
+            )
+        except Exception:
+            _logger.debug("Failed to send bus notification", exc_info=True)
+
     def parse_api_error_geodata(self, response, **kwargs):
         if response.status_code == 402:
             _logger.warning(
                 "Geodata API: Payment Required (402) for %s",
                 response.url if hasattr(response, "url") else "unknown URL",
             )
+            self._send_payment_required_notification()
             return {
                 "message": str(self._PAYMENT_REQUIRED_MESSAGE),
                 "is_payment_required": True,
@@ -246,10 +265,6 @@ class GeodataApiCredential(models.Model):
     def _is_payment_required_error(error):
         error_str = str(error)
         return "402" in error_str or "Payment Required" in error_str
-
-    def _raise_if_payment_required(self, error):
-        if self._is_payment_required_error(error):
-            raise UserError(self._PAYMENT_REQUIRED_MESSAGE) from error
 
     def _get_api_language(self):
         user_lang = self.env.context.get("lang", False)
@@ -392,33 +407,6 @@ class GeodataApiCredential(models.Model):
             silent=True,
         )
 
-    def api_full_address_detailed(self, sRequest, sLang="uk_UA"):
-        """Call /api/Address for detailed address with translations."""
-        self.ensure_one()
-        if not sRequest:
-            return []
-        return self.api_request(
-            method="GET",
-            url="api/Address",
-            params={
-                "sRequest": sRequest,
-                "sLang": sLang,
-            },
-            silent=True,
-        )
-
-    def _payment_required_notification(self):
-        return {
-            "type": "ir.actions.client",
-            "tag": "display_notification",
-            "params": {
-                "title": _("Payment Required"),
-                "message": self._PAYMENT_REQUIRED_MESSAGE,
-                "type": "danger",
-                "sticky": True,
-            },
-        }
-
     def action_test_connection(self):
         self.ensure_one()
 
@@ -464,7 +452,7 @@ class GeodataApiCredential(models.Model):
             }
         except Exception as e:
             if self._is_payment_required_error(e):
-                return self._payment_required_notification()
+                return False
             if isinstance(e, UserError):
                 raise
             raise UserError(_("Connection test failed: %s") % str(e)) from e
@@ -578,8 +566,7 @@ class GeodataApiCredential(models.Model):
         try:
             results = credential.api_full_address(sRequest=query, sLang=lang)
         except Exception as e:
-            self._raise_if_payment_required(e)
-            _logger.exception("Autocomplete API error: %s", str(e))
+            _logger.debug("Autocomplete API error: %s", str(e))
             return []
 
         if not results:
@@ -614,8 +601,7 @@ class GeodataApiCredential(models.Model):
         try:
             results = credential.api_cities_search(sRequest=query, sLang=lang)
         except Exception as e:
-            self._raise_if_payment_required(e)
-            _logger.exception("Autocomplete cities error: %s", str(e))
+            _logger.debug("Autocomplete cities error: %s", str(e))
             return []
 
         if not isinstance(results, list) or not results:
@@ -813,7 +799,6 @@ class GeodataApiCredential(models.Model):
                 city_koatuu=city_koatuu,
             )
         except Exception as e:
-            self._raise_if_payment_required(e)
             _logger.debug("Autocomplete streets error: %s", str(e))
             results = []
         if not isinstance(results, list):
@@ -914,7 +899,6 @@ class GeodataApiCredential(models.Model):
                 city_koatuu=city_koatuu,
             )
         except Exception as e:
-            self._raise_if_payment_required(e)
             _logger.debug("Autocomplete houses error: %s", str(e))
             results = None
         if not isinstance(results, list):

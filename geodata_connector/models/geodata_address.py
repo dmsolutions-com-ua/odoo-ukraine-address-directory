@@ -1113,7 +1113,7 @@ class GeodataAddress(models.Model):
     def _fetch_translation_data(self, credential, query, lang):
         lang_label = lang[:2].upper()
         try:
-            results = credential.api_full_address_detailed(sRequest=query, sLang=lang)
+            results = credential.api_full_address(sRequest=query, sLang=lang)
             if not results:
                 _logger.debug(
                     "%s translation: empty result for query %s", lang_label, query

@@ -1562,3 +1562,13 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:geodata_connector.geodata_api_credential_view_form
 msgid "{index}, {region}, {area}, {city}, {street}, {house}"
 msgstr "{index}, {region}, {area}, {city}, {street}, {house}"
+
+#. module: geodata_connector
+#. odoo-python
+#: code:addons/geodata_connector/models/geodata_api_credential.py:0
+msgid ""
+"Insufficient funds on your Geodata.online account. Please top up your "
+"balance at https://geodata.online/"
+msgstr ""
+"Недостатньо коштів на вашому рахунку Geodata.online. Будь ласка, поповніть "
+"баланс на https://geodata.online/"
