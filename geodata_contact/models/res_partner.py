@@ -400,14 +400,24 @@ class ResPartner(models.Model):
             clear_fields.update(geo_fields)
         return clear_fields
 
-    def _classify_address_changes(self, vals):
+    def _classify_address_changes(self, partner, vals):
         address_field_set = set(self._PARTNER_GEO_CLEAR_MAP.keys()) | {"country_id"}
         cleared_fields = set()
         changed_fields = set()
         for f in vals:
             if f not in address_field_set:
                 continue
-            if not vals[f]:
+            new_val = vals[f]
+            current = getattr(partner, f, False)
+            if f in ("state_id", "country_id"):
+                current_id = current.id if current else False
+                new_id = new_val[0] if isinstance(new_val, (list, tuple)) else new_val
+                if current_id == (new_id or False):
+                    continue
+            else:
+                if (new_val or False) == (current or False):
+                    continue
+            if not new_val:
                 cleared_fields.add(f)
             else:
                 changed_fields.add(f)
@@ -444,7 +454,7 @@ class ResPartner(models.Model):
                 partner.geodata_address_id = False
                 return
 
-        cleared_fields, changed_fields = self._classify_address_changes(vals)
+        cleared_fields, changed_fields = self._classify_address_changes(partner, vals)
         if not cleared_fields and not changed_fields:
             return
 

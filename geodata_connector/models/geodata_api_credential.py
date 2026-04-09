@@ -91,6 +91,16 @@ class GeodataApiCredential(models.Model):
     address_format_letter = fields.Char(
         string="Address Format for Letters",
     )
+    payment_notification_interval = fields.Integer(
+        string="Payment Alert Interval (minutes)",
+        default=60,
+        help="Minimum minutes between repeated 'insufficient funds' "
+        "notifications to avoid spamming the user. Set to 0 to show every time.",
+    )
+    payment_notification_last = fields.Datetime(
+        string="Last Payment Alert",
+        readonly=True,
+    )
 
     @api.constrains("address_format_document", "address_format_letter")
     def _check_address_format(self):
@@ -115,6 +125,11 @@ class GeodataApiCredential(models.Model):
                     )
 
     def write(self, vals):
+        credential_changed = (
+            "api_username" in vals or "api_password" in vals
+        )
+        if credential_changed and "access_token" not in vals:
+            vals = dict(vals, access_token=False)
         res = super().write(vals)
         if "address_format_document" in vals or "address_format_letter" in vals:
             addresses = self.env["geodata.address"].search([])
@@ -161,7 +176,20 @@ class GeodataApiCredential(models.Model):
         "Please top up your balance at https://geodata.online/"
     )
 
+    def _should_send_payment_notification(self):
+        self.ensure_one()
+        interval = self.payment_notification_interval or 0
+        if interval <= 0:
+            return True
+        last = self.payment_notification_last
+        if not last:
+            return True
+        elapsed = (fields.Datetime.now() - last).total_seconds() / 60.0
+        return elapsed >= interval
+
     def _send_payment_required_notification(self):
+        if self and not self._should_send_payment_notification():
+            return
         try:
             self.env["bus.bus"]._sendone(
                 self.env.user.partner_id,
@@ -176,6 +204,10 @@ class GeodataApiCredential(models.Model):
                     "sticky": True,
                 },
             )
+            if self:
+                self.sudo().write(
+                    {"payment_notification_last": fields.Datetime.now()}
+                )
         except Exception:
             _logger.debug("Failed to send bus notification", exc_info=True)
 
