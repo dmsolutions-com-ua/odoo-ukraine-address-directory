@@ -3,12 +3,13 @@ from odoo import api, models
 MOCK_CITIES_KYIV = [
     {
         "label": "місто Київ, Київ",
-        "value": "Київ",
+        "value": "місто Київ",
         "moniker": "1d3a3d41-8ac2-4220-ae54-db096343eaa5",
         "data": {
             "st_moniker": "1d3a3d41-8ac2-4220-ae54-db096343eaa5",
             "Id": 1,
             "City": "Київ",
+            "CityString": "місто Київ",
             "Region": "Київ",
             "Area": None,
             "IsOCentre": True,

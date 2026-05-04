@@ -38,7 +38,8 @@
             "TerrStatus": null,
             "KATO": "UA80000000000093317",
             "Hromada": null,
-            "Description": null
+            "Description": null,
+            "CityString": "місто Київ"
           },
           {
             "st_moniker": "5d65bb42-9a97-4752-bbc7-838a579115e0",
@@ -62,7 +63,8 @@
             "TerrStatus": null,
             "KATO": "UA46100170040052051",
             "Hromada": "Розвадівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Київець"
           },
           {
             "st_moniker": "97958d6e-28f8-4423-b528-dd96a6e32b99",
@@ -86,7 +88,8 @@
             "TerrStatus": null,
             "KATO": "UA48040230080020671",
             "Hromada": "Прибузька",
-            "Description": null
+            "Description": null,
+            "CityString": "село Київ"
           },
           {
             "st_moniker": "7fce06ec-8885-44da-b21f-7c398d41cfcc",
@@ -110,7 +113,8 @@
             "TerrStatus": "Території можливих бойових дій",
             "KATO": "UA23060190220069576",
             "Hromada": "Новомиколаївська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Київське"
           },
           {
             "st_moniker": "638828e4-ac56-434b-9ca9-805e6972af45",
@@ -134,7 +138,8 @@
             "TerrStatus": null,
             "KATO": "UA48060330070013948",
             "Hromada": "Сухоєланецька",
-            "Description": null
+            "Description": null,
+            "CityString": "село Київське"
           },
           {
             "st_moniker": "7c21cdf4-2b09-4f68-b69f-d66a8c89c204",
@@ -158,7 +163,8 @@
             "TerrStatus": "Території можливих бойових дій",
             "KATO": "UA48020010070071594",
             "Hromada": "Баштанська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Київське"
           },
           {
             "st_moniker": "7ee9d5b1-e63b-45d0-bae0-74b3e0d5ba5d",
@@ -182,7 +188,8 @@
             "TerrStatus": null,
             "KATO": "UA12140270210063776",
             "Hromada": "Раївська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Київське"
           },
           {
             "st_moniker": "91d3d173-84df-4e37-8b22-7814e449cab6",
@@ -206,7 +213,8 @@
             "TerrStatus": "Території можливих бойових дій",
             "KATO": "UA59100170250082315",
             "Hromada": "Шосткинська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Київське"
           },
           {
             "st_moniker": "f9493209-d309-438b-b4ad-f83aa8b802bb",
@@ -230,7 +238,8 @@
             "TerrStatus": null,
             "KATO": "UA53060090060011875",
             "Hromada": "Гадяцька",
-            "Description": null
+            "Description": null,
+            "CityString": "село Київське"
           },
           {
             "st_moniker": "94b9dfc2-56be-44dd-a614-971e5da33660",
@@ -254,7 +263,8 @@
             "TerrStatus": "Тимчасово окуповані Російською Федерацією території України",
             "KATO": "UA65080050040021690",
             "Hromada": "Долматівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Київка"
           }
         ],
         "streets": [
@@ -434,7 +444,8 @@
             "TerrStatus": null,
             "KATO": "UA80000000000093317",
             "Hromada": null,
-            "Description": null
+            "Description": null,
+            "CityString": "місто Київ"
           },
           {
             "st_moniker": "5d65bb42-9a97-4752-bbc7-838a579115e0",
@@ -458,7 +469,8 @@
             "TerrStatus": null,
             "KATO": "UA46100170040052051",
             "Hromada": "Розвадівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Київець"
           },
           {
             "st_moniker": "97958d6e-28f8-4423-b528-dd96a6e32b99",
@@ -482,7 +494,8 @@
             "TerrStatus": null,
             "KATO": "UA48040230080020671",
             "Hromada": "Прибузька",
-            "Description": null
+            "Description": null,
+            "CityString": "село Київ"
           },
           {
             "st_moniker": "7fce06ec-8885-44da-b21f-7c398d41cfcc",
@@ -506,7 +519,8 @@
             "TerrStatus": "Території можливих бойових дій",
             "KATO": "UA23060190220069576",
             "Hromada": "Новомиколаївська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Київське"
           },
           {
             "st_moniker": "638828e4-ac56-434b-9ca9-805e6972af45",
@@ -530,7 +544,8 @@
             "TerrStatus": null,
             "KATO": "UA48060330070013948",
             "Hromada": "Сухоєланецька",
-            "Description": null
+            "Description": null,
+            "CityString": "село Київське"
           },
           {
             "st_moniker": "7c21cdf4-2b09-4f68-b69f-d66a8c89c204",
@@ -554,7 +569,8 @@
             "TerrStatus": "Території можливих бойових дій",
             "KATO": "UA48020010070071594",
             "Hromada": "Баштанська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Київське"
           },
           {
             "st_moniker": "7ee9d5b1-e63b-45d0-bae0-74b3e0d5ba5d",
@@ -578,7 +594,8 @@
             "TerrStatus": null,
             "KATO": "UA12140270210063776",
             "Hromada": "Раївська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Київське"
           },
           {
             "st_moniker": "91d3d173-84df-4e37-8b22-7814e449cab6",
@@ -602,7 +619,8 @@
             "TerrStatus": "Території можливих бойових дій",
             "KATO": "UA59100170250082315",
             "Hromada": "Шосткинська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Київське"
           },
           {
             "st_moniker": "f9493209-d309-438b-b4ad-f83aa8b802bb",
@@ -626,7 +644,8 @@
             "TerrStatus": null,
             "KATO": "UA53060090060011875",
             "Hromada": "Гадяцька",
-            "Description": null
+            "Description": null,
+            "CityString": "село Київське"
           },
           {
             "st_moniker": "94b9dfc2-56be-44dd-a614-971e5da33660",
@@ -650,7 +669,8 @@
             "TerrStatus": "Тимчасово окуповані Російською Федерацією території України",
             "KATO": "UA65080050040021690",
             "Hromada": "Долматівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Київка"
           }
         ],
         "streets": [
@@ -890,7 +910,8 @@
             "TerrStatus": null,
             "KATO": "UA80000000000093317",
             "Hromada": null,
-            "Description": null
+            "Description": null,
+            "CityString": "місто Київ"
           },
           {
             "st_moniker": "5d65bb42-9a97-4752-bbc7-838a579115e0",
@@ -914,7 +935,8 @@
             "TerrStatus": null,
             "KATO": "UA46100170040052051",
             "Hromada": "Розвадівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Київець"
           },
           {
             "st_moniker": "97958d6e-28f8-4423-b528-dd96a6e32b99",
@@ -938,7 +960,8 @@
             "TerrStatus": null,
             "KATO": "UA48040230080020671",
             "Hromada": "Прибузька",
-            "Description": null
+            "Description": null,
+            "CityString": "село Київ"
           },
           {
             "st_moniker": "7fce06ec-8885-44da-b21f-7c398d41cfcc",
@@ -962,7 +985,8 @@
             "TerrStatus": "Території можливих бойових дій",
             "KATO": "UA23060190220069576",
             "Hromada": "Новомиколаївська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Київське"
           },
           {
             "st_moniker": "638828e4-ac56-434b-9ca9-805e6972af45",
@@ -986,7 +1010,8 @@
             "TerrStatus": null,
             "KATO": "UA48060330070013948",
             "Hromada": "Сухоєланецька",
-            "Description": null
+            "Description": null,
+            "CityString": "село Київське"
           },
           {
             "st_moniker": "7c21cdf4-2b09-4f68-b69f-d66a8c89c204",
@@ -1010,7 +1035,8 @@
             "TerrStatus": "Території можливих бойових дій",
             "KATO": "UA48020010070071594",
             "Hromada": "Баштанська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Київське"
           },
           {
             "st_moniker": "7ee9d5b1-e63b-45d0-bae0-74b3e0d5ba5d",
@@ -1034,7 +1060,8 @@
             "TerrStatus": null,
             "KATO": "UA12140270210063776",
             "Hromada": "Раївська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Київське"
           },
           {
             "st_moniker": "91d3d173-84df-4e37-8b22-7814e449cab6",
@@ -1058,7 +1085,8 @@
             "TerrStatus": "Території можливих бойових дій",
             "KATO": "UA59100170250082315",
             "Hromada": "Шосткинська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Київське"
           },
           {
             "st_moniker": "f9493209-d309-438b-b4ad-f83aa8b802bb",
@@ -1082,7 +1110,8 @@
             "TerrStatus": null,
             "KATO": "UA53060090060011875",
             "Hromada": "Гадяцька",
-            "Description": null
+            "Description": null,
+            "CityString": "село Київське"
           },
           {
             "st_moniker": "94b9dfc2-56be-44dd-a614-971e5da33660",
@@ -1106,7 +1135,8 @@
             "TerrStatus": "Тимчасово окуповані Російською Федерацією території України",
             "KATO": "UA65080050040021690",
             "Hromada": "Долматівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Київка"
           }
         ],
         "streets": [
@@ -1231,7 +1261,8 @@
             "TerrStatus": null,
             "KATO": "UA80000000000093317",
             "Hromada": null,
-            "Description": null
+            "Description": null,
+            "CityString": "місто Київ"
           },
           {
             "st_moniker": "5d65bb42-9a97-4752-bbc7-838a579115e0",
@@ -1255,7 +1286,8 @@
             "TerrStatus": null,
             "KATO": "UA46100170040052051",
             "Hromada": "Розвадівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Київець"
           },
           {
             "st_moniker": "97958d6e-28f8-4423-b528-dd96a6e32b99",
@@ -1279,7 +1311,8 @@
             "TerrStatus": null,
             "KATO": "UA48040230080020671",
             "Hromada": "Прибузька",
-            "Description": null
+            "Description": null,
+            "CityString": "село Київ"
           },
           {
             "st_moniker": "7fce06ec-8885-44da-b21f-7c398d41cfcc",
@@ -1303,7 +1336,8 @@
             "TerrStatus": "Території можливих бойових дій",
             "KATO": "UA23060190220069576",
             "Hromada": "Новомиколаївська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Київське"
           },
           {
             "st_moniker": "638828e4-ac56-434b-9ca9-805e6972af45",
@@ -1327,7 +1361,8 @@
             "TerrStatus": null,
             "KATO": "UA48060330070013948",
             "Hromada": "Сухоєланецька",
-            "Description": null
+            "Description": null,
+            "CityString": "село Київське"
           },
           {
             "st_moniker": "7c21cdf4-2b09-4f68-b69f-d66a8c89c204",
@@ -1351,7 +1386,8 @@
             "TerrStatus": "Території можливих бойових дій",
             "KATO": "UA48020010070071594",
             "Hromada": "Баштанська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Київське"
           },
           {
             "st_moniker": "7ee9d5b1-e63b-45d0-bae0-74b3e0d5ba5d",
@@ -1375,7 +1411,8 @@
             "TerrStatus": null,
             "KATO": "UA12140270210063776",
             "Hromada": "Раївська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Київське"
           },
           {
             "st_moniker": "91d3d173-84df-4e37-8b22-7814e449cab6",
@@ -1399,7 +1436,8 @@
             "TerrStatus": "Території можливих бойових дій",
             "KATO": "UA59100170250082315",
             "Hromada": "Шосткинська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Київське"
           },
           {
             "st_moniker": "f9493209-d309-438b-b4ad-f83aa8b802bb",
@@ -1423,7 +1461,8 @@
             "TerrStatus": null,
             "KATO": "UA53060090060011875",
             "Hromada": "Гадяцька",
-            "Description": null
+            "Description": null,
+            "CityString": "село Київське"
           },
           {
             "st_moniker": "94b9dfc2-56be-44dd-a614-971e5da33660",
@@ -1447,7 +1486,8 @@
             "TerrStatus": "Тимчасово окуповані Російською Федерацією території України",
             "KATO": "UA65080050040021690",
             "Hromada": "Долматівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Київка"
           }
         ],
         "streets": [
@@ -1619,7 +1659,8 @@
             "TerrStatus": "Території можливих бойових дій",
             "KATO": "UA63120270010096107",
             "Hromada": "Харківська",
-            "Description": null
+            "Description": null,
+            "CityString": "місто Харків"
           },
           {
             "st_moniker": "6ceca6e6-5c01-4acc-bbf1-711e9c140dcb",
@@ -1643,7 +1684,8 @@
             "TerrStatus": null,
             "KATO": "UA32040110120099306",
             "Hromada": "Переяславська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Харківці"
           },
           {
             "st_moniker": "9d8094e1-3ced-4e50-9e27-501227a0d9d4",
@@ -1667,7 +1709,8 @@
             "TerrStatus": null,
             "KATO": "UA53060090200014635",
             "Hromada": "Гадяцька",
-            "Description": null
+            "Description": null,
+            "CityString": "село Харківці"
           },
           {
             "st_moniker": "b233111a-5965-44b6-9543-7528a697ae85",
@@ -1691,7 +1734,8 @@
             "TerrStatus": null,
             "KATO": "UA53060190410080073",
             "Hromada": "Лохвицька",
-            "Description": null
+            "Description": null,
+            "CityString": "село Харківці"
           },
           {
             "st_moniker": "8fbfa1b0-d69d-4491-92b4-af5728d1c179",
@@ -1715,7 +1759,8 @@
             "TerrStatus": null,
             "KATO": "UA53040090430042778",
             "Hromada": "Пирятинська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Харківці"
           },
           {
             "st_moniker": "651ab623-4290-4063-9a97-6b032bc5ee27",
@@ -1739,7 +1784,8 @@
             "TerrStatus": null,
             "KATO": "UA68040430400048217",
             "Hromada": "Старосинявська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Харківці"
           },
           {
             "st_moniker": "e2f0bdc8-cae5-4710-9127-c609e4f3316a",
@@ -1763,7 +1809,8 @@
             "TerrStatus": null,
             "KATO": "UA71060150160068726",
             "Hromada": "Маньківська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Харківка"
           },
           {
             "st_moniker": "eacd4542-b720-4f32-91f2-c46ddfdcf6f1",
@@ -1787,7 +1834,8 @@
             "TerrStatus": "Території можливих бойових дій",
             "KATO": "UA59100070260075866",
             "Hromada": "Есманьська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Харківка"
           },
           {
             "st_moniker": "75e216c8-ee95-43b6-8068-f757651bfc9a",
@@ -1811,7 +1859,8 @@
             "TerrStatus": "Тимчасово окуповані Російською Федерацією території України",
             "KATO": "UA14080010580018119",
             "Hromada": "Амвросіївська",
-            "Description": null
+            "Description": null,
+            "CityString": "селище Харківське"
           },
           {
             "st_moniker": "ba1b50a1-6d12-49ad-8b0e-492eeca225ff",
@@ -1835,7 +1884,8 @@
             "TerrStatus": null,
             "KATO": "UA59080230300010258",
             "Hromada": "Садівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Харківщина"
           }
         ],
         "streets": [
@@ -2052,7 +2102,8 @@
             "TerrStatus": "Території можливих бойових дій",
             "KATO": "UA63120270010096107",
             "Hromada": "Харківська",
-            "Description": null
+            "Description": null,
+            "CityString": "місто Харків"
           },
           {
             "st_moniker": "6ceca6e6-5c01-4acc-bbf1-711e9c140dcb",
@@ -2076,7 +2127,8 @@
             "TerrStatus": null,
             "KATO": "UA32040110120099306",
             "Hromada": "Переяславська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Харківці"
           },
           {
             "st_moniker": "9d8094e1-3ced-4e50-9e27-501227a0d9d4",
@@ -2100,7 +2152,8 @@
             "TerrStatus": null,
             "KATO": "UA53060090200014635",
             "Hromada": "Гадяцька",
-            "Description": null
+            "Description": null,
+            "CityString": "село Харківці"
           },
           {
             "st_moniker": "b233111a-5965-44b6-9543-7528a697ae85",
@@ -2124,7 +2177,8 @@
             "TerrStatus": null,
             "KATO": "UA53060190410080073",
             "Hromada": "Лохвицька",
-            "Description": null
+            "Description": null,
+            "CityString": "село Харківці"
           },
           {
             "st_moniker": "8fbfa1b0-d69d-4491-92b4-af5728d1c179",
@@ -2148,7 +2202,8 @@
             "TerrStatus": null,
             "KATO": "UA53040090430042778",
             "Hromada": "Пирятинська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Харківці"
           },
           {
             "st_moniker": "651ab623-4290-4063-9a97-6b032bc5ee27",
@@ -2172,7 +2227,8 @@
             "TerrStatus": null,
             "KATO": "UA68040430400048217",
             "Hromada": "Старосинявська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Харківці"
           },
           {
             "st_moniker": "e2f0bdc8-cae5-4710-9127-c609e4f3316a",
@@ -2196,7 +2252,8 @@
             "TerrStatus": null,
             "KATO": "UA71060150160068726",
             "Hromada": "Маньківська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Харківка"
           },
           {
             "st_moniker": "eacd4542-b720-4f32-91f2-c46ddfdcf6f1",
@@ -2220,7 +2277,8 @@
             "TerrStatus": "Території можливих бойових дій",
             "KATO": "UA59100070260075866",
             "Hromada": "Есманьська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Харківка"
           },
           {
             "st_moniker": "75e216c8-ee95-43b6-8068-f757651bfc9a",
@@ -2244,7 +2302,8 @@
             "TerrStatus": "Тимчасово окуповані Російською Федерацією території України",
             "KATO": "UA14080010580018119",
             "Hromada": "Амвросіївська",
-            "Description": null
+            "Description": null,
+            "CityString": "селище Харківське"
           },
           {
             "st_moniker": "ba1b50a1-6d12-49ad-8b0e-492eeca225ff",
@@ -2268,7 +2327,8 @@
             "TerrStatus": null,
             "KATO": "UA59080230300010258",
             "Hromada": "Садівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Харківщина"
           }
         ],
         "streets": [
@@ -2447,7 +2507,8 @@
             "TerrStatus": "Території можливих бойових дій",
             "KATO": "UA51100270010076757",
             "Hromada": "Одеська",
-            "Description": null
+            "Description": null,
+            "CityString": "місто Одеса"
           }
         ],
         "streets": [
@@ -2677,7 +2738,8 @@
             "TerrStatus": null,
             "KATO": "UA32060050010081797",
             "Hromada": "Броварська",
-            "Description": null
+            "Description": null,
+            "CityString": "місто Бровари"
           },
           {
             "st_moniker": "a62fae7d-06ae-4c49-8484-664731da7200",
@@ -2701,7 +2763,8 @@
             "TerrStatus": null,
             "KATO": "UA61060070060025610",
             "Hromada": "Бучацька",
-            "Description": null
+            "Description": null,
+            "CityString": "село Броварі"
           },
           {
             "st_moniker": "40923321-d091-4cff-8e98-5c5f6aef7768",
@@ -2725,7 +2788,8 @@
             "TerrStatus": null,
             "KATO": "UA68020130020031177",
             "Hromada": "Китайгородська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Броварі"
           }
         ],
         "streets": [
@@ -2964,7 +3028,8 @@
             "TerrStatus": null,
             "KATO": "UA32100010010059200",
             "Hromada": "Вишгородська",
-            "Description": null
+            "Description": null,
+            "CityString": "місто Вишгород"
           },
           {
             "st_moniker": "42b7e98f-c130-42f1-b35f-71b18ebb0480",
@@ -2988,7 +3053,8 @@
             "TerrStatus": null,
             "KATO": "UA61020090090061292",
             "Hromada": "Лановецька",
-            "Description": null
+            "Description": null,
+            "CityString": "село Вишгородок"
           }
         ],
         "streets": [
@@ -3171,7 +3237,8 @@
             "TerrStatus": null,
             "KATO": "UA18020030010047029",
             "Hromada": "Бердичівська",
-            "Description": null
+            "Description": null,
+            "CityString": "місто Бердичів"
           }
         ],
         "streets": [
@@ -3401,7 +3468,8 @@
             "TerrStatus": null,
             "KATO": "UA32120030010069648",
             "Hromada": "Васильківська",
-            "Description": null
+            "Description": null,
+            "CityString": "місто Васильків"
           },
           {
             "st_moniker": "d067d6ec-9163-4296-9c67-76f457a2f80d",
@@ -3425,7 +3493,8 @@
             "TerrStatus": "Території можливих бойових дій",
             "KATO": "UA12140030010030626",
             "Hromada": "Васильківська",
-            "Description": null
+            "Description": null,
+            "CityString": "селище Васильківка"
           },
           {
             "st_moniker": "ceea1ce4-4f9e-4dca-96b9-70a5026cb72d",
@@ -3449,7 +3518,8 @@
             "TerrStatus": null,
             "KATO": "UA71020330030048216",
             "Hromada": "Шполянська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Васильків"
           },
           {
             "st_moniker": "00a466d0-9553-40b3-877a-9e669c22ea9e",
@@ -3473,7 +3543,8 @@
             "TerrStatus": null,
             "KATO": "UA12140030070074905",
             "Hromada": "Васильківська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Великоолександрівка"
           },
           {
             "st_moniker": "d5793ee0-a65b-44f4-b3db-9379f6177d3b",
@@ -3497,7 +3568,8 @@
             "TerrStatus": "Території можливих бойових дій",
             "KATO": "UA12140030140090890",
             "Hromada": "Васильківська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Бунчужне"
           },
           {
             "st_moniker": "7c33d2fb-0a71-4a36-bb4d-362e282bf117",
@@ -3521,7 +3593,8 @@
             "TerrStatus": null,
             "KATO": "UA12140030020051649",
             "Hromada": "Васильківська",
-            "Description": null
+            "Description": null,
+            "CityString": "селище Письменне"
           },
           {
             "st_moniker": "f8927fe9-a608-404c-8f45-7dc3d6a5b23e",
@@ -3545,7 +3618,8 @@
             "TerrStatus": null,
             "KATO": "UA61060090010056450",
             "Hromada": "Васильковецька",
-            "Description": null
+            "Description": null,
+            "CityString": "село Васильківці"
           },
           {
             "st_moniker": "e554202b-8b5e-40ce-b036-cb400a6b4a3a",
@@ -3569,7 +3643,8 @@
             "TerrStatus": "Території можливих бойових дій",
             "KATO": "UA12140170170021302",
             "Hromada": "Миколаївська",
-            "Description": null
+            "Description": null,
+            "CityString": "селище Васильківське"
           },
           {
             "st_moniker": "2f1c134a-8b01-447f-92a1-cddc752b8e7c",
@@ -3593,7 +3668,8 @@
             "TerrStatus": null,
             "KATO": "UA12140030130073621",
             "Hromada": "Васильківська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Воскресенівка"
           },
           {
             "st_moniker": "988fe40b-2226-478e-b2d0-353289bcedc9",
@@ -3617,7 +3693,8 @@
             "TerrStatus": null,
             "KATO": "UA12140030230046413",
             "Hromada": "Васильківська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Катеринівка"
           },
           {
             "st_moniker": "7c9c7252-cd8a-45fb-9490-84c4e64f2e94",
@@ -3641,7 +3718,8 @@
             "TerrStatus": null,
             "KATO": "UA12140030350015107",
             "Hromada": "Васильківська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Новоіванівка"
           },
           {
             "st_moniker": "0fafa51a-4f74-44a2-8bbe-ee65b522c3a4",
@@ -3665,7 +3743,8 @@
             "TerrStatus": null,
             "KATO": "UA12140030480096243",
             "Hromada": "Васильківська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Тихе"
           },
           {
             "st_moniker": "45dd7326-9b18-4b8c-b063-8d435a98788a",
@@ -3689,7 +3768,8 @@
             "TerrStatus": null,
             "KATO": "UA12140030050021502",
             "Hromada": "Васильківська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Богданівка"
           },
           {
             "st_moniker": "9173db87-a399-4aa9-98ee-3ab8c84e90c8",
@@ -3713,7 +3793,8 @@
             "TerrStatus": null,
             "KATO": "UA12140030470054347",
             "Hromada": "Васильківська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Солонці"
           },
           {
             "st_moniker": "5adbd168-76c3-4a33-83dc-e87fb8e3318e",
@@ -3737,7 +3818,8 @@
             "TerrStatus": "Території можливих бойових дій",
             "KATO": "UA12140030370054153",
             "Hromada": "Васильківська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Охотниче"
           },
           {
             "st_moniker": "da7afbf2-117b-4ad7-8c94-867d9a23d4a5",
@@ -3761,7 +3843,8 @@
             "TerrStatus": null,
             "KATO": "UA12140030390027491",
             "Hromada": "Васильківська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Коржове"
           },
           {
             "st_moniker": "936ad990-7633-467d-9669-31b08c867cf6",
@@ -3785,7 +3868,8 @@
             "TerrStatus": null,
             "KATO": "UA12140030210035455",
             "Hromada": "Васильківська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Іванівське"
           },
           {
             "st_moniker": "a4e17d62-e194-457a-af35-a4a76b471839",
@@ -3809,7 +3893,8 @@
             "TerrStatus": null,
             "KATO": "UA12140030510024830",
             "Hromada": "Васильківська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Шевченківське"
           },
           {
             "st_moniker": "a0963341-37c3-40ca-acf6-99d43322fd14",
@@ -3833,7 +3918,8 @@
             "TerrStatus": null,
             "KATO": "UA12140030180025037",
             "Hromada": "Васильківська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Зелений Гай"
           },
           {
             "st_moniker": "71bf58c3-5cbc-4d6e-b779-cbe0009f4957",
@@ -3857,7 +3943,8 @@
             "TerrStatus": null,
             "KATO": "UA61060130040023883",
             "Hromada": "Гусятинська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Васильків"
           },
           {
             "st_moniker": "20b822cc-3baa-4a10-ad8b-61e457e81111",
@@ -3881,7 +3968,8 @@
             "TerrStatus": null,
             "KATO": "UA12140030160055323",
             "Hromada": "Васильківська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Дібрівка"
           },
           {
             "st_moniker": "064d46fe-c98e-4d05-95b7-f84d25ec01e5",
@@ -3905,7 +3993,8 @@
             "TerrStatus": "Території можливих бойових дій",
             "KATO": "UA12140030150096656",
             "Hromada": "Васильківська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Дебальцеве"
           },
           {
             "st_moniker": "cd56c9b1-894c-404b-bfb7-8e3c4e523da0",
@@ -3929,7 +4018,8 @@
             "TerrStatus": "Території можливих бойових дій",
             "KATO": "UA12140030290054699",
             "Hromada": "Васильківська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Лугове"
           },
           {
             "st_moniker": "3d51293e-8474-45b0-88ca-e0d7312a080a",
@@ -3953,7 +4043,8 @@
             "TerrStatus": null,
             "KATO": "UA12140030040056636",
             "Hromada": "Васильківська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Бабакове"
           },
           {
             "st_moniker": "f5cfe011-7715-470e-b089-f95c3824243a",
@@ -3977,7 +4068,8 @@
             "TerrStatus": "Території можливих бойових дій",
             "KATO": "UA12140030440093840",
             "Hromada": "Васильківська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Пришиб"
           },
           {
             "st_moniker": "548d033d-c03f-43db-a79e-a002faf46c33",
@@ -4001,7 +4093,8 @@
             "TerrStatus": "Території можливих бойових дій",
             "KATO": "UA12140030090078517",
             "Hromada": "Васильківська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Веселий Кут"
           },
           {
             "st_moniker": "e04595dc-6108-48a0-a0d6-5b9031d0c403",
@@ -4025,7 +4118,8 @@
             "TerrStatus": null,
             "KATO": "UA12140030080018659",
             "Hromada": "Васильківська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Вербівське"
           },
           {
             "st_moniker": "20640193-8bbf-42e3-9d54-670efcbcb4d9",
@@ -4049,7 +4143,8 @@
             "TerrStatus": null,
             "KATO": "UA12140030450017172",
             "Hromada": "Васильківська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Рубанівське"
           },
           {
             "st_moniker": "fe1a0666-4398-4bf7-8bcd-dae0fdf1aa12",
@@ -4073,7 +4168,8 @@
             "TerrStatus": null,
             "KATO": "UA12140030430041465",
             "Hromada": "Васильківська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Преображенське"
           },
           {
             "st_moniker": "400c9674-ab74-4aaa-8d5b-6ac3c3f8df5a",
@@ -4097,7 +4193,8 @@
             "TerrStatus": null,
             "KATO": "UA12140030330072023",
             "Hromada": "Васильківська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Нововоскресенівка"
           },
           {
             "st_moniker": "9e17baa1-7846-4855-8bec-41022fc0665c",
@@ -4121,7 +4218,8 @@
             "TerrStatus": null,
             "KATO": "UA12140030320011012",
             "Hromada": "Васильківська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Нововасильківка"
           },
           {
             "st_moniker": "75346fc0-f94b-4f09-83b0-9b933a4ca0d4",
@@ -4145,7 +4243,8 @@
             "TerrStatus": null,
             "KATO": "UA12140030250065525",
             "Hromada": "Васильківська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Колоно-Миколаївка"
           },
           {
             "st_moniker": "a6f94a53-0a34-4e5c-b978-f974a1c7bc8e",
@@ -4169,7 +4268,8 @@
             "TerrStatus": null,
             "KATO": "UA12140030360079672",
             "Hromada": "Васильківська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Новотерсянське"
           },
           {
             "st_moniker": "3363d67b-9cf2-4d48-bc6e-b5c2c70b653d",
@@ -4193,7 +4293,8 @@
             "TerrStatus": null,
             "KATO": "UA12140030110034353",
             "Hromada": "Васильківська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Цибуляни"
           },
           {
             "st_moniker": "004b3225-70d7-4b34-a7de-1ed694d9dc99",
@@ -4217,7 +4318,8 @@
             "TerrStatus": "Території можливих бойових дій",
             "KATO": "UA12140030400069755",
             "Hromada": "Васильківська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Перевальське"
           },
           {
             "st_moniker": "eab8f639-f74d-40bf-970a-3cef66afa03c",
@@ -4241,7 +4343,8 @@
             "TerrStatus": null,
             "KATO": "UA12140030120071878",
             "Hromada": "Васильківська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Середня Терса"
           },
           {
             "st_moniker": "7782d276-da8f-4791-aa84-2dd44e212d47",
@@ -4265,7 +4368,8 @@
             "TerrStatus": null,
             "KATO": "UA12140030280071798",
             "Hromada": "Васильківська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Луб’янці"
           },
           {
             "st_moniker": "ddcdbee6-cab4-438e-b636-08c37605ab95",
@@ -4289,7 +4393,8 @@
             "TerrStatus": null,
             "KATO": "UA68040530070024671",
             "Hromada": "Ярмолинецька",
-            "Description": null
+            "Description": null,
+            "CityString": "село Васильківці"
           },
           {
             "st_moniker": "fbc9ffde-64d1-4222-942d-f9139b15b309",
@@ -4313,7 +4418,8 @@
             "TerrStatus": null,
             "KATO": "UA05020210110023140",
             "Hromada": "Погребищенська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Васильківці"
           },
           {
             "st_moniker": "938658f2-8ddc-4d76-a7f0-98be82e5626e",
@@ -4337,7 +4443,8 @@
             "TerrStatus": "Території можливих бойових дій",
             "KATO": "UA23060170050068617",
             "Hromada": "Михайло-Лукашівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Васильківське"
           },
           {
             "st_moniker": "8feb6978-d430-4f48-8b5a-eb9f0c58fe92",
@@ -4361,7 +4468,8 @@
             "TerrStatus": null,
             "KATO": "UA59020090110021193",
             "Hromada": "Кролевецька",
-            "Description": null
+            "Description": null,
+            "CityString": "село Васильківщина"
           }
         ],
         "streets": [
@@ -4600,7 +4708,8 @@
             "TerrStatus": null,
             "KATO": "UA32120090010020161",
             "Hromada": "Миронівська",
-            "Description": null
+            "Description": null,
+            "CityString": "місто Миронівка"
           },
           {
             "st_moniker": "a3b67950-cd8b-4b69-a974-92928a6ab85c",
@@ -4624,7 +4733,8 @@
             "TerrStatus": "Території можливих бойових дій",
             "KATO": "UA59100170240091235",
             "Hromada": "Шосткинська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Миронівка"
           },
           {
             "st_moniker": "abc2eecc-c376-4e0d-ae80-c180c35c6652",
@@ -4648,7 +4758,8 @@
             "TerrStatus": null,
             "KATO": "UA12040190140070522",
             "Hromada": "Лихівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Миронівка"
           },
           {
             "st_moniker": "4a9a3f42-753a-41f7-9362-97f6de5933de",
@@ -4672,7 +4783,8 @@
             "TerrStatus": null,
             "KATO": "UA12080090040064263",
             "Hromada": "Покровська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Миронівка"
           },
           {
             "st_moniker": "2f20ca38-65e2-4cd8-9c19-9dee69051e64",
@@ -4696,7 +4808,8 @@
             "TerrStatus": "Території можливих бойових дій",
             "KATO": "UA63020050360070789",
             "Hromada": "Золочівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Миронівка"
           },
           {
             "st_moniker": "6a095f56-f994-4355-8af5-afa462d76fe4",
@@ -4720,7 +4833,8 @@
             "TerrStatus": "Території можливих бойових дій",
             "KATO": "UA63100010130094582",
             "Hromada": "Біляївська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Миронівка"
           },
           {
             "st_moniker": "4bb09fa5-50c8-4fdb-9c7d-f62a285a213c",
@@ -4744,7 +4858,8 @@
             "TerrStatus": "Території можливих бойових дій",
             "KATO": "UA63100050440052659",
             "Hromada": "Лозівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Миронівка"
           },
           {
             "st_moniker": "9b857bfa-cbf1-4039-a56f-41d52fb7641e",
@@ -4768,7 +4883,8 @@
             "TerrStatus": "Тимчасово окуповані Російською Федерацією території України",
             "KATO": "UA23080190090069930",
             "Hromada": "Олександрівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Миронівка"
           },
           {
             "st_moniker": "91fa0142-9006-4cee-8c21-a81905a08ca9",
@@ -4792,7 +4908,8 @@
             "TerrStatus": "Тимчасово окуповані Російською Федерацією території України",
             "KATO": "UA14020050120065338",
             "Hromada": "Світлодарська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Миронівка"
           },
           {
             "st_moniker": "5d846c91-4a8c-4423-bf0f-b2c66caab53e",
@@ -4816,7 +4933,8 @@
             "TerrStatus": "Тимчасово окуповані Російською Федерацією території України",
             "KATO": "UA01120390030019556",
             "Hromada": "Новопокровська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Миронівка"
           },
           {
             "st_moniker": "2855ea3b-6f0d-47bc-b66f-089368a6b835",
@@ -4840,7 +4958,8 @@
             "TerrStatus": "Тимчасово окуповані Російською Федерацією території України",
             "KATO": "UA01040090030082750",
             "Hromada": "Вишенська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Миронівка"
           },
           {
             "st_moniker": "537dc98d-f6b6-4ea5-b4ca-c71756d42ade",
@@ -4864,7 +4983,8 @@
             "TerrStatus": null,
             "KATO": "UA05080110180078021",
             "Hromada": "Ямпільська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Миронівка"
           },
           {
             "st_moniker": "241f7c00-f0bf-47e8-9bc9-1483b8aa5f39",
@@ -4888,7 +5008,8 @@
             "TerrStatus": null,
             "KATO": "UA35080170060070782",
             "Hromada": "Світловодська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Миронівка"
           },
           {
             "st_moniker": "67e37791-fd8e-49c9-bb8f-5a3326c552ff",
@@ -4912,7 +5033,8 @@
             "TerrStatus": null,
             "KATO": "UA35040150070089709",
             "Hromada": "Катеринівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Миронівка"
           },
           {
             "st_moniker": "089be3ab-9527-4883-b0f8-bc1f175a864b",
@@ -4936,7 +5058,8 @@
             "TerrStatus": null,
             "KATO": "UA53080250130098724",
             "Hromada": "Машівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Миронівка"
           }
         ],
         "streets": [
@@ -5165,7 +5288,8 @@
             "TerrStatus": null,
             "KATO": "UA53060190490096420",
             "Hromada": "Лохвицька",
-            "Description": null
+            "Description": null,
+            "CityString": "село Яхники"
           },
           {
             "st_moniker": "b48554dc-4aed-448a-a3b0-fd133f71880d",
@@ -5189,7 +5313,8 @@
             "TerrStatus": null,
             "KATO": "UA32120090400031691",
             "Hromada": "Миронівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Яхни"
           },
           {
             "st_moniker": "478dc782-cdad-4b32-ae83-9a122a1d7fd8",
@@ -5213,7 +5338,8 @@
             "TerrStatus": null,
             "KATO": "UA32140110140099799",
             "Hromada": "Кожанська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Яхни"
           }
         ],
         "streets": [
@@ -5442,7 +5568,8 @@
             "TerrStatus": null,
             "KATO": "UA05120070010068103",
             "Hromada": "Калинівська",
-            "Description": null
+            "Description": null,
+            "CityString": "місто Калинівка"
           },
           {
             "st_moniker": "fe01b399-cdc0-4ceb-bd3d-c48563384b25",
@@ -5466,7 +5593,8 @@
             "TerrStatus": null,
             "KATO": "UA32140090010093169",
             "Hromada": "Калинівська",
-            "Description": null
+            "Description": null,
+            "CityString": "селище Калинівка"
           },
           {
             "st_moniker": "0b138713-6d7d-4b13-848a-5263dc70398b",
@@ -5490,7 +5618,8 @@
             "TerrStatus": null,
             "KATO": "UA32060130010033581",
             "Hromada": "Калинівська",
-            "Description": null
+            "Description": null,
+            "CityString": "селище Калинівка"
           },
           {
             "st_moniker": "ee6cebdf-72b3-4435-a633-e9f5f4b18a52",
@@ -5514,7 +5643,8 @@
             "TerrStatus": "Тимчасово окуповані Російською Федерацією території України",
             "KATO": "UA01100190010010644",
             "Hromada": "Калинівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "9f2f5f51-a04c-45da-bf17-cfd66d73c484",
@@ -5538,7 +5668,8 @@
             "TerrStatus": null,
             "KATO": "UA48060010120097338",
             "Hromada": "Березанська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "492e5103-f621-4283-87aa-132fb7ae49f5",
@@ -5562,7 +5693,8 @@
             "TerrStatus": null,
             "KATO": "UA63060050090071210",
             "Hromada": "Берестинська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "ae790865-e636-4539-b249-c750a136f2cc",
@@ -5586,7 +5718,8 @@
             "TerrStatus": null,
             "KATO": "UA63060030140071859",
             "Hromada": "Кегичівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "86c9f52c-0704-4884-8cbc-bd9544cc630e",
@@ -5610,7 +5743,8 @@
             "TerrStatus": null,
             "KATO": "UA63100090040075899",
             "Hromada": "Златопільська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "85fe0214-91ac-4cea-be82-2e8338a92f31",
@@ -5634,7 +5768,8 @@
             "TerrStatus": "Території можливих бойових дій",
             "KATO": "UA63040010160063311",
             "Hromada": "Балаклійська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "da6895ce-5f00-488e-a404-dfd06945fa8d",
@@ -5658,7 +5793,8 @@
             "TerrStatus": null,
             "KATO": "UA63060090180059195",
             "Hromada": "Сахновщинська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "2007ce0e-edd6-4340-9aa2-7d69dc860fb6",
@@ -5682,7 +5818,8 @@
             "TerrStatus": null,
             "KATO": "UA51020110070071199",
             "Hromada": "Коноплянська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "537fc65f-a9f7-40b9-85dc-e2460d549e7d",
@@ -5706,7 +5843,8 @@
             "TerrStatus": "Території можливих бойових дій",
             "KATO": "UA51100110060076300",
             "Hromada": "Визирська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "cea8a203-d26d-4757-b190-c515cbdbb001",
@@ -5730,7 +5868,8 @@
             "TerrStatus": "Території активних бойових дій, на яких функціонують державні електронні інформаційні ресурси",
             "KATO": "UA23060090280050283",
             "Hromada": "Комишуваська",
-            "Description": null
+            "Description": null,
+            "CityString": "селище Калинівка"
           },
           {
             "st_moniker": "bb1817cc-195b-4d65-ae70-b776538dae3e",
@@ -5754,7 +5893,8 @@
             "TerrStatus": "Тимчасово окуповані Російською Федерацією території України",
             "KATO": "UA23020150130062564",
             "Hromada": "Чернігівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "115de75c-a25a-4cc8-84a5-a6cd79ce2d33",
@@ -5778,7 +5918,8 @@
             "TerrStatus": "Тимчасово окуповані Російською Федерацією території України",
             "KATO": "UA23020130070023848",
             "Hromada": "Приморська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "682617b2-b73b-46da-a6cf-65cd5947371a",
@@ -5802,7 +5943,8 @@
             "TerrStatus": "Тимчасово окуповані Російською Федерацією території України",
             "KATO": "UA23080290060023923",
             "Hromada": "Гаврилівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "b749bfd3-7dc1-4507-a9a8-f8859a92ca45",
@@ -5826,7 +5968,8 @@
             "TerrStatus": "Тимчасово окуповані Російською Федерацією території України",
             "KATO": "UA23080150080087364",
             "Hromada": "Нововасилівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "4eab7443-b64d-48cb-ad9d-2c5d14632f0e",
@@ -5850,7 +5993,8 @@
             "TerrStatus": "Тимчасово окуповані Російською Федерацією території України",
             "KATO": "UA65060090060018749",
             "Hromada": "Зеленопідська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "f139c76e-8fbd-46da-ae9a-0e502d55e993",
@@ -5874,7 +6018,8 @@
             "TerrStatus": "Тимчасово окуповані Російською Федерацією території України",
             "KATO": "UA65040070170016526",
             "Hromada": "Новотроїцька",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "1ebdd8bb-7c9e-43c6-925b-f5fc2b9c3760",
@@ -5898,7 +6043,8 @@
             "TerrStatus": "Тимчасово окуповані Російською Федерацією території України",
             "KATO": "UA65080090030087076",
             "Hromada": "Лазурненська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "c6c6b6a3-7a73-4b24-a4bd-0cfbbaa40df0",
@@ -5922,7 +6068,8 @@
             "TerrStatus": null,
             "KATO": "UA46140110300076406",
             "Hromada": "Яворівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "71068562-f4f9-4990-b45f-f6a6dcda87bd",
@@ -5946,7 +6093,8 @@
             "TerrStatus": null,
             "KATO": "UA46100270260056718",
             "Hromada": "Ходорівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "81ee7e36-0bd7-4c66-8999-0cd3430d5565",
@@ -5970,7 +6118,8 @@
             "TerrStatus": "Тимчасово окуповані Російською Федерацією території України",
             "KATO": "UA14020130040074845",
             "Hromada": "Часовоярська",
-            "Description": null
+            "Description": null,
+            "CityString": "селище Калинівка"
           },
           {
             "st_moniker": "59748283-d4df-4476-b18f-7a719efcc9fe",
@@ -5994,7 +6143,8 @@
             "TerrStatus": "Тимчасово окуповані Російською Федерацією території України",
             "KATO": "UA14060050030078925",
             "Hromada": "Дебальцівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "511af019-0f42-4988-a558-e7a4db3ce9e6",
@@ -6018,7 +6168,8 @@
             "TerrStatus": "Території активних бойових дій, на яких функціонують державні електронні інформаційні ресурси",
             "KATO": "UA14160250020065295",
             "Hromada": "Удачненська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "3895a565-c0c3-4262-953c-64000d9841ae",
@@ -6042,7 +6193,8 @@
             "TerrStatus": "Тимчасово окуповані Російською Федерацією території України",
             "KATO": "UA14140090170071744",
             "Hromada": "Сартанська",
-            "Description": null
+            "Description": null,
+            "CityString": "селище Калинівка"
           },
           {
             "st_moniker": "d6f0c9cf-4590-44d7-83f6-a22ceba3ed6b",
@@ -6066,7 +6218,8 @@
             "TerrStatus": null,
             "KATO": "UA32120050170085454",
             "Hromada": "Кагарлицька",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "b1d748e5-b21d-4d40-b574-69d79bd52dba",
@@ -6090,7 +6243,8 @@
             "TerrStatus": null,
             "KATO": "UA32020130070081756",
             "Hromada": "Рокитнянська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "1487737b-e11f-44d5-a9d7-bead0bf2aa2c",
@@ -6114,7 +6268,8 @@
             "TerrStatus": null,
             "KATO": "UA32120010090067069",
             "Hromada": "Богуславська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "808c4a5a-fccb-467e-a3d8-135a2ce7659d",
@@ -6138,7 +6293,8 @@
             "TerrStatus": null,
             "KATO": "UA18060190190081388",
             "Hromada": "Олевська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "62b4a0d1-aa6c-4a45-8736-4e25d12d2373",
@@ -6162,7 +6318,8 @@
             "TerrStatus": null,
             "KATO": "UA18060110180071393",
             "Hromada": "Лугинська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "9fe48fec-9dac-4262-8249-7d5cac5d61ed",
@@ -6186,7 +6343,8 @@
             "TerrStatus": null,
             "KATO": "UA18060150250065345",
             "Hromada": "Народицька",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "8d99fafc-4519-4290-becc-832c6acb0d3b",
@@ -6210,7 +6368,8 @@
             "TerrStatus": null,
             "KATO": "UA18060230150071948",
             "Hromada": "Ушомирська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "f279373f-a32d-4ad7-b4a3-4884096ea737",
@@ -6234,7 +6393,8 @@
             "TerrStatus": null,
             "KATO": "UA18080170050067063",
             "Hromada": "Піщівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "a184555e-a8a5-4b15-af5b-e29cd6a3c8a3",
@@ -6258,7 +6418,8 @@
             "TerrStatus": null,
             "KATO": "UA18040570220025667",
             "Hromada": "Хорошівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "7e9140c7-65d7-4b99-ad6d-aa84659903c3",
@@ -6282,7 +6443,8 @@
             "TerrStatus": null,
             "KATO": "UA18040150060063759",
             "Hromada": "Глибочицька",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "3cfc4ef1-06fe-4a51-993a-918bced36f5a",
@@ -6306,7 +6468,8 @@
             "TerrStatus": null,
             "KATO": "UA74040030160032842",
             "Hromada": "Бахмацька",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "4056abb2-e562-428a-b5fe-999f11fbabdc",
@@ -6330,7 +6493,8 @@
             "TerrStatus": null,
             "KATO": "UA74040330060037081",
             "Hromada": "Талалаївська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "29f251e3-b998-4ee1-9e9e-be30f7f90e4e",
@@ -6354,7 +6518,8 @@
             "TerrStatus": null,
             "KATO": "UA74040210090046247",
             "Hromada": "Макіївська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "31919610-229e-412a-af91-1d2a5467e55b",
@@ -6378,7 +6543,8 @@
             "TerrStatus": null,
             "KATO": "UA71080110050043799",
             "Hromada": "Городищенська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "f3318993-62cd-4eaa-ad79-892a9665b75d",
@@ -6402,7 +6568,8 @@
             "TerrStatus": null,
             "KATO": "UA71080130160097587",
             "Hromada": "Кам’янська",
-            "Description": null
+            "Description": null,
+            "CityString": "селище Калинівка"
           },
           {
             "st_moniker": "6d15ed0b-a2f3-498c-8714-c8b8b1781250",
@@ -6426,7 +6593,8 @@
             "TerrStatus": null,
             "KATO": "UA05060150100094810",
             "Hromada": "Шаргородська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "249c20fa-bcaf-42f8-91f5-cf8adf60eeae",
@@ -6450,7 +6618,8 @@
             "TerrStatus": null,
             "KATO": "UA05100150110035246",
             "Hromada": "Тульчинська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "81a740e2-1e2d-45b6-9492-069102d41dbe",
@@ -6474,7 +6643,8 @@
             "TerrStatus": null,
             "KATO": "UA05100110080065595",
             "Hromada": "Студенянська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "c89a5c38-cce8-46cf-a012-b6a44551a2c8",
@@ -6498,7 +6668,8 @@
             "TerrStatus": null,
             "KATO": "UA35020110060082071",
             "Hromada": "Надлацька",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "84adf5a8-99d0-4c47-9357-861c0c58eb4b",
@@ -6522,7 +6693,8 @@
             "TerrStatus": null,
             "KATO": "UA35040090080020468",
             "Hromada": "Дмитрівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "cc1c40dd-57aa-496d-b10f-c26d3e80ced7",
@@ -6546,7 +6718,8 @@
             "TerrStatus": null,
             "KATO": "UA35040270070093055",
             "Hromada": "Первозванівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "fce267aa-5122-4df7-8248-1b643bc10075",
@@ -6570,7 +6743,8 @@
             "TerrStatus": null,
             "KATO": "UA68060030270089325",
             "Hromada": "Білогірська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "9f9b966a-08ef-4062-8d78-81f52a16b102",
@@ -6594,7 +6768,8 @@
             "TerrStatus": null,
             "KATO": "UA68060250070014256",
             "Hromada": "Сахновецька",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "534180c8-4801-4ec3-91ec-30fd7df8061d",
@@ -6618,7 +6793,8 @@
             "TerrStatus": null,
             "KATO": "UA68040170090044236",
             "Hromada": "Заслучненська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "c8f32da2-9fc7-43c2-927b-3b9b1e707a87",
@@ -6642,7 +6818,8 @@
             "TerrStatus": null,
             "KATO": "UA68040410050012199",
             "Hromada": "Староостропільська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "7f2c714d-7087-456c-844c-ecc827a03205",
@@ -6666,7 +6843,8 @@
             "TerrStatus": null,
             "KATO": "UA68040350100084145",
             "Hromada": "Сатанівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "7c5608b5-07dd-4d13-84ad-b5b735c55559",
@@ -6690,7 +6868,8 @@
             "TerrStatus": null,
             "KATO": "UA56080210050060765",
             "Hromada": "Степанська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "fbb67784-06ed-4d1d-a122-c9b88164fd3f",
@@ -6714,7 +6893,8 @@
             "TerrStatus": null,
             "KATO": "UA56060310150055666",
             "Hromada": "Корецька",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "eacd0a5f-015b-4413-8909-5c940483f8fb",
@@ -6738,7 +6918,8 @@
             "TerrStatus": null,
             "KATO": "UA56040090090045870",
             "Hromada": "Демидівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "997d10fd-a71f-40e7-a80b-98c65232e675",
@@ -6762,7 +6943,8 @@
             "TerrStatus": null,
             "KATO": "UA53040010230077637",
             "Hromada": "Гребінківська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "c7b4ef81-97a7-42b3-b462-6a4a69fac83b",
@@ -6786,7 +6968,8 @@
             "TerrStatus": null,
             "KATO": "UA53020230210062992",
             "Hromada": "Семенівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "3385d434-f42f-47c8-bf97-e2e9461c867d",
@@ -6810,7 +6993,8 @@
             "TerrStatus": null,
             "KATO": "UA53020090210074860",
             "Hromada": "Козельщинська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "3f984bc8-048f-432d-a2bb-8272abb3de2d",
@@ -6834,7 +7018,8 @@
             "TerrStatus": null,
             "KATO": "UA53080250090040642",
             "Hromada": "Машівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "e3466e29-dee7-4fac-b13c-912649b61c90",
@@ -6858,7 +7043,8 @@
             "TerrStatus": null,
             "KATO": "UA59020070020081483",
             "Hromada": "Конотопська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "99323861-def1-49c3-a5f1-d57af8163894",
@@ -6882,7 +7068,8 @@
             "TerrStatus": null,
             "KATO": "UA59080130390056843",
             "Hromada": "Миколаївська",
-            "Description": null
+            "Description": null,
+            "CityString": "селище Калинівка"
           },
           {
             "st_moniker": "80b843a1-d434-4d2a-8468-c35d8cfc9c51",
@@ -6906,7 +7093,8 @@
             "TerrStatus": null,
             "KATO": "UA59060110270011695",
             "Hromada": "Роменська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "d5ad9092-1d72-410f-91f8-7aa3e6d38980",
@@ -6930,7 +7118,8 @@
             "TerrStatus": null,
             "KATO": "UA07080130080040001",
             "Hromada": "Колківська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "7de4a87b-1869-40fe-996b-75370f9c3f5b",
@@ -6954,7 +7143,8 @@
             "TerrStatus": null,
             "KATO": "UA07060250030022758",
             "Hromada": "Люблинецька",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "eaa93ec0-453e-48fb-b6dd-2c2cfc824076",
@@ -6978,7 +7168,8 @@
             "TerrStatus": null,
             "KATO": "UA61040170200039928",
             "Hromada": "Зборівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "741b1ad9-3e06-4e41-a05c-0a6d9f2285cb",
@@ -7002,7 +7193,8 @@
             "TerrStatus": null,
             "KATO": "UA12020310090093378",
             "Hromada": "Царичанська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "5e0f4d32-19f4-4fb8-a85c-500843c12648",
@@ -7026,7 +7218,8 @@
             "TerrStatus": null,
             "KATO": "UA12100050130039541",
             "Hromada": "Магдалинівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "631da3c9-f365-4b5e-8fda-b6c25e69fbf2",
@@ -7050,7 +7243,8 @@
             "TerrStatus": null,
             "KATO": "UA12040030050045370",
             "Hromada": "Верхівцівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "40af93ac-479c-4451-813e-687dc57d5c7d",
@@ -7074,7 +7268,8 @@
             "TerrStatus": null,
             "KATO": "UA12040210110073672",
             "Hromada": "П’ятихатська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "97179a67-cb3b-4854-9ff0-a16c980a1cc2",
@@ -7098,7 +7293,8 @@
             "TerrStatus": null,
             "KATO": "UA12040010170021808",
             "Hromada": "Божедарівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "73dc09d8-9a75-4c16-a045-8d90440a95db",
@@ -7122,7 +7318,8 @@
             "TerrStatus": null,
             "KATO": "UA12020270180047869",
             "Hromada": "Солонянська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "8c42e89d-8658-4fff-a761-f82f3195d56f",
@@ -7146,7 +7343,8 @@
             "TerrStatus": null,
             "KATO": "UA12140090020083299",
             "Hromada": "Зайцівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "8f8411fb-aa10-4491-b7ce-a00ff8db2a4c",
@@ -7170,7 +7368,8 @@
             "TerrStatus": null,
             "KATO": "UA12060050080043689",
             "Hromada": "Глеюватська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "8b92947f-cf0b-4d7b-af28-4a5437520258",
@@ -7194,7 +7393,8 @@
             "TerrStatus": null,
             "KATO": "UA12060070030039903",
             "Hromada": "Гречаноподівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "5bdbf02a-00df-464b-a387-c8f42ad546f5",
@@ -7218,7 +7418,8 @@
             "TerrStatus": null,
             "KATO": "UA48040130160048227",
             "Hromada": "Єланецька",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "82e281a0-49c6-4a8d-84c9-313198cfe2da",
@@ -7242,7 +7443,8 @@
             "TerrStatus": "Території можливих бойових дій",
             "KATO": "UA48020030100052544",
             "Hromada": "Березнегуватська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "70e03166-cc06-4ecb-97ee-2cb7b789c425",
@@ -7266,7 +7468,8 @@
             "TerrStatus": null,
             "KATO": "UA48040230070023877",
             "Hromada": "Прибузька",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "d85602c9-47c6-4f96-b5b9-3323289a600d",
@@ -7290,7 +7493,8 @@
             "TerrStatus": null,
             "KATO": "UA48040050140047482",
             "Hromada": "Веселинівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "60726ffe-b236-44cd-9f7f-b411689df0ef",
@@ -7314,7 +7518,8 @@
             "TerrStatus": "Території можливих бойових дій",
             "KATO": "UA48060050030044897",
             "Hromada": "Воскресенська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "a9c7e7c7-8b68-4a79-97fe-352895aae215",
@@ -7338,7 +7543,8 @@
             "TerrStatus": "Території можливих бойових дій",
             "KATO": "UA48020190100085300",
             "Hromada": "Снігурівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "bb6a3e12-1b1f-46fc-aae8-dbbf6369420a",
@@ -7362,7 +7568,8 @@
             "TerrStatus": null,
             "KATO": "UA32100110120089150",
             "Hromada": "Поліська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "5a53b93a-fff1-4f50-a0ea-d9396f130bd4",
@@ -7386,7 +7593,8 @@
             "TerrStatus": "Тимчасово окуповані Російською Федерацією території України",
             "KATO": "UA44040010480074686",
             "Hromada": "Довжанська",
-            "Description": null
+            "Description": null,
+            "CityString": "селище Калинівка"
           },
           {
             "st_moniker": "ccc92f08-f719-4e0e-a277-dfcec8e23815",
@@ -7410,7 +7618,8 @@
             "TerrStatus": "Тимчасово окуповані Російською Федерацією території України",
             "KATO": "UA01080570020047754",
             "Hromada": "Оленівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "fe7bb14d-33cd-46d9-878d-46b77336a5c8",
@@ -7434,7 +7643,8 @@
             "TerrStatus": "Тимчасово окуповані Російською Федерацією території України",
             "KATO": "UA01060130030038263",
             "Hromada": "Ізумруднівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "b47ebccf-ebf8-4eb8-b1a3-7f395aa96a4f",
@@ -7458,7 +7668,8 @@
             "TerrStatus": null,
             "KATO": "UA32080190140019015",
             "Hromada": "Макарівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Калинівка"
           },
           {
             "st_moniker": "ba240064-427f-4d22-8647-a9527a5d6896",
@@ -7482,7 +7693,8 @@
             "TerrStatus": "Тимчасово окуповані Російською Федерацією території України",
             "KATO": "UA44100030200097975",
             "Hromada": "Коломийчиська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Сторожівка"
           },
           {
             "st_moniker": "8471c07d-0f93-4741-a0a2-4a1d418cf4b3",
@@ -7506,7 +7718,8 @@
             "TerrStatus": null,
             "KATO": "UA05120070460044585",
             "Hromada": "Калинівська",
-            "Description": null
+            "Description": null,
+            "CityString": "селище Калинівка Друга"
           }
         ],
         "streets": [
@@ -7731,7 +7944,8 @@
             "TerrStatus": null,
             "KATO": "UA63020090200066835",
             "Hromada": "Краснокутська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Козіївка"
           },
           {
             "st_moniker": "150aba0a-559f-4649-b47f-31220f1f9029",
@@ -7755,7 +7969,8 @@
             "TerrStatus": null,
             "KATO": "UA18040510070026783",
             "Hromada": "Старосілецька",
-            "Description": null
+            "Description": null,
+            "CityString": "село Козіївка"
           },
           {
             "st_moniker": "a92ae548-0595-46ed-98dd-26c371f91a6c",
@@ -7779,7 +7994,8 @@
             "TerrStatus": null,
             "KATO": "UA32120110100017758",
             "Hromada": "Обухівська",
-            "Description": null
+            "Description": null,
+            "CityString": "село Козіївка"
           }
         ],
         "streets": [

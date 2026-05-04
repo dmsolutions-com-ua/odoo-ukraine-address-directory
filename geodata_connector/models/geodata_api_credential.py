@@ -159,7 +159,9 @@ class GeodataApiCredential(models.Model):
         "No streets for this filter or moniker was expired.",
         "No houses for this filter or moniker was expired.",
         "No apartments for this filter or moniker was expired.",
+        "Nothing found",
     ]
+    _GEODATA_MONIKER_EXPIRED_MESSAGE = "Moniker expired"
 
     def is_api_success_geodata(self, response, **kwargs):
         if response.status_code == 200:
@@ -168,8 +170,10 @@ class GeodataApiCredential(models.Model):
             data = response.json()
         except Exception:
             return False
-        message = data.get("Message", "")
-        return message in self._GEODATA_EMPTY_RESULT_MESSAGES
+        message = (data.get("Message") or data.get("message") or "").strip()
+        if message in self._GEODATA_EMPTY_RESULT_MESSAGES:
+            return True
+        return message == self._GEODATA_MONIKER_EXPIRED_MESSAGE
 
     _PAYMENT_REQUIRED_MESSAGE = _(
         "Insufficient funds on your Geodata.online account. "
@@ -355,6 +359,21 @@ class GeodataApiCredential(models.Model):
             silent=False,
         )
 
+    @classmethod
+    def _is_moniker_expired_result(cls, result):
+        if not isinstance(result, dict):
+            return False
+        msg = (result.get("Message") or result.get("message") or "").strip()
+        return msg == cls._GEODATA_MONIKER_EXPIRED_MESSAGE
+
+    @classmethod
+    def _normalize_geodata_result(cls, result):
+        if isinstance(result, list):
+            return result
+        if cls._is_moniker_expired_result(result):
+            return {"_moniker_expired": True}
+        return []
+
     def api_streets_search(
         self,
         sRequest,
@@ -363,30 +382,31 @@ class GeodataApiCredential(models.Model):
         sLang="uk_UA",
         city_kato="",
         city_koatuu="",
+        city_moniker=None,
     ):
         self.ensure_one()
-        if not sRequest or not city_name:
+        if not sRequest:
             return []
-        city_moniker = self._resolve_city_moniker(
+        moniker = city_moniker or self._resolve_city_moniker(
             city_name,
             city_ref,
             sLang,
             city_kato=city_kato,
             city_koatuu=city_koatuu,
         )
-        if not city_moniker:
+        if not moniker:
             return []
         result = self.api_request(
             method="GET",
             url="api/Streets",
             params={
                 "sRequest": sRequest,
-                "stMoniker": city_moniker,
+                "stMoniker": moniker,
                 "sLang": sLang,
             },
             silent=False,
         )
-        return result if result else []
+        return self._normalize_geodata_result(result)
 
     def api_houses_search(
         self,
@@ -398,32 +418,37 @@ class GeodataApiCredential(models.Model):
         sLang="uk_UA",
         city_kato="",
         city_koatuu="",
+        street_moniker=None,
     ):
         self.ensure_one()
-        if not sRequest or not street_name or not city_name:
+        if not sRequest:
             return []
-        street_moniker = self._resolve_street_moniker(
-            street_name,
-            city_name,
-            city_ref,
-            street_ref,
-            sLang,
-            city_kato=city_kato,
-            city_koatuu=city_koatuu,
-        )
-        if not street_moniker:
+        moniker = street_moniker
+        if not moniker:
+            if not street_name or not city_name:
+                return []
+            moniker = self._resolve_street_moniker(
+                street_name,
+                city_name,
+                city_ref,
+                street_ref,
+                sLang,
+                city_kato=city_kato,
+                city_koatuu=city_koatuu,
+            )
+        if not moniker:
             return []
         result = self.api_request(
             method="GET",
             url="api/Houses",
             params={
                 "sRequest": sRequest,
-                "houseMoniker": street_moniker,
+                "houseMoniker": moniker,
                 "sLang": sLang,
             },
             silent=False,
         )
-        return result if result else []
+        return self._normalize_geodata_result(result)
 
     def api_full_address(self, sRequest, sLang="uk_UA"):
         self.ensure_one()
@@ -645,29 +670,10 @@ class GeodataApiCredential(models.Model):
     def _format_city_suggestion(data):
         if data.get("Id") and not data.get("SettlementId"):
             data["SettlementId"] = data["Id"]
-        city_name = data.get("City", "")
-        settlement_type = data.get("SettlementType", "")
-        city_old = data.get("CityOld", "")
-
-        city_part = f"{settlement_type} {city_name}" if settlement_type else city_name
-        if city_old and city_old.lower() != city_name.lower():
-            city_part = f"{city_part} ({city_old})"
-
-        label_parts = [city_part]
-        area = data.get("Area", "")
-        area_old = data.get("AreaOld", "")
-        region = data.get("Region", "")
-        if area:
-            area_part = area
-            if area_old and area_old.lower() != area.lower():
-                area_part = f"{area} ({area_old})"
-            label_parts.append(area_part)
-        if region:
-            label_parts.append(region)
-
+        city_string = data.get("CityString", "")
         return {
-            "label": ", ".join(label_parts),
-            "value": city_name,
+            "label": city_string,
+            "value": city_string,
             "moniker": data.get("st_moniker", "") or data.get("Moniker", ""),
             "data": data,
         }
@@ -749,7 +755,7 @@ class GeodataApiCredential(models.Model):
             city_kato=city_kato,
             city_koatuu=city_koatuu,
         )
-        if not results:
+        if not isinstance(results, list) or not results:
             return ""
         street_lower = street_name.lower()
         if street_ref:
@@ -797,7 +803,7 @@ class GeodataApiCredential(models.Model):
                     return res.get("st_moniker", "") or res.get("Moniker", "")
         return ""
 
-    def autocomplete_streets(
+    def autocomplete_streets(  # pylint: disable=too-many-return-statements
         self,
         query,
         city_name="",
@@ -805,18 +811,21 @@ class GeodataApiCredential(models.Model):
         lang="uk_UA",
         city_kato="",
         city_koatuu="",
+        city_moniker=None,
     ):
         """Search streets by name within a city.
 
         Strips street type prefix (вул., просп., etc.) from query,
         calls api_streets_search and formats results as suggestions.
+        Returns ``{"_moniker_expired": True}`` so the caller can refresh
+        the cached moniker and retry.
         """
         if not query or len(query) < 2:
             return []
         credential = self.get_credential()
         if not credential:
             return []
-        if not city_name:
+        if not city_name and not city_moniker:
             return []
         clean_query = self._strip_street_type(query)
         if not clean_query or len(clean_query) < 2:
@@ -829,12 +838,15 @@ class GeodataApiCredential(models.Model):
                 sLang=lang,
                 city_kato=city_kato,
                 city_koatuu=city_koatuu,
+                city_moniker=city_moniker,
             )
         except Exception as e:
             _logger.debug("Autocomplete streets error: %s", str(e))
-            results = []
+            return []
+        if isinstance(results, dict) and results.get("_moniker_expired"):
+            return results
         if not isinstance(results, list):
-            results = []
+            return []
         suggestions = [self._format_street_suggestion(d) for d in results]
         return [s for s in suggestions if s]
 
@@ -898,7 +910,7 @@ class GeodataApiCredential(models.Model):
         return {"label": label, "value": value, "data": data}
 
     @api.model
-    def autocomplete_houses(  # pylint: disable=too-many-locals
+    def autocomplete_houses(  # pylint: disable=too-many-locals,too-many-return-statements
         self,
         query,
         city_name="",
@@ -909,12 +921,17 @@ class GeodataApiCredential(models.Model):
         street_label="",
         city_kato="",
         city_koatuu="",
+        street_moniker=None,
     ):
         """Search houses by number on a given street.
 
-        Resolves street moniker via api_houses_search internally.
+        Uses ``street_moniker`` (cached) when provided, otherwise resolves
+        it via streets search. Returns ``{"_moniker_expired": True}`` so
+        the caller can refresh the cached moniker and retry.
         """
-        if not query or not city_name or not street_name:
+        if not query:
+            return []
+        if not street_moniker and (not city_name or not street_name):
             return []
         credential = self.get_credential()
         if not credential:
@@ -929,13 +946,14 @@ class GeodataApiCredential(models.Model):
                 sLang=lang,
                 city_kato=city_kato,
                 city_koatuu=city_koatuu,
+                street_moniker=street_moniker,
             )
         except Exception as e:
             _logger.debug("Autocomplete houses error: %s", str(e))
-            results = None
-        if not isinstance(results, list):
-            results = None
-        if not results:
+            return []
+        if isinstance(results, dict) and results.get("_moniker_expired"):
+            return results
+        if not isinstance(results, list) or not results:
             return []
         query_lower = query.lower().strip()
         suggestions = []
@@ -985,7 +1003,9 @@ class GeodataApiCredential(models.Model):
 
         Routes to autocomplete_houses() if query contains a house number
         after a known street label, otherwise to autocomplete_streets().
-        Resolves city_name and city_ref from geodata.address record.
+        Reuses ``city_moniker``/``street_moniker`` cached on the linked
+        geodata.address; only on a 400 ``Moniker expired`` response we
+        re-resolve the moniker once and retry.
         """
         if not query or not isinstance(query, str):
             return []
@@ -999,6 +1019,9 @@ class GeodataApiCredential(models.Model):
         city_ref = ""
         city_kato = ""
         city_koatuu = ""
+        cached_city_moniker = ""
+        cached_street_moniker = ""
+        geo_addr = self.env["geodata.address"]
         geo_addr_id = dep.get("geodata_address_id")
         if geo_addr_id:
             geo_addr = self.env["geodata.address"].sudo().browse(int(geo_addr_id))
@@ -1007,6 +1030,8 @@ class GeodataApiCredential(models.Model):
                 city_ref = str(geo_addr.settlement_ref or "")
                 city_kato = geo_addr.kato or ""
                 city_koatuu = geo_addr.koatuu or ""
+                cached_city_moniker = geo_addr.city_moniker or ""
+                cached_street_moniker = geo_addr.street_moniker or ""
 
         if not city_name:
             return []
@@ -1015,28 +1040,139 @@ class GeodataApiCredential(models.Model):
         if street_label and query.lower().startswith(street_label.lower()):
             remainder = query[len(street_label) :].lstrip(", ").strip()
             if remainder and remainder[0].isdigit():
-                street_name = geo_addr.street or ""
-                street_ref = str(geo_addr.street_ref or "")
-                return credential.autocomplete_houses(
+                return self._run_houses_autocomplete(
+                    credential,
+                    geo_addr,
                     remainder,
                     city_name=city_name,
                     city_ref=city_ref,
-                    street_name=street_name,
-                    street_ref=street_ref,
-                    lang=lang,
+                    street_name=geo_addr.street or "",
+                    street_ref=str(geo_addr.street_ref or ""),
                     street_label=street_label,
+                    lang=lang,
                     city_kato=city_kato,
                     city_koatuu=city_koatuu,
+                    city_moniker=cached_city_moniker,
+                    street_moniker=cached_street_moniker,
                 )
 
-        return credential.autocomplete_streets(
+        return self._run_streets_autocomplete(
+            credential,
+            geo_addr,
             query,
             city_name=city_name,
             city_ref=city_ref,
             lang=lang,
             city_kato=city_kato,
             city_koatuu=city_koatuu,
+            city_moniker=cached_city_moniker,
         )
+
+    def _run_streets_autocomplete(
+        self,
+        credential,
+        geo_addr,
+        query,
+        city_name,
+        city_ref,
+        lang,
+        city_kato,
+        city_koatuu,
+        city_moniker,
+    ):
+        result = credential.autocomplete_streets(
+            query,
+            city_name=city_name,
+            city_ref=city_ref,
+            lang=lang,
+            city_kato=city_kato,
+            city_koatuu=city_koatuu,
+            city_moniker=city_moniker,
+        )
+        if not (isinstance(result, dict) and result.get("_moniker_expired")):
+            return result
+        fresh = credential._resolve_city_moniker(
+            city_name,
+            city_ref,
+            lang,
+            city_kato=city_kato,
+            city_koatuu=city_koatuu,
+        )
+        if not fresh:
+            return []
+        if geo_addr and geo_addr.exists():
+            geo_addr.sudo().write({"city_moniker": fresh})
+        retry = credential.autocomplete_streets(
+            query,
+            city_name=city_name,
+            city_ref=city_ref,
+            lang=lang,
+            city_kato=city_kato,
+            city_koatuu=city_koatuu,
+            city_moniker=fresh,
+        )
+        if isinstance(retry, dict):
+            return []
+        return retry
+
+    def _run_houses_autocomplete(  # pylint: disable=too-many-arguments,too-many-locals
+        self,
+        credential,
+        geo_addr,
+        remainder,
+        city_name,
+        city_ref,
+        street_name,
+        street_ref,
+        street_label,
+        lang,
+        city_kato,
+        city_koatuu,
+        city_moniker,
+        street_moniker,
+    ):
+        result = credential.autocomplete_houses(
+            remainder,
+            city_name=city_name,
+            city_ref=city_ref,
+            street_name=street_name,
+            street_ref=street_ref,
+            lang=lang,
+            street_label=street_label,
+            city_kato=city_kato,
+            city_koatuu=city_koatuu,
+            street_moniker=street_moniker,
+        )
+        if not (isinstance(result, dict) and result.get("_moniker_expired")):
+            return result
+        fresh_street = credential._resolve_street_moniker(
+            street_name,
+            city_name,
+            city_ref,
+            street_ref,
+            lang,
+            city_kato=city_kato,
+            city_koatuu=city_koatuu,
+        )
+        if not fresh_street:
+            return []
+        if geo_addr and geo_addr.exists():
+            geo_addr.sudo().write({"street_moniker": fresh_street})
+        retry = credential.autocomplete_houses(
+            remainder,
+            city_name=city_name,
+            city_ref=city_ref,
+            street_name=street_name,
+            street_ref=street_ref,
+            lang=lang,
+            street_label=street_label,
+            city_kato=city_kato,
+            city_koatuu=city_koatuu,
+            street_moniker=fresh_street,
+        )
+        if isinstance(retry, dict):
+            return []
+        return retry
 
     @api.model
     def kw_autocomplete_full_address(self, query, dep_values=None):

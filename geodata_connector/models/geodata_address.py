@@ -44,21 +44,35 @@ class GeodataAddress(models.Model):
 
     _FIELD_API_KEYS = {
         "geodata_id": ("ID",),
-        "settlement_ref": ("SettlementId",),
+        "settlement_ref": ("SettlementId", "Id"),
         "street_ref": ("StreetId",),
         "house_ref": ("HouseId",),
         "source_query": ("SourceAddress", "AddressString"),
-        "address_string": ("AddressString",),
         "post_index": ("Index_", "Index_8x"),
         "region": ("Region",),
         "area": ("Area",),
         "city": ("City",),
+        "city_en": ("CityEn",),
+        "city_ru": ("CityRu",),
+        "city_string": ("CityString",),
+        "city_string_ru": ("CityStringRu",),
+        "city_string_en": ("CityStringEn",),
         "settlement_type": ("SettlementType",),
+        "settlement_type_en": ("SettlementTypeEn",),
+        "settlement_type_ru": ("SettlementTypeRu",),
         "street": ("Street",),
+        "street_en": ("StreetEn",),
+        "street_ru": ("StreetRu",),
         "str_type": ("StrType", "StreetType"),
+        "str_type_en": ("StrTypeEn", "StreetTypeEn"),
+        "str_type_ru": ("StrTypeRu", "StreetTypeRu"),
         "house_num": ("HouseNum",),
         "house_num_add": ("HouseNumAdd",),
+        "house_num_add_en": ("HouseNumAddEn",),
+        "house_num_add_ru": ("HouseNumAddRu",),
         "apartment_type": ("ApartmentType",),
+        "apartment_type_en": ("ApartmentTypeEn",),
+        "apartment_type_ru": ("ApartmentTypeRu",),
         "apartment": ("Apartment",),
         "addition_address": ("AdditionAddress",),
         "latitude": ("Lat_", "Lat"),
@@ -72,17 +86,33 @@ class GeodataAddress(models.Model):
         "phone_code": ("PhoneCode",),
         "is_regional_center": ("IsOCentre",),
         "is_district_center": ("IsRCentre",),
+        "hromada_en": ("HromadaEn",),
+        "hromada_ru": ("HromadaRu",),
+        "region_en": ("RegionEn",),
+        "region_ru": ("RegionRu",),
+        "area_en": ("AreaEn",),
+        "area_ru": ("AreaRu",),
         "city_district": ("CityDistrict",),
-        "metro_station": ("MetroStation",),
+        "city_district_en": ("CityDistrictEn",),
+        "city_district_ru": ("CityDistrictRu",),
+        "metro_station": ("MetroStation", "MetroName"),
         "metro_line": ("MetroLine",),
         "metro_distance": ("MetroDistance",),
         "terr_status": ("TerrStatus",),
         "region_old": ("RegionOld",),
         "area_old": ("AreaOld",),
+        "area_old_en": ("AreaOldEn",),
+        "area_old_ru": ("AreaOldRu",),
         "city_old": ("CityOld",),
+        "city_old_en": ("CityOldEn",),
+        "city_old_ru": ("CityOldRu",),
         "settlement_type_old": ("SettlementTypeOld",),
         "str_type_old": ("StrTypeOld", "StreetTypeOld"),
+        "str_type_old_en": ("StrTypeOldEn", "StreetTypeOldEn"),
+        "str_type_old_ru": ("StrTypeOldRu", "StreetTypeOldRu"),
         "street_old": ("StreetOld",),
+        "street_old_en": ("StreetOldEn",),
+        "street_old_ru": ("StreetOldRu",),
         "comments": ("Comments",),
         "description": ("Description",),
         "city_moniker": ("st_moniker", "Moniker"),
@@ -123,6 +153,8 @@ class GeodataAddress(models.Model):
     )
     address_string = fields.Char(
         string="Full Address",
+        compute="_compute_address_string",
+        store=True,
         help="Complete address as single string",
     )
     post_index = fields.Char(
@@ -330,6 +362,9 @@ class GeodataAddress(models.Model):
 
     city_en = fields.Char(string="City (English)")
     city_ru = fields.Char(string="City (Russian)")
+    city_string = fields.Char()
+    city_string_en = fields.Char(string="City String (English)")
+    city_string_ru = fields.Char(string="City String (Russian)")
     street_en = fields.Char(string="Street (English)")
     street_ru = fields.Char(string="Street (Russian)")
     area_en = fields.Char(string="Area (English)")
@@ -381,6 +416,7 @@ class GeodataAddress(models.Model):
         "area",
         "settlement_type",
         "city",
+        "city_string",
         "str_type",
         "street",
         "house_num",
@@ -395,7 +431,27 @@ class GeodataAddress(models.Model):
             record.name = record._rebuild_address_string() or _("New Address")
 
     @api.depends(
+        "region",
+        "area",
+        "settlement_type",
         "city",
+        "city_string",
+        "str_type",
+        "street",
+        "house_num",
+        "house_num_add",
+        "street_old",
+        "str_type_old",
+        "city_old",
+        "area_old",
+    )
+    def _compute_address_string(self):
+        for record in self:
+            record.address_string = record._rebuild_address_string() or False
+
+    @api.depends(
+        "city",
+        "city_string",
         "street",
         "house_num",
         "post_index",
@@ -420,6 +476,9 @@ class GeodataAddress(models.Model):
         "area",
         "settlement_type",
         "city",
+        "city_string",
+        "city_string_en",
+        "city_string_ru",
         "str_type",
         "street",
         "house_num",
@@ -492,9 +551,7 @@ class GeodataAddress(models.Model):
         street = self._get_field_by_lang("street", lang)
         street_val = f"{str_type} {street}" if str_type and street else street
 
-        settlement_type = self._get_field_by_lang("settlement_type", lang)
-        city = self._get_field_by_lang("city", lang)
-        city_val = f"{settlement_type} {city}" if settlement_type and city else city
+        city_val = self._get_field_by_lang("city_string", lang)
 
         region_old = self._get_old_name_by_lang("region_old", lang)
         area_old_val = self._get_old_name_by_lang("area_old", lang)
@@ -624,15 +681,7 @@ class GeodataAddress(models.Model):
         return street_part
 
     def _format_city_with_old(self, lang="ua"):
-        settlement_type = self._get_field_by_lang("settlement_type", lang)
-        city = self._get_field_by_lang("city", lang)
-        if not city:
-            return ""
-        city_part = f"{settlement_type} {city}" if settlement_type else city
-        city_old = self._get_old_name_by_lang("city_old", lang)
-        if city_old and city_old.lower() != city.lower():
-            city_part = f"{city_part} ({city_old})"
-        return city_part
+        return self._get_field_by_lang("city_string", lang)
 
     def _format_area_with_old(self, lang="ua"):
         area = self._get_field_by_lang("area", lang)
@@ -781,7 +830,6 @@ class GeodataAddress(models.Model):
             "street_ref": source_address.street_ref,
             "house_ref": source_address.house_ref,
             "source_query": source_address.source_query,
-            "address_string": source_address.address_string,
             "post_index": source_address.post_index,
             "region": source_address.region,
             "area": source_address.area,
@@ -834,15 +882,17 @@ class GeodataAddress(models.Model):
         )
         return {
             "geodata_id": api_data.get("ID"),
-            "settlement_ref": api_data.get("SettlementId"),
+            "settlement_ref": api_data.get("SettlementId") or api_data.get("Id"),
             "street_ref": api_data.get("StreetId"),
             "house_ref": api_data.get("HouseId"),
             "source_query": api_data.get("SourceAddress") or address_string,
-            "address_string": address_string,
             "post_index": api_data.get("Index_") or api_data.get("Index_8x"),
             "region": api_data.get("Region"),
             "area": api_data.get("Area"),
             "city": api_data.get("City"),
+            "city_string": api_data.get("CityString"),
+            "city_string_en": api_data.get("CityStringEn"),
+            "city_string_ru": api_data.get("CityStringRu"),
             "settlement_type": api_data.get("SettlementType"),
             "street": api_data.get("Street"),
             "str_type": (api_data.get("StrType") or api_data.get("StreetType")),
@@ -903,16 +953,56 @@ class GeodataAddress(models.Model):
             "is_regional_center": api_data.get("IsOCentre", False),
             "is_district_center": api_data.get("IsRCentre", False),
             "city_district": api_data.get("CityDistrict"),
-            "metro_station": api_data.get("MetroStation"),
+            "city_district_en": api_data.get("CityDistrictEn"),
+            "city_district_ru": api_data.get("CityDistrictRu"),
+            "metro_station": (
+                api_data.get("MetroStation") or api_data.get("MetroName")
+            ),
             "metro_line": api_data.get("MetroLine"),
             "metro_distance": api_data.get("MetroDistance"),
             "terr_status": api_data.get("TerrStatus"),
             "region_old": api_data.get("RegionOld"),
+            "region_en": api_data.get("RegionEn"),
+            "region_ru": api_data.get("RegionRu"),
             "area_old": api_data.get("AreaOld"),
+            "area_old_en": api_data.get("AreaOldEn"),
+            "area_old_ru": api_data.get("AreaOldRu"),
+            "area_en": api_data.get("AreaEn"),
+            "area_ru": api_data.get("AreaRu"),
             "city_old": api_data.get("CityOld"),
+            "city_old_en": api_data.get("CityOldEn"),
+            "city_old_ru": api_data.get("CityOldRu"),
+            "city_en": api_data.get("CityEn"),
+            "city_ru": api_data.get("CityRu"),
+            "hromada_en": api_data.get("HromadaEn"),
+            "hromada_ru": api_data.get("HromadaRu"),
             "settlement_type_old": api_data.get("SettlementTypeOld"),
-            "str_type_old": api_data.get("StrTypeOld"),
+            "settlement_type_en": api_data.get("SettlementTypeEn"),
+            "settlement_type_ru": api_data.get("SettlementTypeRu"),
+            "street_en": api_data.get("StreetEn"),
+            "street_ru": api_data.get("StreetRu"),
+            "str_type_old": (
+                api_data.get("StrTypeOld") or api_data.get("StreetTypeOld")
+            ),
+            "str_type_old_en": (
+                api_data.get("StrTypeOldEn") or api_data.get("StreetTypeOldEn")
+            ),
+            "str_type_old_ru": (
+                api_data.get("StrTypeOldRu") or api_data.get("StreetTypeOldRu")
+            ),
+            "str_type_en": (
+                api_data.get("StrTypeEn") or api_data.get("StreetTypeEn")
+            ),
+            "str_type_ru": (
+                api_data.get("StrTypeRu") or api_data.get("StreetTypeRu")
+            ),
             "street_old": api_data.get("StreetOld"),
+            "street_old_en": api_data.get("StreetOldEn"),
+            "street_old_ru": api_data.get("StreetOldRu"),
+            "house_num_add_en": api_data.get("HouseNumAddEn"),
+            "house_num_add_ru": api_data.get("HouseNumAddRu"),
+            "apartment_type_en": api_data.get("ApartmentTypeEn"),
+            "apartment_type_ru": api_data.get("ApartmentTypeRu"),
             "comments": api_data.get("Comments"),
             "description": api_data.get("Description"),
             "city_moniker": (
@@ -936,25 +1026,20 @@ class GeodataAddress(models.Model):
         vals = self._api_data_to_vals(api_data)
         vals = {k: v for k, v in vals.items() if v is not None}
 
-        record = self.create(vals)
-        record.fetch_translations()
-        return record
+        return self.create(vals)
 
     def _rebuild_address_string(self):
         self.ensure_one()
         parts = []
-        if self.region:
+        city_string = self.city_string or ""
+        if self.region and self.region not in city_string:
             parts.append(self.region)
         if self.area:
             area_part = self._format_area_with_old("ua")
-            if area_part:
+            if area_part and area_part not in city_string:
                 parts.append(area_part)
-        if self.settlement_type and self.city:
-            parts.append(f"{self.settlement_type} {self.city}")
-        elif self.city:
-            parts.append(self.city)
-        elif self.settlement_type:
-            parts.append(self.settlement_type)
+        if city_string:
+            parts.append(city_string)
         street_with_old = self._format_street_with_old("ua")
         if street_with_old:
             parts.append(street_with_old)
@@ -1090,7 +1175,6 @@ class GeodataAddress(models.Model):
 
         if filtered:
             self.write(filtered)
-        self.fetch_translations()
 
     def _validate_translation_match(self, api_data):
         if self.house_ref and api_data.get("HouseId"):
@@ -1234,57 +1318,14 @@ class GeodataAddress(models.Model):
 
     def fetch_translations(self):
         self.ensure_one()
-        query = self._build_translation_query()
-        if not query:
-            _logger.debug(
-                "No address data for address %s, skipping translations", self.id
-            )
-            return
-
         credential = self.env["geodata.api.credential"].sudo().get_credential()
         if not credential:
-            _logger.debug("No credential found, skipping translations")
             return
-
-        _logger.debug(
-            "Fetching translations for address %s, query: %s, "
-            "store_en=%s, store_ru=%s",
-            self.id,
-            query,
-            credential.store_english,
-            credential.store_russian,
-        )
-
-        self._update_from_ua_translation(credential, query)
-
         vals = {}
-
-        if credential.store_english:
-            api_data_en = self._fetch_translation_data(
-                credential,
-                query,
-                "en_US",
-            )
-            if api_data_en:
-                vals.update(
-                    self._extract_translation_fields(api_data_en, "en"),
-                )
-        else:
+        if not credential.store_english:
             vals.update(self._get_clear_translation_vals("en"))
-
-        if credential.store_russian:
-            api_data_ru = self._fetch_translation_data(
-                credential,
-                query,
-                "ru_RU",
-            )
-            if api_data_ru:
-                vals.update(
-                    self._extract_translation_fields(api_data_ru, "ru"),
-                )
-        else:
+        if not credential.store_russian:
             vals.update(self._get_clear_translation_vals("ru"))
-
         if vals:
             self.write(vals)
 

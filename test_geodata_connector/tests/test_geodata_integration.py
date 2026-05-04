@@ -475,6 +475,7 @@ class TestGeodataUnitTests(TransactionCase):
             "ID": 12345,
             "AddressString": "м. Київ, вул. Хрещатик, 1",
             "City": "Київ",
+            "CityString": "Київ",
             "Street": "Хрещатик",
             "StrType": "вул.",
             "HouseNum": "1",

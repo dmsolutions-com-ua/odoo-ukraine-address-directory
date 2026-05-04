@@ -40,6 +40,7 @@ class TestAddressFormat(TransactionCase):
                 "settlement_type": "місто",
                 "city": "Бровари",
                 "city_old": "Броварі",
+                "city_string": "місто Бровари",
                 "str_type": "вул.",
                 "street": "Київська",
                 "street_old": "Леніна",
@@ -178,6 +179,7 @@ class TestAddressFormat(TransactionCase):
                 "region": "Київська",
                 "city": "Київ",
                 "settlement_type": "місто",
+                "city_string": "місто Київ",
                 "str_type": "вул.",
                 "street": "Хрещатик",
                 "house_num": "1",
@@ -199,6 +201,7 @@ class TestAddressFormat(TransactionCase):
             {
                 "city": "Київ",
                 "settlement_type": "місто",
+                "city_string": "місто Київ",
                 "str_type": "вул.",
                 "street": "Хрещатик",
                 "house_num": "1",
@@ -213,6 +216,7 @@ class TestAddressFormat(TransactionCase):
             {
                 "city": "Київ",
                 "settlement_type": "місто",
+                "city_string": "місто Київ",
             }
         )
         self._set_format(
