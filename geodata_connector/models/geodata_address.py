@@ -615,13 +615,13 @@ class GeodataAddress(models.Model):
         parts = []
         if self.post_index:
             parts.append(self.post_index)
+        city_part = self._format_city_with_old(lang) or ""
         region = self._format_region_part(lang)
-        if region:
+        if region and region not in city_part:
             parts.append(region)
         area = self._format_area_part(lang)
-        if area:
+        if area and area not in city_part:
             parts.append(area)
-        city_part = self._format_city_with_old(lang)
         if city_part:
             parts.append(city_part)
         street_house = self._format_street_house_part(lang)
