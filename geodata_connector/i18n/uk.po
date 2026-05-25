@@ -312,39 +312,39 @@ msgstr "Номер будинку"
 #: model_terms:ir.ui.view,arch_db:geodata_connector.geodata_address_view_search
 #: model_terms:ir.ui.view,arch_db:geodata_connector.geodata_address_view_tree
 msgid "City"
-msgstr "Місто"
+msgstr "Населений пункт"
 
 #. module: geodata_connector
 #: model:ir.model.fields,field_description:geodata_connector.field_geodata_address__city_en
 msgid "City (English)"
-msgstr "Місто (англійською)"
+msgstr "Населений пункт (англійською)"
 
 #. module: geodata_connector
 #: model:ir.model.fields,field_description:geodata_connector.field_geodata_address__city_ru
 msgid "City (Russian)"
-msgstr "Місто (російською)"
+msgstr "Населений пункт (російською)"
 
 #. module: geodata_connector
 #: model:ir.model.fields,field_description:geodata_connector.field_geodata_address__city_district
 #: model_terms:ir.ui.view,arch_db:geodata_connector.geodata_address_view_form
 msgid "City District"
-msgstr "Район міста"
+msgstr "Район населеного пункту"
 
 #. module: geodata_connector
 #: model:ir.model.fields,field_description:geodata_connector.field_geodata_address__city_district_en
 msgid "City District (English)"
-msgstr "Район міста (англійською)"
+msgstr "Район населеного пункту (англійською)"
 
 #. module: geodata_connector
 #: model:ir.model.fields,field_description:geodata_connector.field_geodata_address__city_district_ru
 msgid "City District (Russian)"
-msgstr "Район міста (російською)"
+msgstr "Район населеного пункту (російською)"
 
 #. module: geodata_connector
 #: model:ir.model.fields,field_description:geodata_connector.field_geodata_address__city_moniker
 #: model:ir.model.fields,field_description:geodata_connector.field_geodata_address_mixin__geodata_city_moniker
 msgid "City Moniker"
-msgstr "Моникер міста"
+msgstr "Моникер населеного пункту"
 
 #. module: geodata_connector
 #: model:ir.model.fields,field_description:geodata_connector.field_geodata_address__city
@@ -528,7 +528,7 @@ msgstr "Районний центр"
 #. module: geodata_connector
 #: model:ir.model.fields,help:geodata_connector.field_geodata_address__city_district
 msgid "District of the city (if KATOTTG code exists)"
-msgstr "Район міста (за наявності коду КАТОТТГ)"
+msgstr "Район населеного пункту (за наявності коду КАТОТТГ)"
 
 #. module: geodata_connector
 #: model:ir.model.fields,help:geodata_connector.field_geodata_address__area
@@ -1010,17 +1010,17 @@ msgstr "Старий район (російською)"
 #. module: geodata_connector
 #: model:ir.model.fields,field_description:geodata_connector.field_geodata_address__city_old_en
 msgid "Old City (English)"
-msgstr "Стара назва міста (англійською)"
+msgstr "Стара назва населеного пункту (англійською)"
 
 #. module: geodata_connector
 #: model:ir.model.fields,field_description:geodata_connector.field_geodata_address__city_old_ru
 msgid "Old City (Russian)"
-msgstr "Стара назва міста (російською)"
+msgstr "Стара назва населеного пункту (російською)"
 
 #. module: geodata_connector
 #: model:ir.model.fields,field_description:geodata_connector.field_geodata_address__city_old
 msgid "Old City Name"
-msgstr "Стара назва міста"
+msgstr "Стара назва населеного пункту"
 
 #. module: geodata_connector
 #: model:ir.model.fields,field_description:geodata_connector.field_geodata_address__area_old
@@ -1113,7 +1113,7 @@ msgstr "Поштовий індекс/ZIP код"
 #. module: geodata_connector
 #: model:ir.model.fields,help:geodata_connector.field_geodata_address__city_old
 msgid "Previous city name (if renamed)"
-msgstr "Попередня назва міста (якщо перейменовано)"
+msgstr "Попередня назва населеного пункту (якщо перейменовано)"
 
 #. module: geodata_connector
 #: model:ir.model.fields,help:geodata_connector.field_geodata_address__area_old

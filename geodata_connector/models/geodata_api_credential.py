@@ -343,7 +343,9 @@ class GeodataApiCredential(models.Model):
             return [result]
         return result if result else []
 
-    def api_cities_search(self, sRequest="", sPostCode="", sLang="uk_UA"):
+    def api_cities_search(
+        self, sRequest="", sPostCode="", sLang="uk_UA", sRegion=""
+    ):
         self.ensure_one()
         if not sRequest and not sPostCode:
             return []
@@ -352,6 +354,8 @@ class GeodataApiCredential(models.Model):
             params["sPostCode"] = sPostCode
         else:
             params["sRequest"] = sRequest
+        if sRegion:
+            params["sRegion"] = sRegion
         return self.api_request(
             method="GET",
             url="api/Cities",
@@ -464,6 +468,17 @@ class GeodataApiCredential(models.Model):
             silent=True,
         )
 
+    def api_user_info(self):
+        self.ensure_one()
+        result = self.api_request(
+            method="GET",
+            url="api/Account/UserInfo",
+            silent=False,
+        )
+        if not isinstance(result, dict):
+            return {}
+        return result
+
     def action_test_connection(self):
         self.ensure_one()
 
@@ -477,10 +492,10 @@ class GeodataApiCredential(models.Model):
                 )
 
         try:
-            result = self.api_cities_search(sRequest="Київ", sLang="uk_UA")
-            if not result:
+            info = self.api_user_info()
+            if not info or not info.get("Email"):
                 raise UserError(
-                    _("API returned empty result. " "Please check credentials.")
+                    _("API returned empty user info. Please check credentials.")
                 )
 
             _logger.debug("Connection test successful, syncing Ukraine states...")
@@ -497,12 +512,19 @@ class GeodataApiCredential(models.Model):
             except Exception as sync_error:
                 _logger.debug("Failed to sync Ukraine states: %s", str(sync_error))
 
+            email = info.get("Email") or ""
+            balance = info.get("Balans")
+            balance_str = "" if balance is None else "{:.2f}".format(float(balance))
+            message = _(
+                "Connection successful. Email: %(email)s, Balance: %(balance)s"
+            ) % {"email": email, "balance": balance_str}
+
             return {
                 "type": "ir.actions.client",
                 "tag": "display_notification",
                 "params": {
                     "title": _("Success"),
-                    "message": _("Connection to Geodata API successful!"),
+                    "message": message,
                     "type": "success",
                     "sticky": False,
                 },
@@ -640,8 +662,18 @@ class GeodataApiCredential(models.Model):
             )
         return suggestions
 
+    @staticmethod
+    def _normalize_region_name(state_name):
+        if not state_name:
+            return ""
+        text = state_name.strip()
+        for suffix in (" область", " обл.", " обл", " oblast"):
+            if text.lower().endswith(suffix.lower()):
+                return text[: -len(suffix)].strip()
+        return text
+
     @api.model
-    def autocomplete_cities(self, query, lang="uk_UA"):
+    def autocomplete_cities(self, query, lang="uk_UA", region=""):
         """Search cities for autocomplete widget via ORM call.
 
         Returns suggestions with format:
@@ -656,7 +688,9 @@ class GeodataApiCredential(models.Model):
             return []
 
         try:
-            results = credential.api_cities_search(sRequest=query, sLang=lang)
+            results = credential.api_cities_search(
+                sRequest=query, sLang=lang, sRegion=region
+            )
         except Exception as e:
             _logger.debug("Autocomplete cities error: %s", str(e))
             return []
@@ -969,7 +1003,19 @@ class GeodataApiCredential(models.Model):
         if not credential:
             return []
         lang = credential._get_api_language()
-        return credential.autocomplete_cities(query, lang=lang)
+        dep = dep_values or {}
+        region = ""
+        state_val = dep.get("state_id")
+        state_id = (
+            state_val[0]
+            if isinstance(state_val, (list, tuple)) and state_val
+            else state_val
+        )
+        if state_id:
+            state = self.env["res.country.state"].sudo().browse(int(state_id))
+            if state.exists():
+                region = self._normalize_region_name(state.name)
+        return credential.autocomplete_cities(query, lang=lang, region=region)
 
     @staticmethod
     def _build_street_label(geo_addr):

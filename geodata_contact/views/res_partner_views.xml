@@ -32,7 +32,7 @@
                         'model': 'geodata.api.credential',
                         'method': 'kw_autocomplete_cities'
                     },
-                    'depends_on': ['country_id'],
+                    'depends_on': ['country_id', 'state_id'],
                     'on_select_method': 'apply_address_to_partner',
                     'min_chars': 3
                 }</attribute>
@@ -76,7 +76,7 @@
                         'model': 'geodata.api.credential',
                         'method': 'kw_autocomplete_cities'
                     },
-                    'depends_on': ['country_id'],
+                    'depends_on': ['country_id', 'state_id'],
                     'on_select_method': 'apply_address_to_partner',
                     'min_chars': 3
                 }</attribute>

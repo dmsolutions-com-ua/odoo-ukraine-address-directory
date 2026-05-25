@@ -415,8 +415,8 @@ class GeodataAddress(models.Model):
         "region",
         "area",
         "settlement_type",
+        "settlement_type_old",
         "city",
-        "city_string",
         "str_type",
         "street",
         "house_num",
@@ -434,8 +434,8 @@ class GeodataAddress(models.Model):
         "region",
         "area",
         "settlement_type",
+        "settlement_type_old",
         "city",
-        "city_string",
         "str_type",
         "street",
         "house_num",
@@ -451,7 +451,6 @@ class GeodataAddress(models.Model):
 
     @api.depends(
         "city",
-        "city_string",
         "street",
         "house_num",
         "post_index",
@@ -476,9 +475,6 @@ class GeodataAddress(models.Model):
         "area",
         "settlement_type",
         "city",
-        "city_string",
-        "city_string_en",
-        "city_string_ru",
         "str_type",
         "street",
         "house_num",
@@ -551,7 +547,7 @@ class GeodataAddress(models.Model):
         street = self._get_field_by_lang("street", lang)
         street_val = f"{str_type} {street}" if str_type and street else street
 
-        city_val = self._get_field_by_lang("city_string", lang)
+        city_val = self._format_city_with_old(lang)
 
         region_old = self._get_old_name_by_lang("region_old", lang)
         area_old_val = self._get_old_name_by_lang("area_old", lang)
@@ -681,7 +677,11 @@ class GeodataAddress(models.Model):
         return street_part
 
     def _format_city_with_old(self, lang="ua"):
-        return self._get_field_by_lang("city_string", lang)
+        settlement_type = self._get_field_by_lang("settlement_type", lang)
+        city = self._get_field_by_lang("city", lang)
+        if not city:
+            return ""
+        return f"{settlement_type} {city}" if settlement_type else city
 
     def _format_area_with_old(self, lang="ua"):
         area = self._get_field_by_lang("area", lang)
@@ -875,6 +875,12 @@ class GeodataAddress(models.Model):
         self.write(vals)
         return True
 
+    @staticmethod
+    def _strip_old_name_suffix(value):
+        if not value:
+            return value
+        return re.sub(r"\s*\([^()]*\)\s*$", "", value).strip() or value
+
     @api.model
     def _api_data_to_vals(self, api_data):
         address_string = api_data.get("AddressString") or self._build_address_string(
@@ -890,9 +896,13 @@ class GeodataAddress(models.Model):
             "region": api_data.get("Region"),
             "area": api_data.get("Area"),
             "city": api_data.get("City"),
-            "city_string": api_data.get("CityString"),
-            "city_string_en": api_data.get("CityStringEn"),
-            "city_string_ru": api_data.get("CityStringRu"),
+            "city_string": self._strip_old_name_suffix(api_data.get("CityString")),
+            "city_string_en": self._strip_old_name_suffix(
+                api_data.get("CityStringEn")
+            ),
+            "city_string_ru": self._strip_old_name_suffix(
+                api_data.get("CityStringRu")
+            ),
             "settlement_type": api_data.get("SettlementType"),
             "street": api_data.get("Street"),
             "str_type": (api_data.get("StrType") or api_data.get("StreetType")),
@@ -1031,7 +1041,7 @@ class GeodataAddress(models.Model):
     def _rebuild_address_string(self):
         self.ensure_one()
         parts = []
-        city_string = self.city_string or ""
+        city_string = self._format_city_with_old("ua") or ""
         if self.region and self.region not in city_string:
             parts.append(self.region)
         if self.area:

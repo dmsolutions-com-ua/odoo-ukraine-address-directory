@@ -293,6 +293,8 @@ class ResPartner(models.Model):
     _PARTNER_GEO_HOUSE_CLEAR = [
         "house_num",
         "house_num_add",
+        "house_num_add_en",
+        "house_num_add_ru",
         "house_ref",
         "apartment_type",
         "apartment",
@@ -314,10 +316,16 @@ class ResPartner(models.Model):
             "street_ref",
             "street_en",
             "street_ru",
+            "street_old_en",
+            "street_old_ru",
             "str_type_en",
             "str_type_ru",
+            "str_type_old_en",
+            "str_type_old_ru",
             "house_num",
             "house_num_add",
+            "house_num_add_en",
+            "house_num_add_ru",
             "house_ref",
             "apartment_type",
             "apartment",
@@ -337,6 +345,11 @@ class ResPartner(models.Model):
             "settlement_ref",
             "city_en",
             "city_ru",
+            "city_old_en",
+            "city_old_ru",
+            "city_string",
+            "city_string_en",
+            "city_string_ru",
             "settlement_type_en",
             "settlement_type_ru",
             "city_district",
@@ -353,6 +366,33 @@ class ResPartner(models.Model):
             "metro_line",
             "metro_distance",
             "terr_status",
+            "street",
+            "str_type",
+            "street_old",
+            "str_type_old",
+            "street_moniker",
+            "street_ref",
+            "street_en",
+            "street_ru",
+            "street_old_en",
+            "street_old_ru",
+            "str_type_en",
+            "str_type_ru",
+            "str_type_old_en",
+            "str_type_old_ru",
+            "house_num",
+            "house_num_add",
+            "house_num_add_en",
+            "house_num_add_ru",
+            "house_ref",
+            "apartment_type",
+            "apartment",
+            "addition_address",
+            "apartment_type_en",
+            "apartment_type_ru",
+            "post_index",
+            "latitude",
+            "longitude",
         ],
         "state_id": [
             "region",
@@ -415,8 +455,11 @@ class ResPartner(models.Model):
                 if current_id == (new_id or False):
                     continue
             else:
-                if (new_val or False) == (current or False):
+                new_norm = new_val.strip() if isinstance(new_val, str) else new_val
+                cur_norm = current.strip() if isinstance(current, str) else current
+                if (new_norm or False) == (cur_norm or False):
                     continue
+                new_val = new_norm
             if not new_val:
                 cleared_fields.add(f)
             else:
