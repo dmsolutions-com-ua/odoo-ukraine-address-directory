@@ -334,7 +334,7 @@ class GeodataApiCredential(models.Model):
 
         result = self.api_request(
             method="GET",
-            url="api/Address",
+            url="api/FullAddress",
             params=params,
             silent=False,
         )
@@ -460,7 +460,7 @@ class GeodataApiCredential(models.Model):
             return []
         return self.api_request(
             method="GET",
-            url="api/Address",
+            url="api/FullAddress",
             params={
                 "sRequest": sRequest,
                 "sLang": sLang,

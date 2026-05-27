@@ -1036,7 +1036,9 @@ class GeodataAddress(models.Model):
         vals = self._api_data_to_vals(api_data)
         vals = {k: v for k, v in vals.items() if v is not None}
 
-        return self.create(vals)
+        record = self.create(vals)
+        record.fetch_translations()
+        return record
 
     def _rebuild_address_string(self):
         self.ensure_one()
@@ -1185,6 +1187,7 @@ class GeodataAddress(models.Model):
 
         if filtered:
             self.write(filtered)
+            self.fetch_translations()
 
     def _validate_translation_match(self, api_data):
         if self.house_ref and api_data.get("HouseId"):
@@ -1326,18 +1329,38 @@ class GeodataAddress(models.Model):
             )
             self.write(filtered)
 
+    _TRANSLATION_LANG_MAP = {"en": "en_US", "ru": "ru_RU"}
+
+    def _fetch_lang_translation(self, credential, query, suffix):
+        api_data = self._fetch_translation_data(
+            credential, query, self._TRANSLATION_LANG_MAP[suffix]
+        )
+        if not api_data:
+            return {}
+        return self._extract_translation_fields(api_data, suffix)
+
     def fetch_translations(self):
         self.ensure_one()
+        if self.env.context.get("geodata_skip_translations"):
+            return
         credential = self.env["geodata.api.credential"].sudo().get_credential()
         if not credential:
             return
         vals = {}
-        if not credential.store_english:
+        if credential.store_english:
+            query = self._build_translation_query()
+            if query:
+                vals.update(self._fetch_lang_translation(credential, query, "en"))
+        else:
             vals.update(self._get_clear_translation_vals("en"))
-        if not credential.store_russian:
+        if credential.store_russian:
+            query = self._build_translation_query()
+            if query:
+                vals.update(self._fetch_lang_translation(credential, query, "ru"))
+        else:
             vals.update(self._get_clear_translation_vals("ru"))
         if vals:
-            self.write(vals)
+            self.with_context(geodata_skip_translations=True).write(vals)
 
     def get_state_code_for_region(self, region):
         state_code = UKRAINE_STATES.get(region)

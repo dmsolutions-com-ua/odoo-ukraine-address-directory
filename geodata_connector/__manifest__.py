@@ -8,7 +8,7 @@
     "website": "https://geodata.online",
     "category": "Hidden",
     "license": "LGPL-3",
-    "version": "18.0.2.2.0",
+    "version": "18.0.2.3.0",
     "depends": [
         "base",
         "base_geolocalize",
