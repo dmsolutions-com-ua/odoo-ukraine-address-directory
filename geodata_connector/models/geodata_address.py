@@ -283,8 +283,8 @@ class GeodataAddress(models.Model):
         help="Previous district name (if renamed/border changed)",
     )
     city_old = fields.Char(
-        string="Old City Name",
-        help="Previous city name (if renamed)",
+        string="Old Settlement Name",
+        help="Previous settlement name (if renamed)",
     )
     settlement_type_old = fields.Char(
         string="Old Settlement Type",
@@ -1271,6 +1271,27 @@ class GeodataAddress(models.Model):
             parts.append(house)
         return ", ".join(parts) if parts else self.address_string
 
+    def _build_translit_query(self):
+        parts = []
+        if self.region:
+            parts.append(self.region)
+        if self.area:
+            parts.append(self.area)
+        if self.settlement_type and self.city:
+            parts.append(f"{self.settlement_type} {self.city}")
+        elif self.city:
+            parts.append(self.city)
+        if self.str_type and self.street:
+            parts.append(f"{self.str_type} {self.street}")
+        elif self.street:
+            parts.append(self.street)
+        if self.house_num:
+            house = self.house_num
+            if self.house_num_add:
+                house += self.house_num_add
+            parts.append(house)
+        return " ".join(parts)
+
     _TRANSLATION_SUFFIXES = ("en", "ru")
 
     def _get_clear_translation_vals(self, suffix):
@@ -1339,6 +1360,17 @@ class GeodataAddress(models.Model):
             return {}
         return self._extract_translation_fields(api_data, suffix)
 
+    def _fetch_translit_fields(self, credential, query):
+        try:
+            results = credential.api_address_translit(query, sLang="en_US")
+        except Exception as e:
+            _logger.debug("Failed to fetch EN transliteration: %s", str(e))
+            return {}
+        match = self._find_matching_result(results)
+        if not match:
+            return {}
+        return self._extract_translation_fields(match, "en")
+
     def fetch_translations(self):
         self.ensure_one()
         if self.env.context.get("geodata_skip_translations"):
@@ -1348,9 +1380,9 @@ class GeodataAddress(models.Model):
             return
         vals = {}
         if credential.store_english:
-            query = self._build_translation_query()
+            query = self._build_translit_query()
             if query:
-                vals.update(self._fetch_lang_translation(credential, query, "en"))
+                vals.update(self._fetch_translit_fields(credential, query))
         else:
             vals.update(self._get_clear_translation_vals("en"))
         if credential.store_russian:

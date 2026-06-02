@@ -240,6 +240,7 @@ class ResPartner(models.Model):
             self.street = False
             self.street2 = False
             self.zip = False
+            self._clear_geodata_link()
 
     @api.onchange("street")
     def _onchange_street_clear_zip(self):
@@ -501,6 +502,12 @@ class ResPartner(models.Model):
         if not cleared_fields and not changed_fields:
             return
 
+        house_only = (
+            not cleared_fields
+            and changed_fields == {"street"}
+            and self._is_house_only_change(geo_addr, vals.get("street", ""))
+        )
+
         fields_to_clear = set()
         if cleared_fields:
             fields_to_clear.update(self._get_geo_fields_to_clear(cleared_fields))
@@ -517,6 +524,9 @@ class ResPartner(models.Model):
         new_addr_str = geo_addr._rebuild_address_string()
         if new_addr_str != geo_addr.address_string:
             geo_addr.address_string = new_addr_str
+
+        if not house_only:
+            partner.geodata_address_id = False
 
     def _get_coords_from_geodata(self, partner):
         geo_addr = partner.geodata_address_id

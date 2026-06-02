@@ -468,6 +468,23 @@ class GeodataApiCredential(models.Model):
             silent=True,
         )
 
+    def api_address_translit(self, sRequest, sLang="en_US"):
+        self.ensure_one()
+        if not sRequest:
+            return []
+        result = self.api_request(
+            method="GET",
+            url="api/Address",
+            params={
+                "sRequest": sRequest,
+                "sLang": sLang,
+            },
+            silent=True,
+        )
+        if isinstance(result, dict):
+            return [result]
+        return result if result else []
+
     def api_user_info(self):
         self.ensure_one()
         result = self.api_request(
@@ -531,7 +548,12 @@ class GeodataApiCredential(models.Model):
             }
         except Exception as e:
             if self._is_payment_required_error(e):
-                return False
+                raise UserError(
+                    _(
+                        "API balance exhausted. Please top up your account "
+                        "in the Geodata.online dashboard."
+                    )
+                ) from e
             if isinstance(e, UserError):
                 raise
             raise UserError(_("Connection test failed: %s") % str(e)) from e
@@ -1005,7 +1027,7 @@ class GeodataApiCredential(models.Model):
         lang = credential._get_api_language()
         dep = dep_values or {}
         region = ""
-        state_val = dep.get("state_id")
+        state_val = dep.get("state_id") or dep.get("private_state_id")
         state_id = (
             state_val[0]
             if isinstance(state_val, (list, tuple)) and state_val

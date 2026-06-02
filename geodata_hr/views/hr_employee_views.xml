@@ -38,7 +38,7 @@
                         'model': 'geodata.api.credential',
                         'method': 'kw_autocomplete_cities'
                     },
-                    'depends_on': ['private_country_id'],
+                    'depends_on': ['private_country_id', 'private_state_id'],
                     'on_select_method': 'apply_geodata_address',
                     'min_chars': 3
                 }</attribute>

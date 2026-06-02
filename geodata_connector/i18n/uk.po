@@ -1019,7 +1019,7 @@ msgstr "Стара назва населеного пункту (російсь�
 
 #. module: geodata_connector
 #: model:ir.model.fields,field_description:geodata_connector.field_geodata_address__city_old
-msgid "Old City Name"
+msgid "Old Settlement Name"
 msgstr "Стара назва населеного пункту"
 
 #. module: geodata_connector
@@ -1112,7 +1112,7 @@ msgstr "Поштовий індекс/ZIP код"
 
 #. module: geodata_connector
 #: model:ir.model.fields,help:geodata_connector.field_geodata_address__city_old
-msgid "Previous city name (if renamed)"
+msgid "Previous settlement name (if renamed)"
 msgstr "Попередня назва населеного пункту (якщо перейменовано)"
 
 #. module: geodata_connector
