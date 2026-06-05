@@ -468,8 +468,11 @@ class GeodataApiCredential(models.Model):
             silent=True,
         )
 
-    def api_address_translit(self, sRequest, sLang="en_US"):
+    def api_address(self, sRequest, sLang="uk_UA"):
         self.ensure_one()
+        if not sRequest:
+            return []
+        sRequest = " ".join(sRequest.replace(",", " ").split())
         if not sRequest:
             return []
         result = self.api_request(
@@ -665,20 +668,25 @@ class GeodataApiCredential(models.Model):
             return []
 
         try:
-            results = credential.api_full_address(sRequest=query, sLang=lang)
+            results = credential.api_address(sRequest=query, sLang=lang)
         except Exception as e:
             _logger.debug("Autocomplete API error: %s", str(e))
             return []
 
-        if not results:
+        if not isinstance(results, list):
             return []
 
         suggestions = []
         for data in results:
+            if not isinstance(data, dict):
+                continue
+            address_string = data.get("AddressString")
+            if not address_string:
+                continue
             suggestions.append(
                 {
-                    "label": data["AddressString"],
-                    "value": data["AddressString"],
+                    "label": address_string,
+                    "value": address_string,
                     "data": data,
                 }
             )

@@ -1362,7 +1362,7 @@ class GeodataAddress(models.Model):
 
     def _fetch_translit_fields(self, credential, query):
         try:
-            results = credential.api_address_translit(query, sLang="en_US")
+            results = credential.api_address(query, sLang="en_US")
         except Exception as e:
             _logger.debug("Failed to fetch EN transliteration: %s", str(e))
             return {}
