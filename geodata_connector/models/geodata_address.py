@@ -886,6 +886,11 @@ class GeodataAddress(models.Model):
         address_string = api_data.get("AddressString") or self._build_address_string(
             api_data
         )
+        is_building = bool(
+            api_data.get("Street")
+            or api_data.get("HouseId")
+            or api_data.get("HouseNum")
+        )
         return {
             "geodata_id": api_data.get("ID"),
             "settlement_ref": api_data.get("SettlementId") or api_data.get("Id"),
@@ -913,19 +918,19 @@ class GeodataAddress(models.Model):
             "addition_address": api_data.get("AdditionAddress"),
             "latitude": (
                 float(api_data["Lat_"])
-                if (api_data.get("Lat_") and api_data.get("Street"))
+                if (api_data.get("Lat_") and is_building)
                 else (
                     float(api_data["Lat"])
-                    if (api_data.get("Lat") and api_data.get("Street"))
+                    if (api_data.get("Lat") and is_building)
                     else None
                 )
             ),
             "longitude": (
                 float(api_data["Long_"])
-                if (api_data.get("Long_") and api_data.get("Street"))
+                if (api_data.get("Long_") and is_building)
                 else (
                     float(api_data["Long"])
-                    if (api_data.get("Long") and api_data.get("Street"))
+                    if (api_data.get("Long") and is_building)
                     else None
                 )
             ),
@@ -934,10 +939,10 @@ class GeodataAddress(models.Model):
                 if api_data.get("Lat_S")
                 else (
                     float(api_data["Lat_"])
-                    if (api_data.get("Lat_") and not api_data.get("Street"))
+                    if (api_data.get("Lat_") and not is_building)
                     else (
                         float(api_data["Lat"])
-                        if (api_data.get("Lat") and not api_data.get("Street"))
+                        if (api_data.get("Lat") and not is_building)
                         else None
                     )
                 )
@@ -947,10 +952,10 @@ class GeodataAddress(models.Model):
                 if api_data.get("Long_S")
                 else (
                     float(api_data["Long_"])
-                    if (api_data.get("Long_") and not api_data.get("Street"))
+                    if (api_data.get("Long_") and not is_building)
                     else (
                         float(api_data["Long"])
-                        if (api_data.get("Long") and not api_data.get("Street"))
+                        if (api_data.get("Long") and not is_building)
                         else None
                     )
                 )
@@ -1159,8 +1164,6 @@ class GeodataAddress(models.Model):
         coord_preserve = (
             "latitude_settlement",
             "longitude_settlement",
-            "latitude",
-            "longitude",
         )
         for field, value in vals.items():
             api_keys = self._FIELD_API_KEYS.get(field, ())

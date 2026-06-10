@@ -931,9 +931,13 @@ class GeodataApiCredential(models.Model):
         settlement_type = data.get("SettlementType", "")
         area = data.get("Area", "")
 
-        street_part = f"{str_type} {street}" if str_type else street
-        if street_old and street_old.lower() != street.lower():
-            street_part = f"{street_part} ({street_old})"
+        street_string = data.get("StreetString", "")
+        if street_string:
+            street_part = street_string
+        else:
+            street_part = f"{str_type} {street}" if str_type else street
+            if street_old and street_old.lower() != street.lower():
+                street_part = f"{street_part} ({street_old})"
         if house_num:
             street_part = f"{street_part}, {house_num}"
 
@@ -962,7 +966,9 @@ class GeodataApiCredential(models.Model):
         if not house_num:
             return None
         house_add = data.get("HouseNumAdd", "")
-        house_full = f"{house_num}{house_add}" if house_add else house_num
+        house_full = data.get("HouseString", "") or (
+            f"{house_num}{house_add}" if house_add else house_num
+        )
         if not house_full.lower().startswith(query_lower):
             return None
         if street_label:

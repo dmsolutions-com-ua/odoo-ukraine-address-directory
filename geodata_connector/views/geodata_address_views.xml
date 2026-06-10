@@ -65,17 +65,15 @@
                                     <field name="region_en" string="Region" readonly="1"/>
                                     <field name="area_en" string="Area" readonly="1"/>
                                     <field name="hromada_en" string="Hromada" readonly="1"/>
-                                    <field name="city_en" string="City" readonly="1"/>
+                                    <field name="city_en" string="Settlement" readonly="1"/>
                                 </group>
                                 <group>
                                     <field name="settlement_type_en" string="Settlement Type" readonly="1"/>
                                     <field name="city_district_en" string="City District" readonly="1"/>
                                     <field name="street_en" string="Street" readonly="1"/>
                                     <field name="str_type_en" string="Street Type" readonly="1"/>
+                                    <field name="apartment_type_en" string="Apartment Type" readonly="1"/>
                                 </group>
-                            </group>
-                            <group>
-                                <field name="apartment_type_en" string="Apartment Type" readonly="1"/>
                             </group>
                         </page>
 
@@ -92,10 +90,8 @@
                                     <field name="city_district_ru" readonly="1"/>
                                     <field name="street_ru" readonly="1"/>
                                     <field name="str_type_ru" readonly="1"/>
+                                    <field name="apartment_type_ru" readonly="1"/>
                                 </group>
-                            </group>
-                            <group>
-                                <field name="apartment_type_ru" readonly="1"/>
                             </group>
                         </page>
 
@@ -115,8 +111,8 @@
                                     <field name="hromada_old" readonly="1"/>
                                 </group>
                                 <group>
-                                    <field name="city_old" readonly="1"/>
                                     <field name="settlement_type_old" readonly="1"/>
+                                    <field name="city_old" readonly="1"/>
                                     <field name="str_type_old" readonly="1"/>
                                     <field name="street_old" readonly="1"/>
                                 </group>
@@ -127,17 +123,6 @@
                             <group>
                                 <field name="comments" readonly="1"/>
                                 <field name="description" readonly="1"/>
-                            </group>
-                        </page>
-
-                        <page string="Ids" groups="base.group_no_one">
-                            <group>
-                                <group>
-                                    <field name="geodata_id" readonly="1"/>
-                                    <field name="settlement_ref" readonly="1"/>
-                                    <field name="street_ref" readonly="1"/>
-                                    <field name="house_ref" readonly="1"/>
-                                </group>
                             </group>
                         </page>
                     </notebook>

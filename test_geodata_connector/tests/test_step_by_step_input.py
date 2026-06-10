@@ -365,6 +365,8 @@ class TestStepByStepInput(TransactionCase):
         streets_data = self._mock_streets(tc_id)
         self._step_apply_street(partner, streets_data)
         street_name = tc["expect"].get("street", "")
+        if not street_name and streets_data:
+            street_name = streets_data[0].get("Street", "")
 
         if tc.get("house_query"):
             _logger.debug("Step 5: Search house '%s'", tc["house_query"])

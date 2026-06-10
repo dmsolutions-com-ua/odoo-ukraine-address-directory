@@ -593,5 +593,7 @@ class TestGeodataUnitTests(TransactionCase):
         self.assertEqual(address.geodata_id, 88888)
         self.assertEqual(address.city, "New City")
         self.assertEqual(address.post_index, "11111")
-        self.assertEqual(address.latitude, 50.0)
+        self.assertEqual(address.latitude, 0.0)
+        self.assertEqual(address.latitude_settlement, 50.0)
+        self.assertEqual(address.longitude_settlement, 30.0)
         _logger.debug("update_from_api_response: OK")
